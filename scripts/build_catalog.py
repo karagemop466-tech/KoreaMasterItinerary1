@@ -18,6 +18,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "research" / "sources"
 OUTPUT = ROOT / "data" / "catalog.json"
+ITINERARY_BLUEPRINTS = ROOT / "data" / "itineraries.json"
 
 # This date identifies the curation pass, not a promise that third-party
 # opening times, prices, visas, or event dates are current.
@@ -354,6 +355,7 @@ def build_catalog() -> dict[str, Any]:
     transport_food = read_json("transport/data/transit_food.json")["transit_food_spots"]
     transport_logistics = read_json("transport/data/logistics_rules.json")
     hotel_data = read_json("hotels/data/hotels.json")
+    itinerary_blueprint_data = json.loads(ITINERARY_BLUEPRINTS.read_text(encoding="utf-8"))
 
     routes = []
     for route in transport_routes_data["airport_to_city_routes"]:
@@ -431,6 +433,7 @@ def build_catalog() -> dict[str, Any]:
         "routes": len(routes),
         "apps": len(apps),
         "savingsGuides": len(savings_guides),
+        "routeBlueprints": len(itinerary_blueprint_data.get("itineraries", [])),
     }
 
     return {
@@ -461,6 +464,8 @@ def build_catalog() -> dict[str, Any]:
         "emergency": emergency,
         "hotelTripTemplate": hotel_data.get("trip", {}),
         "hotelSplitTemplate": hotel_data.get("split", {}),
+        "itineraryBlueprintMeta": itinerary_blueprint_data.get("meta", {}),
+        "itineraryBlueprints": itinerary_blueprint_data.get("itineraries", []),
     }
 
 

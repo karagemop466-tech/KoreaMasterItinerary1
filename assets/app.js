@@ -25,6 +25,7 @@
   const VIEW_LABELS = {
     dashboard: "Overview",
     discover: "Discover",
+    itineraries: "Route options",
     plan: "My plan",
     bookings: "Bookings",
     toolkit: "Transit kit",
@@ -51,6 +52,7 @@
   let currentView = "dashboard";
   const ui = {
     discover: { type: "all", city: "", query: "", limit: 18 },
+    itineraryId: "seoul-daejeon-busan",
   };
 
   init();
@@ -216,6 +218,7 @@
     const renderers = {
       dashboard: renderDashboard,
       discover: renderDiscover,
+      itineraries: renderItineraries,
       plan: renderPlan,
       bookings: renderBookings,
       toolkit: renderToolkit,
@@ -258,10 +261,10 @@
         <div class="hero-copy">
           <span class="eyebrow">A calm start, not a crowded spreadsheet</span>
           <h1 class="hero-title">Build your Korea trip one confident choice at a time.</h1>
-          <p>Everything from your six research repositories now has a shared home: places, stays, food, transit, safety notes, and source links. Start broad; your detailed itinerary can slot in later.</p>
+          <p>Everything from your six research repositories now has a shared home: places, stays, food, transit, safety notes, and source links. Two detailed 21-night route options are ready to compare; your final itinerary can stay flexible.</p>
           <div class="button-row">
             <button class="button" type="button" data-action="open-profile">Set up my trip <span aria-hidden="true">→</span></button>
-            <button class="button button-quiet" type="button" data-view="discover">Browse the master library</button>
+            <button class="button button-quiet" type="button" data-view="itineraries">Compare 2 route options</button>
           </div>
         </div>
         <aside class="trip-pulse" aria-label="Trip snapshot">
@@ -416,6 +419,91 @@
         <div id="discover-results"></div>
       </section>
     </section>`;
+  }
+
+  function renderItineraries() {
+    const blueprints = Array.isArray(catalog.itineraryBlueprints) ? catalog.itineraryBlueprints : [];
+    if (!blueprints.length) {
+      return `<section class="view"><section class="empty-state"><div class="empty-state-icon" aria-hidden="true">⇄</div><h3>Route blueprints are not available yet</h3><p>The planner catalog loaded without the detailed route data. Refresh the page after rebuilding the catalog.</p></section></section>`;
+    }
+    const selected = blueprints.find((item) => item.id === ui.itineraryId) || blueprints[0];
+    const trip = catalog.itineraryBlueprintMeta?.trip || {};
+    const importantDates = Array.isArray(trip.importantDates) ? trip.importantDates : [];
+
+    return `<section class="view route-options-view">
+      <header class="view-head">
+        <div class="view-head-copy">
+          <span class="eyebrow">Two detailed, source-aware planning blueprints</span>
+          <h1 class="page-title">Choose the middle chapter that fits you.</h1>
+          <p class="page-subtitle">Both routes use the actual trip window: arrive at ICN at <strong>21:00 on Sun, Nov 1, 2026</strong>; depart ICN at <strong>13:00 on Sun, Nov 22, 2026</strong>. Each preserves a calm final two-night Seoul buffer.</p>
+        </div>
+        <div class="head-actions"><button class="button button-quiet" type="button" data-action="copy-itinerary" data-id="${e(selected.id)}">Copy selected itinerary</button><button class="button" type="button" data-action="adopt-itinerary" data-id="${e(selected.id)}">Use as my editable plan</button></div>
+      </header>
+
+      <section class="route-guidance">
+        <div><span class="route-guidance-label">Same trip structure</span><strong>${e(trip.nights || 21)} nights · Seoul bookend · direct KTX city changes · one base per city</strong></div>
+        <p>${e(trip.sourceNote || "Verify all time-sensitive details before booking.")}</p>
+      </section>
+
+      <section class="route-comparison-grid" aria-label="Compare route blueprints">
+        ${blueprints.map((item) => renderRouteOptionCard(item, item.id === selected.id)).join("")}
+      </section>
+
+      <section class="route-detail-panel">
+        <div class="route-detail-head">
+          <div><span class="eyebrow">Selected route</span><h2>${e(selected.title)}</h2><p>${e(selected.decisionSummary)}</p></div>
+          <span class="route-badge">${e(selected.badge)}</span>
+        </div>
+        <div class="route-decision-grid">
+          <article><span>Best for</span><p>${e(selected.bestFor)}</p></article>
+          <article><span>Tradeoff</span><p>${e(selected.tradeoff)}</p></article>
+        </div>
+        <div class="route-scorecard">${(selected.scorecard || []).map((score) => `<div class="route-score ${e(score.tone || "")}"><span>${e(score.label)}</span><strong>${e(score.value)}</strong></div>`).join("")}</div>
+      </section>
+
+      <section class="route-layout">
+        <div class="route-main">
+          <section class="panel itinerary-day-panel">
+            <div class="section-head"><div><div class="section-kicker">Day-by-day blueprint</div><h2>22 calendar days, 21 nights</h2><p>Every transfer day has a lighter arrival plan; every sightseeing day has a weather or energy fallback. Open a day for the full sequence.</p></div><button class="button button-soft button-small" type="button" data-action="adopt-itinerary" data-id="${e(selected.id)}">Load into My plan</button></div>
+            <div class="blueprint-days">${(selected.days || []).map((day, index) => renderBlueprintDay(day, index < 2)).join("")}</div>
+          </section>
+        </div>
+        <aside class="route-side">
+          <section class="panel"><div class="section-kicker">Hotel-base strategy</div><h2 style="margin:0 0 9px;font-size:17px">Sleep where the route works</h2><div class="base-stack">${(selected.bases || []).map(renderRouteBase).join("")}</div></section>
+          <section class="panel panel-tint"><div class="section-kicker">KTX and airport moves</div><h2 style="margin:0 0 9px;font-size:17px">Why this routing stays calm</h2><div class="transfer-stack">${(selected.transfers || []).map(renderRouteTransfer).join("")}</div></section>
+          <section class="panel panel-warn"><div class="section-kicker">Book in this order</div><h2 style="margin:0 0 9px;font-size:17px">Protect the hard edges</h2><ol class="priority-list">${(selected.bookingPriorities || []).map((item) => `<li>${e(item)}</li>`).join("")}</ol></section>
+          <section class="panel"><div class="section-kicker">Time-sensitive checks</div><h2 style="margin:0 0 9px;font-size:17px">Confirm close to travel</h2><div class="detail-list">${importantDates.map((item) => `<div class="detail-row"><strong>${e(formatDate(item.date))} · ${e(item.label)}</strong><p>${e(item.note)}</p></div>`).join("")}</div></section>
+        </aside>
+      </section>
+    </section>`;
+  }
+
+  function renderRouteOptionCard(item, selected) {
+    const cities = (item.bases || []).map((base) => base.city).join(" → ");
+    return `<article class="route-option-card ${selected ? "is-selected" : ""}">
+      <div class="route-option-top"><span class="card-type type-route">${e(item.badge)}</span>${selected ? `<span class="route-selected">Viewing</span>` : ""}</div>
+      <h2>${e(item.shortTitle)}</h2>
+      <p class="route-path">${e(item.routeLabel)}</p>
+      <p>${e(item.bestFor)}</p>
+      <div class="route-city-chips">${cities.split(" → ").map((city) => `<span>${e(city)}</span>`).join("")}</div>
+      <div class="route-option-bottom"><button class="button ${selected ? "button-soft" : "button-quiet"} button-small" type="button" data-action="select-itinerary" data-id="${e(item.id)}">${selected ? "Viewing this route" : "View detailed route"}</button><button class="button button-link" type="button" data-action="adopt-itinerary" data-id="${e(item.id)}">Use it</button></div>
+    </article>`;
+  }
+
+  function renderRouteBase(base) {
+    return `<article class="route-base"><div><strong>${e(base.city)} <span>${e(base.nights)} nights</span></strong><small>${e(base.dates)}</small></div><p><b>${e(base.recommendedArea)}</b> — ${e(base.why)}</p><div class="route-hotel-ideas">${(base.hotelIdeas || []).map((hotel) => `<span>${e(hotel)}</span>`).join("")}</div></article>`;
+  }
+
+  function renderRouteTransfer(transfer) {
+    return `<article class="route-transfer"><strong>${e(formatDate(transfer.date))}</strong><span>${e(transfer.leg)}</span><p>${e(transfer.recommended)}</p><small>${e(transfer.why)}</small></article>`;
+  }
+
+  function renderBlueprintDay(day, open) {
+    const dayNumber = dateParts(day.date).day;
+    return `<details class="blueprint-day" ${open ? "open" : ""}>
+      <summary><span class="blueprint-date"><b>${e(day.day)}</b><strong>${e(dayNumber)}</strong><small>${e(dateParts(day.date).month)}</small></span><span class="blueprint-summary"><span>${e(day.phase)}</span><strong>${e(day.title)}</strong><small>${e(day.city)} · ${e(day.stay)}</small></span><span class="blueprint-toggle" aria-hidden="true">⌄</span></summary>
+      <div class="blueprint-body"><div class="blueprint-anchor"><span>Day anchor</span><strong>${e(day.anchor)}</strong></div><div class="blueprint-blocks">${(day.blocks || []).map((block) => `<article><span>${e(block.label)}</span><p>${e(block.text)}</p></article>`).join("")}</div><div class="blueprint-footnotes"><div><span>Food rhythm</span><p>${e(day.food || "Choose nearby based on current hours.")}</p></div><div><span>Watch for</span><p>${e(day.watchouts || "Verify live details.")}</p></div><div><span>Plan B</span><p>${e(day.planB || "Keep a flexible indoor option.")}</p></div></div></div>
+    </details>`;
   }
 
   function discoverTypeOptions() {
@@ -815,6 +903,12 @@
       case "reload": window.location.reload(); break;
       case "open-profile": openProfileModal(); break;
       case "go-discover": navigate("discover"); break;
+      case "select-itinerary":
+        ui.itineraryId = button.dataset.id || ui.itineraryId;
+        renderCurrentView();
+        break;
+      case "adopt-itinerary": adoptItinerary(button.dataset.id); break;
+      case "copy-itinerary": await copyItinerary(button.dataset.id); break;
       case "go-plan": navigate("plan"); break;
       case "go-safety": navigate("safety"); break;
       case "discover-city":
@@ -856,6 +950,101 @@
       case "jump-apps": document.querySelector("#apps-panel")?.scrollIntoView({ behavior: "smooth", block: "start" }); break;
       default: break;
     }
+  }
+
+  function selectedBlueprint(id) {
+    return (catalog.itineraryBlueprints || []).find((item) => item.id === id) || null;
+  }
+
+  function adoptItinerary(id) {
+    const blueprint = selectedBlueprint(id);
+    if (!blueprint) {
+      showToast("That route blueprint is not available in this catalog.", "warning");
+      return;
+    }
+    if (state.itinerary.length && !window.confirm(`Replace your current editable plan with the ${blueprint.shortTitle} blueprint? Your saved ideas and checklist progress will remain.`)) return;
+    const days = Array.isArray(blueprint.days) ? blueprint.days : [];
+    if (!days.length) {
+      showToast("This route does not have day details to load.", "warning");
+      return;
+    }
+    const cities = [...new Set((blueprint.bases || []).map((base) => base.city).filter(Boolean))];
+    const firstDate = days[0].date;
+    const lastDate = days[days.length - 1].date;
+    state.profile = {
+      ...state.profile,
+      startDate: validDate(firstDate) ? firstDate : state.profile.startDate,
+      endDate: validDate(lastDate) ? lastDate : state.profile.endDate,
+      cities,
+    };
+    state.itinerary = days.map((day) => ({
+      id: `blueprint-${blueprint.id}-${day.date}`,
+      date: day.date,
+      time: "",
+      title: day.title,
+      city: day.city === "Seoul / ICN" ? "Seoul" : day.city,
+      type: /Transfer|Arrival|Departure/.test(day.phase || "") ? "Transit" : "Visit",
+      notes: blueprintDayNote(day),
+      referenceType: "",
+      referenceId: "",
+      createdAt: new Date().toISOString(),
+    }));
+    persistState();
+    navigate("plan");
+    showToast(`${blueprint.shortTitle} is now loaded as your editable plan.`);
+  }
+
+  function blueprintDayNote(day) {
+    const blocks = (day.blocks || []).map((block) => `${block.label}: ${block.text}`).join("\n");
+    return [
+      `Anchor: ${day.anchor}`,
+      blocks,
+      day.food ? `Food rhythm: ${day.food}` : "",
+      day.watchouts ? `Watch for: ${day.watchouts}` : "",
+      day.planB ? `Plan B: ${day.planB}` : "",
+    ].filter(Boolean).join("\n\n");
+  }
+
+  async function copyItinerary(id) {
+    const blueprint = selectedBlueprint(id);
+    if (!blueprint) return;
+    const copied = await copyText(buildItineraryBrief(blueprint));
+    showToast(copied ? "Detailed route blueprint copied." : "Could not copy automatically. Try exporting your editable plan instead.", copied ? "" : "warning");
+  }
+
+  function buildItineraryBrief(blueprint) {
+    const trip = catalog.itineraryBlueprintMeta?.trip || {};
+    const lines = [
+      `# ${blueprint.title}`,
+      "",
+      `Route: ${blueprint.routeLabel}`,
+      `Arrival: ${formatDate(trip.arrival?.date)} at ${trip.arrival?.time || "21:00"} · ${trip.arrival?.airport || "ICN"}`,
+      `Departure: ${formatDate(trip.departure?.date)} at ${trip.departure?.time || "13:00"} · ${trip.departure?.airport || "ICN"}`,
+      `Nights: ${trip.nights || 21}`,
+      "",
+      "## Why this route",
+      blueprint.decisionSummary,
+      "",
+      "## Hotel-base strategy",
+      ...(blueprint.bases || []).map((base) => `- ${base.city}: ${base.dates} (${base.nights} nights) — ${base.recommendedArea}. ${base.why}`),
+      "",
+      "## Day-by-day",
+      ...(blueprint.days || []).flatMap((day) => [
+        `### ${formatDate(day.date)} · ${day.city}`,
+        `**${day.title}**`,
+        `Anchor: ${day.anchor}`,
+        ...(day.blocks || []).map((block) => `- **${block.label}:** ${block.text}`),
+        `- **Food rhythm:** ${day.food}`,
+        `- **Watch for:** ${day.watchouts}`,
+        `- **Plan B:** ${day.planB}`,
+        "",
+      ]),
+      "## Verify before booking",
+      "- Live KTX timetable, release window, seat availability, and actual station/last-mile connections.",
+      "- Hotel late check-in, current prices, room type, neighborhood, and airport-transfer fit.",
+      "- Opening days/hours, event dates/status, weather, air quality, and all entry/emergency information.",
+    ];
+    return lines.join("\n");
   }
 
   function openProfileModal() {

@@ -9,6 +9,7 @@ A calm, beginner-friendly South Korea trip-planning workspace. **Korea Compass**
 ## What is in the master planner
 
 - **Private trip setup** — optional dates, group size, and cities; it does not force a default itinerary.
+- **Two detailed route blueprints** — compare a Seoul → Daejeon → Busan → Seoul route against a Seoul → Cheonan → Busan → Seoul route for the actual Nov. 1–22, 2026 travel window; load either into the editable planner.
 - **Flexible timeline** — add, edit, delete, export, and import plan items when an itinerary is ready.
 - **Searchable discovery library** — destinations, dated events, long-form activity ideas, restaurants, hotels, transit routes, and savings notes.
 - **Saved ideas** — a browser-local shortlist of possibilities.
@@ -18,7 +19,17 @@ A calm, beginner-friendly South Korea trip-planning workspace. **Korea Compass**
 - **Source desk** — clear provenance back to every linked repository and to the locally preserved snapshot.
 - **Portable data** — export/import the user’s own setup, saved ideas, checklist state, and plan items as JSON. No account or backend is used.
 
-The current generated catalog includes **6 research sources**, **15 destinations**, **15 transport routes**, **34 stays**, **535 food bookmarks**, **110 dated events**, **443 activity notes**, **61 savings notes**, and **9 practical apps**.
+The current generated catalog includes **6 research sources**, **2 detailed November 2026 route blueprints**, **15 destinations**, **15 transport routes**, **34 stays**, **535 food bookmarks**, **110 dated events**, **443 activity notes**, **61 savings notes**, and **9 practical apps**.
+
+## November 2026 route blueprints
+
+The app's **Route options** screen contains a detailed, editable planning version of both routes. The readable documents are also committed for review or printing:
+
+- [Compare both route blueprints](itineraries/README.md)
+- [Seoul → Daejeon → Busan → Seoul](itineraries/seoul-daejeon-busan.md)
+- [Seoul → Cheonan → Busan → Seoul](itineraries/seoul-cheonan-busan.md)
+
+Both use the corrected travel window: **arrive at ICN at 21:00 on November 1, 2026; depart ICN at 13:00 on November 22, 2026**. They use a 7-night first Seoul leg, 5 nights in the middle city, 7 nights in Busan, and 2 final Seoul nights. That final Seoul buffer is intentional: it protects the international departure from a risky same-day Busan-to-ICN connection.
 
 ## Research provenance
 
@@ -71,9 +82,15 @@ The browser reads one generated file: [`data/catalog.json`](data/catalog.json). 
    python3 scripts/build_catalog.py
    ```
 
-4. Review the diff, especially time-sensitive records and links.
-5. Validate locally with a static server before merging to `main`.
+4. If a detailed route blueprint changed, re-render its readable Markdown companion:
+
+   ```bash
+   python3 scripts/build_itinerary_docs.py
+   ```
+
+5. Review the diff, especially time-sensitive records and links.
+6. Validate locally with a static server before merging to `main`.
 
 ## Planned next step
 
-When the actual itinerary is available, add it through **My plan** (or import a prior export). The existing structure already supports dates, cities, free-form notes, reservations, transit legs, and source-backed saved ideas, so the detailed itinerary can be integrated without rebuilding the master repository.
+Open **Route options**, compare the Daejeon and Cheonan middle-city tradeoffs, and use **Use as my editable plan** on the preferred route. The planner will load all 22 calendar days as editable items; hotel confirmations, exact KTX trains, restaurant reservations, and any personal itinerary changes can then be layered in without rebuilding the master repository.
