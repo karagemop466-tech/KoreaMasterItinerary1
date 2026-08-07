@@ -1,8 +1,14 @@
 # November 2026 route blueprints
 
-**Actual trip window:** arrive ICN at **21:00 on Sun, Nov 1, 2026**; depart ICN at **13:00 on Sun, Nov 22, 2026**.
+**Actual Korea trip window:** arrive ICN at **21:00 on Sun, Nov 1, 2026**; depart ICN at **13:00 on Sun, Nov 22, 2026**.
 
-Both options are 21-night, 22-calendar-day plans. They protect the final two Seoul nights before the 13:00 ICN departure, use direct KTX legs where practical, keep one hotel base per city, and group sightseeing by neighborhood.
+## What was corrected from the rough draft
+
+- The working plan is now a 21-night / 22-calendar-day Korea itinerary, not the conflicting 20-day version in the original draft.
+- The plan respects the stated local Korea arrival at 21:00 on Nov. 1 and the 13:00 ICN departure on Nov. 22. The SFO outbound calendar date must be reconciled from the actual airline ticket because of the time-zone difference.
+- The previous broad Seoul/Busan-only flow is now two alternatives with a deliberate five-night Daejeon or Cheonan middle city and two final Seoul nights for low-risk departure logistics.
+- Every day now has target time windows, operational notes, a food rhythm, a live-verification note, and a weather/energy backup instead of stacking incompatible attractions into one day.
+- Old prices, specific flights, opening hours, and event claims are treated as research prompts—not booking facts. Verify them at the official provider before purchase.
 
 ## Compare the two middle-city choices
 

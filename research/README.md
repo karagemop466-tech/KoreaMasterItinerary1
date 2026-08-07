@@ -15,6 +15,7 @@ This folder holds an attributed, local snapshot of the information from the repo
 | `sources/food` | `karagemop466-tech/Koreafood` | food bookmarks and city guides |
 | `sources/korea` | `buffedlizard55-lab/Korea` | savings and tourist-action guides |
 | `sources/emergency` | `buffedlizard55-lab/Korea-emergency` | emergency contacts, checklists, preparation, and print resources |
+| `user-input` | User-supplied rough itinerary review | itinerary-format requirements and corrections applied to the two route blueprints |
 
 Exact source branches and commits are recorded in the repository root [`README.md`](../README.md) and in [`scripts/build_catalog.py`](../scripts/build_catalog.py).
 

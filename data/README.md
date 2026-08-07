@@ -10,7 +10,7 @@ python3 scripts/build_catalog.py
 
 The catalog intentionally contains compact searchable fields, provenance paths, and the structured CSV/JSON source records needed by the planner. Full long-form context remains under [`../research/sources/`](../research/sources/).
 
-[`itineraries.json`](itineraries.json) is the source of truth for the two detailed November 2026 route blueprints. It is folded into `catalog.json` by the catalog generator so the static app needs only one fetch. Render human-readable Markdown companions with:
+[`itineraries.json`](itineraries.json) is the source of truth for the two detailed November 2026 route blueprints. It includes the corrected local Korea arrival/departure window, target schedule windows, operational notes, reservation checks, and alternatives—not a live flight, rail, price, or opening-hours feed. It is folded into `catalog.json` by the catalog generator so the static app needs only one fetch. Render human-readable Markdown companions with:
 
 ```bash
 python3 scripts/build_itinerary_docs.py

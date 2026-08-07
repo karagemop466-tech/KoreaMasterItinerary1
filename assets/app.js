@@ -435,15 +435,17 @@
         <div class="view-head-copy">
           <span class="eyebrow">Two detailed, source-aware planning blueprints</span>
           <h1 class="page-title">Choose the middle chapter that fits you.</h1>
-          <p class="page-subtitle">Both routes use the actual trip window: arrive at ICN at <strong>21:00 on Sun, Nov 1, 2026</strong>; depart ICN at <strong>13:00 on Sun, Nov 22, 2026</strong>. Each preserves a calm final two-night Seoul buffer.</p>
+          <p class="page-subtitle">Both routes use the corrected Korea-based window: arrive at ICN at <strong>21:00 on Sun, Nov 1, 2026</strong>; depart ICN at <strong>13:00 on Sun, Nov 22, 2026</strong>. Every day now has explicit target time windows, operational notes, and a weather/energy fallback.</p>
         </div>
         <div class="head-actions"><button class="button button-quiet" type="button" data-action="copy-itinerary" data-id="${e(selected.id)}">Copy selected itinerary</button><button class="button" type="button" data-action="adopt-itinerary" data-id="${e(selected.id)}">Use as my editable plan</button></div>
       </header>
 
       <section class="route-guidance">
         <div><span class="route-guidance-label">Same trip structure</span><strong>${e(trip.nights || 21)} nights · Seoul bookend · direct KTX city changes · one base per city</strong></div>
-        <p>${e(trip.sourceNote || "Verify all time-sensitive details before booking.")}</p>
+        <p>${e(trip.flightReconciliation || trip.sourceNote || "Verify all time-sensitive details before booking.")}</p>
       </section>
+
+      ${renderRoutePrepFacts(trip)}
 
       <section class="route-comparison-grid" aria-label="Compare route blueprints">
         ${blueprints.map((item) => renderRouteOptionCard(item, item.id === selected.id)).join("")}
@@ -455,6 +457,7 @@
           <span class="route-badge">${e(selected.badge)}</span>
         </div>
         <div class="route-decision-grid">
+          <article><span>Choose this when</span><p>${e(selected.recommendation || selected.bestFor)}</p></article>
           <article><span>Best for</span><p>${e(selected.bestFor)}</p></article>
           <article><span>Tradeoff</span><p>${e(selected.tradeoff)}</p></article>
         </div>
@@ -470,12 +473,29 @@
         </div>
         <aside class="route-side">
           <section class="panel"><div class="section-kicker">Hotel-base strategy</div><h2 style="margin:0 0 9px;font-size:17px">Sleep where the route works</h2><div class="base-stack">${(selected.bases || []).map(renderRouteBase).join("")}</div></section>
+          ${renderRouteBudget(selected, trip)}
           <section class="panel panel-tint"><div class="section-kicker">KTX and airport moves</div><h2 style="margin:0 0 9px;font-size:17px">Why this routing stays calm</h2><div class="transfer-stack">${(selected.transfers || []).map(renderRouteTransfer).join("")}</div></section>
           <section class="panel panel-warn"><div class="section-kicker">Book in this order</div><h2 style="margin:0 0 9px;font-size:17px">Protect the hard edges</h2><ol class="priority-list">${(selected.bookingPriorities || []).map((item) => `<li>${e(item)}</li>`).join("")}</ol></section>
           <section class="panel"><div class="section-kicker">Time-sensitive checks</div><h2 style="margin:0 0 9px;font-size:17px">Confirm close to travel</h2><div class="detail-list">${importantDates.map((item) => `<div class="detail-row"><strong>${e(formatDate(item.date))} · ${e(item.label)}</strong><p>${e(item.note)}</p></div>`).join("")}</div></section>
         </aside>
       </section>
     </section>`;
+  }
+
+  function renderRoutePrepFacts(trip) {
+    const weather = Array.isArray(trip.weatherAndPacking) ? trip.weatherAndPacking : [];
+    const budget = Array.isArray(trip.budgetFrame) ? trip.budgetFrame : [];
+    return `<section class="route-prep-grid">
+      <article class="route-prep-card"><span class="section-kicker">Flight-date reconciliation</span><h2>Make the flight date make sense first</h2><p>${e(trip.flightReconciliation || "Confirm your airline ticket and local Korea arrival date.")}</p></article>
+      <article class="route-prep-card"><span class="section-kicker">November conditions</span><h2>Pack for flexible outdoor days</h2><ul>${weather.map((item) => `<li>${e(item)}</li>`).join("")}</ul></article>
+      <article class="route-prep-card"><span class="section-kicker">Value without false precision</span><h2>Spend on the things that change the trip</h2><ul>${budget.map((item) => `<li><b>${e(item.label)}:</b> ${e(item.detail)}</li>`).join("")}</ul></article>
+    </section>`;
+  }
+
+  function renderRouteBudget(route, trip) {
+    const scenarios = Array.isArray(route.budgetScenarios) ? route.budgetScenarios : [];
+    if (!scenarios.length) return "";
+    return `<section class="panel panel-soft route-budget"><div class="section-kicker">Accommodation worksheet</div><h2 style="margin:0 0 7px;font-size:17px">Hotel math, not a quote</h2><p class="text-note">${e(trip.budgetMethodNote || "Use live hotel quotes before booking.")}</p><div class="detail-list" style="margin-top:10px">${scenarios.map((scenario) => `<div class="detail-row"><strong>${e(scenario.label)}</strong><p class="route-budget-total">${e(scenario.subtotal)}</p><p>${e(scenario.assumptions)}</p><small>${e(scenario.note)}</small></div>`).join("")}</div></section>`;
   }
 
   function renderRouteOptionCard(item, selected) {
@@ -500,9 +520,15 @@
 
   function renderBlueprintDay(day, open) {
     const dayNumber = dateParts(day.date).day;
+    const schedule = Array.isArray(day.schedule) ? day.schedule : [];
     return `<details class="blueprint-day" ${open ? "open" : ""}>
       <summary><span class="blueprint-date"><b>${e(day.day)}</b><strong>${e(dayNumber)}</strong><small>${e(dateParts(day.date).month)}</small></span><span class="blueprint-summary"><span>${e(day.phase)}</span><strong>${e(day.title)}</strong><small>${e(day.city)} · ${e(day.stay)}</small></span><span class="blueprint-toggle" aria-hidden="true">⌄</span></summary>
-      <div class="blueprint-body"><div class="blueprint-anchor"><span>Day anchor</span><strong>${e(day.anchor)}</strong></div><div class="blueprint-blocks">${(day.blocks || []).map((block) => `<article><span>${e(block.label)}</span><p>${e(block.text)}</p></article>`).join("")}</div><div class="blueprint-footnotes"><div><span>Food rhythm</span><p>${e(day.food || "Choose nearby based on current hours.")}</p></div><div><span>Watch for</span><p>${e(day.watchouts || "Verify live details.")}</p></div><div><span>Plan B</span><p>${e(day.planB || "Keep a flexible indoor option.")}</p></div></div></div>
+      <div class="blueprint-body">
+        <div class="blueprint-anchor"><span>Day anchor</span><strong>${e(day.anchor)}</strong></div>
+        <div class="blueprint-schedule"><span class="blueprint-section-label">${e(day.scheduleLabel || "Target schedule windows")}</span>${schedule.map((item) => `<article><time>${e(item.time)}</time><div><strong>${e(item.title)}</strong><p>${e(item.detail)}</p>${item.logistics ? `<small>${e(item.logistics)}</small>` : ""}</div></article>`).join("")}</div>
+        <div class="blueprint-blocks"><span class="blueprint-section-label">Why this sequence works</span>${(day.blocks || []).map((block) => `<article><span>${e(block.label)}</span><p>${e(block.text)}</p></article>`).join("")}</div>
+        <div class="blueprint-footnotes"><div><span>Food rhythm</span><p>${e(day.food || "Choose nearby based on current hours.")}</p></div><div><span>Reserve / verify</span><p>${e(day.reservationNote || "Verify live details.")}</p></div><div><span>Cost posture</span><p>${e(day.costNote || "Use current official prices.")}</p></div><div><span>Watch for</span><p>${e(day.watchouts || "Verify live details.")}</p></div><div><span>Plan B</span><p>${e(day.planB || "Keep a flexible indoor option.")}</p></div></div>
+      </div>
     </details>`;
   }
 
@@ -995,10 +1021,14 @@
   }
 
   function blueprintDayNote(day) {
+    const schedule = (day.schedule || []).map((item) => `${item.time} — ${item.title}: ${item.detail}${item.logistics ? ` (${item.logistics})` : ""}`).join("\n");
     const blocks = (day.blocks || []).map((block) => `${block.label}: ${block.text}`).join("\n");
     return [
       `Anchor: ${day.anchor}`,
-      blocks,
+      schedule ? `Target schedule:\n${schedule}` : "",
+      blocks ? `Why this sequence works:\n${blocks}` : "",
+      day.reservationNote ? `Reserve / verify: ${day.reservationNote}` : "",
+      day.costNote ? `Cost posture: ${day.costNote}` : "",
       day.food ? `Food rhythm: ${day.food}` : "",
       day.watchouts ? `Watch for: ${day.watchouts}` : "",
       day.planB ? `Plan B: ${day.planB}` : "",
@@ -1021,8 +1051,11 @@
       `Arrival: ${formatDate(trip.arrival?.date)} at ${trip.arrival?.time || "21:00"} · ${trip.arrival?.airport || "ICN"}`,
       `Departure: ${formatDate(trip.departure?.date)} at ${trip.departure?.time || "13:00"} · ${trip.departure?.airport || "ICN"}`,
       `Nights: ${trip.nights || 21}`,
+      trip.flightReconciliation ? `Flight-date note: ${trip.flightReconciliation}` : "",
       "",
       "## Why this route",
+      blueprint.recommendation || blueprint.decisionSummary,
+      "",
       blueprint.decisionSummary,
       "",
       "## Hotel-base strategy",
@@ -1032,9 +1065,13 @@
       ...(blueprint.days || []).flatMap((day) => [
         `### ${formatDate(day.date)} · ${day.city}`,
         `**${day.title}**`,
+        `Stay: ${day.stay}`,
         `Anchor: ${day.anchor}`,
-        ...(day.blocks || []).map((block) => `- **${block.label}:** ${block.text}`),
+        ...(day.schedule || []).map((item) => `- **${item.time} · ${item.title}:** ${item.detail}${item.logistics ? ` ${item.logistics}` : ""}`),
+        ...(day.blocks || []).map((block) => `- **Why this sequence works — ${block.label}:** ${block.text}`),
         `- **Food rhythm:** ${day.food}`,
+        `- **Reserve / verify:** ${day.reservationNote || "Check live details."}`,
+        `- **Cost posture:** ${day.costNote || "Use current official prices."}`,
         `- **Watch for:** ${day.watchouts}`,
         `- **Plan B:** ${day.planB}`,
         "",

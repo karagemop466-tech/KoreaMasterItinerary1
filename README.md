@@ -31,6 +31,8 @@ The app's **Route options** screen contains a detailed, editable planning versio
 
 Both use the corrected travel window: **arrive at ICN at 21:00 on November 1, 2026; depart ICN at 13:00 on November 22, 2026**. They use a 7-night first Seoul leg, 5 nights in the middle city, 7 nights in Busan, and 2 final Seoul nights. That final Seoul buffer is intentional: it protects the international departure from a risky same-day Busan-to-ICN connection.
 
+Each day now has explicit target schedule windows, operational/routing notes, reservation checks, food rhythm, and Plan B. The schedules are intentionally detailed without pretending that an old flight price, KTX time, attraction hour, or event listing is a current booking fact. Because Seoul is well ahead of San Francisco, the outbound SFO calendar date must be reconciled from the actual airline ticket rather than inferred from the local Nov. 1 ICN arrival.
+
 ## Research provenance
 
 The source snapshots are retained under [`research/sources/`](research/sources/) so the planner can be refreshed without adding a live scraping dependency to GitHub Pages.

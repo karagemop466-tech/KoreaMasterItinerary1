@@ -18082,7 +18082,56 @@
           "note": "Plan to be at the airport around three hours before an international departure, subject to airline guidance. Stay in Seoul the final two nights instead of attempting a same-day Busan-to-ICN connection."
         }
       ],
-      "sourceNote": "These are deliberately detailed planning blueprints synthesized from the retained transport, hotel, activity, food, savings, and emergency research. They are not confirmations or a live timetable."
+      "sourceNote": "These are deliberately detailed planning blueprints synthesized from the retained transport, hotel, activity, food, savings, and emergency research. They are not confirmations or a live timetable.",
+      "scheduleNote": "Times below are intentional planning windows, not a live timetable. They are designed to make the day explicit while retaining enough buffer for weather, queues, rests, and transit.",
+      "flightReconciliation": "The Korea-based plan begins with a local ICN arrival at 21:00 on Nov. 1 and ends with a local ICN departure at 13:00 on Nov. 22. Because Seoul is well ahead of San Francisco, do not assume a Nov. 1 SFO departure can also be a Nov. 1 ICN arrival; reconcile the outbound calendar date, airline, terminal, and arrival time from the actual ticket before booking the first hotel night.",
+      "weatherAndPacking": [
+        "Use layers rather than one heavy coat: a warm mid-layer, wind/rain shell, comfortable broken-in walking shoes, and evening accessories are more useful than a fixed temperature promise.",
+        "Check the actual forecast and AirKorea a few days before departure. The route includes outdoor palace, coast, park, and market days, but every one has an indoor or low-walking fallback.",
+        "Carry a compact umbrella or waterproof layer, a power bank, a universal Type C/F adapter, any personal medicines in original packaging, and a small day bag for train days."
+      ],
+      "budgetFrame": [
+        {
+          "label": "Stay strategy",
+          "detail": "Price live hotel rooms by exact dates and one-bed/private-bath requirements. The plans favor a practical Myeongdong/Seoul Station base, a station-oriented middle-city base, and one Haeundae base rather than costly hotel moves."
+        },
+        {
+          "label": "Transport strategy",
+          "detail": "Direct KTX is the value/convenience default for city changes. T-money/WOWPASS-style local payment remains useful, but re-check current accepted cards, pass coverage, and actual fares."
+        },
+        {
+          "label": "Experience strategy",
+          "detail": "Use a few paid anchors that matter to you, then layer in markets, parks, coastal walks, museums, and neighborhood food. Do not buy a pass solely because it is discounted; compare it with your actual saved list."
+        },
+        {
+          "label": "Food strategy",
+          "detail": "Keep one quality meal or market experience per day, then use convenience-store, bakery, café, or hotel-neighborhood meals to protect pace and budget."
+        }
+      ],
+      "arrivalChecklist": [
+        "Confirm hotel late check-in and save its Korean address before boarding the last flight.",
+        "Keep passport, arrival/entry confirmation, insurance contact, final hotel address, and an offline emergency card accessible before landing.",
+        "Choose the airport transfer based on live arrival time, luggage, terminal, and hotel—not a generic cheapest-fare rule.",
+        "Do not schedule sightseeing, a nonrefundable dinner, or a timed ticket on the arrival night."
+      ],
+      "departureChecklist": [
+        "Complete online check-in and verify the airline terminal, baggage allowance, and airport cutoff the day before.",
+        "Pack passports, cards, devices, receipts/tax-refund paperwork, and medicines in a known carry-on location on Nov. 21.",
+        "Leave central Seoul early enough to be at ICN around three hours before the 13:00 international departure, following airline advice.",
+        "Handle airline, security, and any valid tax-refund process before duty-free browsing or a meal."
+      ],
+      "budgetMethodNote": "Hotel examples below multiply the retained research’s indicative one-room nightly USD ranges by the planned nights. They are planning math only: taxes, service fees, room type, weekend/date demand, currency conversion, promotions, and availability can materially change the real total.",
+      "dailySpendGuardrails": [
+        "Keep food, local transit, and paid activities as separate envelopes rather than relying on the rough draft’s old all-in daily price. Your actual balance depends on how many paid anchors you keep.",
+        "Use the planner’s saved ideas and route days to identify the handful of paid tickets, reservations, spa/cooking-class choices, and special meals that deserve a confirmed budget.",
+        "Price the full transportation stack only after the airline, KTX trains, airport transfer, local payment card/pass, and hotel districts are selected."
+      ],
+      "flightBookingChecklist": [
+        "Search to the actual local ICN arrival target first: 21:00 on Nov. 1. The originating SFO calendar date may be earlier because Seoul is far ahead of San Francisco.",
+        "Compare live direct and one-stop options by total arrival time, baggage/cancellation terms, seat comfort, airline terminal, and the ability to reach the Seoul hotel after immigration—not by an old fare screenshot.",
+        "After purchase, add flight numbers, both airport terminals, airline check-in cutoff, baggage allowance, seat assignment, and travel-insurance details to My plan.",
+        "Do not build a nonrefundable Seoul arrival-night plan until the flight and the hotel’s late check-in policy are confirmed."
+      ]
     }
   },
   "itineraryBlueprints": [
@@ -18223,7 +18272,36 @@
           ],
           "food": "Keep food simple: airport, hotel, or convenience-store backup only.",
           "watchouts": "No restaurant reservation, palace ticket, or long neighborhood walk belongs on this night.",
-          "planB": "If immigration is slow or trains are no longer suitable, use the official taxi queue or hotel-arranged transfer rather than improvising."
+          "planB": "If immigration is slow or trains are no longer suitable, use the official taxi queue or hotel-arranged transfer rather than improvising.",
+          "schedule": [
+            {
+              "time": "21:00–22:30",
+              "title": "ICN arrival, immigration, and baggage",
+              "detail": "Treat this as a variable-duration window. Complete entry and baggage first; keep hotel information, insurance, and emergency contacts offline and accessible.",
+              "logistics": "Do not commit to a fixed train or restaurant until bags are in hand."
+            },
+            {
+              "time": "22:30–23:00",
+              "title": "Connectivity and minimum essentials",
+              "detail": "Activate the already-selected eSIM/SIM or roaming plan, save the hotel address in Korean, and handle only the payment/cash task that is genuinely needed tonight.",
+              "logistics": "If queues are long, defer card setup and use the simplest safe transfer."
+            },
+            {
+              "time": "23:00–00:30",
+              "title": "ICN to Seoul hotel",
+              "detail": "Use the transfer chosen for the actual time and hotel: airport limousine or official taxi is often the low-stress choice after a 21:00 landing; use AREX only if live service and the final hotel connection are simple.",
+              "logistics": "Confirm the terminal and late-night operating window on travel day."
+            },
+            {
+              "time": "After check-in",
+              "title": "Sleep and reset",
+              "detail": "Check in, hydrate, set alarms, and sleep. A hotel-area snack is enough; tomorrow is intentionally gentle.",
+              "logistics": "No sightseeing or reservation tonight."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-02",
@@ -18249,7 +18327,36 @@
           ],
           "food": "Choose one Myeongdong food bookmark from the master library; prioritize a short walk from the hotel over a cross-city restaurant chase.",
           "watchouts": "Jet lag and a late arrival make a light walking loop more valuable than a packed museum list.",
-          "planB": "If energy is low or weather is poor, make this a hotel-neighborhood, laundry, and map-setup day without guilt."
+          "planB": "If energy is low or weather is poor, make this a hotel-neighborhood, laundry, and map-setup day without guilt.",
+          "schedule": [
+            {
+              "time": "10:30–11:30",
+              "title": "Slow start and Seoul setup",
+              "detail": "Sleep in, have breakfast, obtain/load transit payment if needed, pin the hotel in Naver Map and KakaoMap, and identify the nearest subway entrance/convenience store.",
+              "logistics": "This is purposeful recovery time, not lost sightseeing."
+            },
+            {
+              "time": "12:00–14:00",
+              "title": "Myeongdong and City Hall orientation",
+              "detail": "Walk the compact hotel-neighborhood corridor at an easy pace. Note a few realistic meal options and use this first outing to understand pedestrian flow and subway exits.",
+              "logistics": "Stay near the hotel; avoid a cross-city destination."
+            },
+            {
+              "time": "14:30–16:30",
+              "title": "Deoksugung / stone-wall walk or indoor swap",
+              "detail": "Use the central historic streets for a low-navigation afternoon. The goal is visual orientation and a gentle first cultural stop, not a full palace checklist.",
+              "logistics": "Verify same-day hours; use a gallery, café, or department-store area if weather is poor."
+            },
+            {
+              "time": "18:00–20:00",
+              "title": "Early neighborhood dinner and rest",
+              "detail": "Choose one Myeongdong food bookmark with a short walk. Return early and protect sleep after the late arrival.",
+              "logistics": "Skip the temptation to add a distant night market."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-03",
@@ -18275,7 +18382,36 @@
           ],
           "food": "Use a Yongsan or Itaewon food bookmark; reserve only if it is a true must-do.",
           "watchouts": "The source notes that Gyeongbokgung is typically closed Tuesday; verify all current closures before finalizing.",
-          "planB": "Swap the afternoon for a café, Korean spa, or hotel rest if the museum becomes a full day."
+          "planB": "Swap the afternoon for a café, Korean spa, or hotel rest if the museum becomes a full day.",
+          "schedule": [
+            {
+              "time": "09:30–11:45",
+              "title": "Namsan / N Seoul Tower weather window",
+              "detail": "Start with the Namsan side when visibility is best. Use the cable car or bus only if the live queue, weather, and your energy make it worthwhile; the view is the anchor, not a mandatory transport novelty.",
+              "logistics": "Check official operating and weather status before leaving the hotel."
+            },
+            {
+              "time": "12:15–13:30",
+              "title": "Myeongdong lunch",
+              "detail": "Eat near the base rather than chasing a famous restaurant across town. This creates a clean handoff to the east-side afternoon.",
+              "logistics": "Choose a current-open saved option."
+            },
+            {
+              "time": "14:30–16:30",
+              "title": "Dongdaemun Design Plaza and design district",
+              "detail": "Explore DDP public architecture, any live exhibition of interest, and the surrounding design/shopping area at a measured pace.",
+              "logistics": "Confirm exhibition admission/closing time; public exterior is the fallback."
+            },
+            {
+              "time": "17:30–20:00",
+              "title": "Gwangjang Market evening food loop",
+              "detail": "Use the market as the day’s food experience, then return directly to the hotel. Choose a seated backup nearby if the market feels too crowded.",
+              "logistics": "Keep bags secure in dense pedestrian areas."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-04",
@@ -18301,7 +18437,36 @@
           ],
           "food": "Market grazing is the experience; keep a nearby classic-Korean or tea-house bookmark as a seated backup.",
           "watchouts": "Palace hours, closures, and crowd controls are live details. Dress for outdoor walking and check air quality first.",
-          "planB": "If rain is heavy, center the day on the palace museum/nearby galleries, Insadong tea houses, and a market meal."
+          "planB": "If rain is heavy, center the day on the palace museum/nearby galleries, Insadong tea houses, and a market meal.",
+          "schedule": [
+            {
+              "time": "09:00–11:30",
+              "title": "Gyeongbokgung Palace",
+              "detail": "Begin at the palace so the rest of the historic route flows logically south/east. Check the current guard-ceremony timing and final entry before leaving the hotel.",
+              "logistics": "Palace closure and guard schedules are live details; confirm them."
+            },
+            {
+              "time": "12:00–13:00",
+              "title": "Historic-district lunch",
+              "detail": "Have lunch near Gyeongbokgung, Anguk, or Bukchon so the afternoon remains walkable.",
+              "logistics": "Do not detour to another Seoul district for lunch."
+            },
+            {
+              "time": "13:15–15:30",
+              "title": "Bukchon and Samcheong",
+              "detail": "Walk selected lanes slowly, respect the residential setting, and choose one craft/café stop rather than attempting every photo location.",
+              "logistics": "Use a rain-friendly café or small museum if outdoor walking is uncomfortable."
+            },
+            {
+              "time": "16:00–18:30",
+              "title": "Insadong tea, craft, and cultural close",
+              "detail": "Continue downhill to Insadong for a tea house, craft browsing, or a compact cultural stop. End with dinner in the same area or return to the hotel.",
+              "logistics": "Avoid a late-night cross-city add-on."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "This is a likely timed-ticket or transport-reservation day. Verify the current official listing and book only the anchor that matters most.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-05",
@@ -18327,7 +18492,36 @@
           ],
           "food": "Use the master food list to choose ramen, Korean comfort food, or a café in the exact sub-neighborhood where you finish.",
           "watchouts": "Weeknight is more relaxed than Friday or Saturday, but keep bags close in dense pedestrian zones.",
-          "planB": "If weather is poor, use an indoor café, shopping arcade, or museum and keep the forest walk brief."
+          "planB": "If weather is poor, use an indoor café, shopping arcade, or museum and keep the forest walk brief.",
+          "schedule": [
+            {
+              "time": "09:00–12:00",
+              "title": "Changdeokgung and Secret Garden",
+              "detail": "Use a timed Secret Garden entry only if the official schedule and ticket availability work. The palace/garden combination is the day’s single paid cultural anchor.",
+              "logistics": "Reserve/reconfirm the exact garden tour before the day; do not assume old English-tour times."
+            },
+            {
+              "time": "12:15–13:30",
+              "title": "Insadong/Jongno lunch",
+              "detail": "Eat nearby and leave room to reset before the temple and craft stops.",
+              "logistics": "Prioritize a warm seated meal if the day is cool."
+            },
+            {
+              "time": "14:00–15:00",
+              "title": "Jogyesa Temple",
+              "detail": "Visit the temple as a quiet cultural counterpoint to the palace. Keep expectations simple: it is a short, respectful visit, not a full temple stay.",
+              "logistics": "Dress and behave respectfully; check access during ceremonies."
+            },
+            {
+              "time": "15:30–18:00",
+              "title": "Choose one compact culture extension",
+              "detail": "Choose a craft museum, a tea house, Cheonggyecheon walk, or a return to the hotel; do not force all four into the afternoon.",
+              "logistics": "This is the main energy buffer before Hongdae day."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "This is a likely timed-ticket or transport-reservation day. Verify the current official listing and book only the anchor that matters most.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-06",
@@ -18353,7 +18547,36 @@
           ],
           "food": "Seongsu café or Gangnam/COEX food option; select from the library after checking current wait times.",
           "watchouts": "Do not overbook branded pop-ups or assume a social-media listing is still active.",
-          "planB": "Skip COEX and extend Seongsu/Seoul Forest if the day feels complete; that is the more relaxed version."
+          "planB": "Skip COEX and extend Seongsu/Seoul Forest if the day feels complete; that is the more relaxed version.",
+          "schedule": [
+            {
+              "time": "10:30–12:30",
+              "title": "Hongdae and Gyeongui Line Forest Park",
+              "detail": "Arrive after the commute peak and walk the park into the Hongdae/Yeonnam area. This is a neighborhood-experience day, not a checklist of ticketed attractions.",
+              "logistics": "Use Naver Map for the exact exit and a current café/restaurant pin."
+            },
+            {
+              "time": "12:30–14:00",
+              "title": "Hongdae lunch",
+              "detail": "Pick one saved food option in the exact block where you finish the walk. Keep a second choice in case of a queue.",
+              "logistics": "Do not travel to another district for a lunch reservation."
+            },
+            {
+              "time": "14:00–17:30",
+              "title": "Yeonnam, small shops, café, or PC bang",
+              "detail": "Choose two interests at most: vintage/design browsing, café, music store, PC bang, or a creative workshop. The point is unhurried youth-culture texture.",
+              "logistics": "Keep a warm indoor pause available if weather is poor."
+            },
+            {
+              "time": "18:00–21:00",
+              "title": "Flexible evening",
+              "detail": "Stay for a live music/culture option only if you find one with a confirmed time and energy remains; otherwise have dinner and return before late crowds.",
+              "logistics": "Do not prepay an event based on an unverified listing."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-07",
@@ -18379,7 +18602,36 @@
           ],
           "food": "Suwon lunch if on the day trip; otherwise use a Seoul saved idea close to the hotel.",
           "watchouts": "Saturday crowds and weather determine whether the day trip is worth it. Do not force it just because it is in the draft.",
-          "planB": "Stay in Seoul for Changdeokgung/Secret Garden if tickets and weather work, or use a museum-and-neighborhood day."
+          "planB": "Stay in Seoul for Changdeokgung/Secret Garden if tickets and weather work, or use a museum-and-neighborhood day.",
+          "schedule": [
+            {
+              "time": "08:30–10:00",
+              "title": "Seoul to Suwon",
+              "detail": "Use Suwon Hwaseong as the default value-friendly Saturday day trip. It keeps the travel simple and avoids basing the day on a potentially crowded weekend foliage queue.",
+              "logistics": "Confirm live train timing and the station-to-fortress connection the night before."
+            },
+            {
+              "time": "10:00–13:00",
+              "title": "Hwaseong Fortress focus",
+              "detail": "Walk a realistic section of the fortress, gate area, and nearby streets. Take the views without turning the entire wall into a mileage goal.",
+              "logistics": "Wear comfortable shoes and check weather."
+            },
+            {
+              "time": "13:00–15:30",
+              "title": "Suwon lunch and one local extension",
+              "detail": "Have lunch, then choose one nearby museum/market/walk extension rather than stacking a second city attraction.",
+              "logistics": "Use a taxi if it buys back meaningful energy."
+            },
+            {
+              "time": "16:00–19:30",
+              "title": "Return, pack, and confirm KTX",
+              "detail": "Return to Seoul before a late rush, eat near the hotel, and prepare a separate train-day bag. Confirm the next hotel, exact KTX, and check-out process.",
+              "logistics": "DMZ or Nami Island can replace Suwon only if their live conditions and your interests make them the better choice."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "This is a likely timed-ticket or transport-reservation day. Verify the current official listing and book only the anchor that matters most.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-08",
@@ -18405,7 +18657,36 @@
           ],
           "food": "Sungsimdang bakery and one nearby dinner are a high-value, low-routing introduction to Daejeon.",
           "watchouts": "Do not schedule Expo Park or Yuseong on the same day unless the train and hotel timing are unusually generous.",
-          "planB": "If rain or fatigue wins, use the hotel area and a bakery stop only."
+          "planB": "If rain or fatigue wins, use the hotel area and a bakery stop only.",
+          "schedule": [
+            {
+              "time": "09:00–10:00",
+              "title": "Seoul checkout and KTX station arrival",
+              "detail": "Leave the first Seoul hotel with a calm margin. Buy a simple station snack if the train overlaps lunch.",
+              "logistics": "Keep Daejeon hotel address and ticket offline."
+            },
+            {
+              "time": "Late morning–early afternoon",
+              "title": "Direct KTX Seoul → Daejeon",
+              "detail": "Use a direct train from Seoul Station and choose the easy last-mile option after arrival; the goal is a frictionless city change.",
+              "logistics": "Recheck exact train/platform at booking and on the day."
+            },
+            {
+              "time": "14:00–15:30",
+              "title": "Hotel check-in and station-area orientation",
+              "detail": "Settle into the Daejeon Station / old-downtown base, identify nearby transit and a food backup, and do not rush to the Expo district yet.",
+              "logistics": "A taxi is good value if bags make the local transfer unpleasant."
+            },
+            {
+              "time": "16:00–20:00",
+              "title": "Sojaedong, Sungsimdang, and Skyroad",
+              "detail": "Use the old-downtown evening for a railway-café street walk, bakery stop, and low-pressure dinner. This is a high-quality first impression with almost no cross-city transit.",
+              "logistics": "If rain/fatigue wins, keep only the bakery and hotel-neighborhood dinner."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-09",
@@ -18431,7 +18712,36 @@
           ],
           "food": "Use a Yuseong or Expo-area food bookmark; reserve only after current availability is clear.",
           "watchouts": "Individual museum/observatory schedules can vary by day. Confirm before leaving the hotel.",
-          "planB": "Make the day entirely indoor with Art Space 193, aquarium/science options, and a mall meal."
+          "planB": "Make the day entirely indoor with Art Space 193, aquarium/science options, and a mall meal.",
+          "schedule": [
+            {
+              "time": "10:00–11:30",
+              "title": "Sojaedong and old-downtown texture",
+              "detail": "Use Monday for station-adjacent cafés, the railway-warehouse neighborhood, and a slow local start rather than relying on museum schedules.",
+              "logistics": "Check individual Monday openings before choosing an indoor stop."
+            },
+            {
+              "time": "12:00–13:00",
+              "title": "Sungsimdang / central lunch",
+              "detail": "Use one bakery/market-style food experience as the anchor and keep lunch walkable.",
+              "logistics": "Save a second nearby option in case of queues."
+            },
+            {
+              "time": "13:30–16:30",
+              "title": "Central market or small culture stop",
+              "detail": "Choose a market, historic-street, or café/art stop based on live opening and energy. This is a deliberate buffer before the museum-heavy Tuesday.",
+              "logistics": "Do not force every Daejeon attraction into five nights."
+            },
+            {
+              "time": "17:30–20:00",
+              "title": "Daejeon Skyroad / easy dinner",
+              "detail": "Finish close to the hotel and use the evening to check the next day’s museum and weather plan.",
+              "logistics": "Low walking is the intended pace."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-10",
@@ -18457,7 +18767,36 @@
           ],
           "food": "Daejeon’s central market or a saved noodle / Korean-food option makes the city’s food identity part of the day.",
           "watchouts": "Check closing days and last admissions for all museum stops.",
-          "planB": "If cold rain makes the arboretum unattractive, add a second indoor exhibit or a longer café stop instead."
+          "planB": "If cold rain makes the arboretum unattractive, add a second indoor exhibit or a longer café stop instead.",
+          "schedule": [
+            {
+              "time": "09:30–12:00",
+              "title": "National Science Museum",
+              "detail": "Make the science museum the primary indoor anchor on a day when its public schedule is more likely to be favorable; confirm opening/last admission live.",
+              "logistics": "Arrive early enough to enjoy it rather than racing every gallery."
+            },
+            {
+              "time": "12:15–13:15",
+              "title": "Expo/Yuseong lunch",
+              "detail": "Eat in the Expo corridor so the afternoon remains geographically coherent.",
+              "logistics": "Use a current-open saved restaurant or food-hall option."
+            },
+            {
+              "time": "13:30–15:30",
+              "title": "Hanbat Arboretum",
+              "detail": "Walk the arboretum if weather is comfortable; it provides a calm, seasonal outdoor counterpart to the museum.",
+              "logistics": "Use an indoor art/mall extension if rain or cold is unpleasant."
+            },
+            {
+              "time": "16:00–18:30",
+              "title": "Hanbit Tower / Expo Science Park close",
+              "detail": "Use the riverside/Expo landscape and one view stop as the evening anchor, then return in one direct movement.",
+              "logistics": "Check illumination/observation details close to the day."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-11",
@@ -18483,7 +18822,36 @@
           ],
           "food": "Choose nearby Korean comfort food or a market item; this is a flexible day, not a reservation day.",
           "watchouts": "Trail conditions, weather, and local bus timing decide the outdoor version. Wear layers.",
-          "planB": "Yuseong footbath / spa-style relaxation plus a café and museum is the official plan B, not a failure."
+          "planB": "Yuseong footbath / spa-style relaxation plus a café and museum is the official plan B, not a failure.",
+          "schedule": [
+            {
+              "time": "08:30–10:00",
+              "title": "Weather decision and Gyeryongsan transfer",
+              "detail": "Check forecast and air quality before committing to the outdoor version. On a clear day, travel to the Donghaksa/Gyeryongsan side with a realistic route and return point.",
+              "logistics": "Do not attempt a full mountain circuit without current trail/transit information."
+            },
+            {
+              "time": "10:00–13:00",
+              "title": "Gyeryongsan / Donghaksa nature window",
+              "detail": "Walk a modest section, enjoy temple/nature scenery, and stop before fatigue turns the route into a chore.",
+              "logistics": "Layers and footwear matter more than a long mileage target."
+            },
+            {
+              "time": "14:30–16:30",
+              "title": "Yuseong footbath / warm reset",
+              "detail": "Return to the Yuseong area for a footbath, café, or hot-spring-style reset; this is the thoughtful contrast to the morning outdoor block.",
+              "logistics": "Confirm current access/operating details."
+            },
+            {
+              "time": "18:00–20:00",
+              "title": "Yuseong dinner",
+              "detail": "Eat nearby and return early. Keep the next day free of long regional travel.",
+              "logistics": "If rain cancels the hike, make Yuseong and an indoor museum the full plan."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-12",
@@ -18509,7 +18877,36 @@
           ],
           "food": "Repeat a favorite Daejeon bakery or choose a saved market-area meal. Repetition is convenient, not a missed opportunity.",
           "watchouts": "Avoid booking a late, far-away activity before the Busan move.",
-          "planB": "If weather is bad, make the whole day a food-market, mall, and packing-buffer day."
+          "planB": "If weather is bad, make the whole day a food-market, mall, and packing-buffer day.",
+          "schedule": [
+            {
+              "time": "10:00–12:00",
+              "title": "Choose one Daejeon culture layer",
+              "detail": "Use a final full day for an art museum, Uam/Ppuri-style historical stop, or a market/café circuit—not a forced all-city sweep.",
+              "logistics": "Confirm closing days and live hours before committing."
+            },
+            {
+              "time": "12:30–14:00",
+              "title": "Local lunch",
+              "detail": "Choose a saved Daejeon food option close to the selected morning district.",
+              "logistics": "Value means staying local, not collecting distant restaurants."
+            },
+            {
+              "time": "14:30–16:30",
+              "title": "Optional repeat or indoor reset",
+              "detail": "Return to a favorite neighborhood, take a museum/café pause, or shop for train snacks and practical supplies.",
+              "logistics": "This is the built-in weather and energy buffer."
+            },
+            {
+              "time": "17:30–20:00",
+              "title": "Pack and final old-downtown dinner",
+              "detail": "Pack the KTX day bag separately, confirm Busan hotel check-in, and have a nearby final dinner.",
+              "logistics": "No late, far-away reservation before the transfer."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-13",
@@ -18535,7 +18932,36 @@
           ],
           "food": "Haeundae dinner close to the hotel; save the Busan Station fish-cake stop for an easy snack if timing fits.",
           "watchouts": "Avoid trying to combine arrival with Gamcheon or a cable car. Western Busan deserves its own day.",
-          "planB": "Use a Haeundae café, hotel rest, and indoor dinner if coastal weather is rough."
+          "planB": "Use a Haeundae café, hotel rest, and indoor dinner if coastal weather is rough.",
+          "schedule": [
+            {
+              "time": "09:00–10:00",
+              "title": "Check out and station handoff",
+              "detail": "Finish check-out, buy a simple train snack if useful, and reach the KTX station with a platform/time cushion.",
+              "logistics": "Keep the middle-city hotel address, Busan hotel address, and ticket accessible offline."
+            },
+            {
+              "time": "Late morning–early afternoon",
+              "title": "Direct KTX to Busan",
+              "detail": "Use the direct KTX as the convenience anchor. Treat rail duration and train number as live booking details, not a fixed generic estimate.",
+              "logistics": "Choose seat/meal plan at booking; luggage should remain easy to manage."
+            },
+            {
+              "time": "Afternoon",
+              "title": "Busan Station to Haeundae hotel",
+              "detail": "Go straight to the Haeundae base, drop bags, and orient yourself to Line 2. A taxi can be worthwhile after a transfer day.",
+              "logistics": "Save the Korean hotel address and local food backup."
+            },
+            {
+              "time": "17:00–20:00",
+              "title": "Haeundae first evening",
+              "detail": "Walk the beach or Dongbaek shoreline at sunset if weather is welcoming, then eat close to the hotel.",
+              "logistics": "No Gamcheon, cable car, or west-Busan attraction today."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-14",
@@ -18561,7 +18987,36 @@
           ],
           "food": "Haeundae for lunch, Gwangalli for dinner; use the food library’s neighborhood filter rather than crossing back for a single saved restaurant.",
           "watchouts": "Weekend queues and weather matter; make advance reservations only for the one paid coastal activity you truly value.",
-          "planB": "Swap the outdoor portions for Spa Land Centum City, Shinsegae, and an indoor view/meal."
+          "planB": "Swap the outdoor portions for Spa Land Centum City, Shinsegae, and an indoor view/meal.",
+          "schedule": [
+            {
+              "time": "09:30–11:30",
+              "title": "Blue Line Park / Cheongsapo coast",
+              "detail": "Start with the coast while light and energy are good. Book only the Blue Line Park or Sky Capsule component you genuinely care about; the public coastal walk remains a strong-value experience.",
+              "logistics": "Check weather, queue, and reservation status before departure."
+            },
+            {
+              "time": "12:00–14:00",
+              "title": "Haeundae lunch and reset",
+              "detail": "Return toward Haeundae for lunch and a café or beach pause. Leave a buffer before the evening across the bay.",
+              "logistics": "Use this as recovery from the long west-side day tomorrow."
+            },
+            {
+              "time": "16:30–18:00",
+              "title": "Gwangalli waterfront",
+              "detail": "Move to Gwangalli with daylight still available for bridge views and a beachside walk.",
+              "logistics": "Use direct transit or taxi depending on weather and energy."
+            },
+            {
+              "time": "18:00–21:00",
+              "title": "Gwangalli dinner and optional drone show",
+              "detail": "Have dinner in the same area and watch the Saturday drone show only if the official listing still confirms it and weather permits.",
+              "logistics": "Treat it as a bonus—not the only reason for the night."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "This is a likely timed-ticket or transport-reservation day. Verify the current official listing and book only the anchor that matters most.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-15",
@@ -18587,7 +19042,36 @@
           ],
           "food": "Jagalchi / Nampo seafood or market snack is the natural food anchor; use a specific saved place only if its hours work.",
           "watchouts": "This is the longest local-transit day. Use a taxi for one leg if weather, fatigue, or hills make the value worthwhile.",
-          "planB": "If rain makes Gamcheon unpleasant, do Nampo/Jagalchi/Busan Tower first and use an indoor Busan museum or department store."
+          "planB": "If rain makes Gamcheon unpleasant, do Nampo/Jagalchi/Busan Tower first and use an indoor Busan museum or department store.",
+          "schedule": [
+            {
+              "time": "08:30–10:00",
+              "title": "Haeundae to Gamcheon",
+              "detail": "Leave early for the one transit-heavier Busan day. A taxi for one leg can be a smart value when it protects the whole day.",
+              "logistics": "Wear comfortable shoes and use live navigation for hill routes."
+            },
+            {
+              "time": "10:00–12:15",
+              "title": "Gamcheon Culture Village",
+              "detail": "Explore a curated part of the village with respect for residents. Choose a few viewpoints/alleys rather than attempting every marked stop.",
+              "logistics": "Rain makes steep lanes unpleasant; use the Nampo fallback if needed."
+            },
+            {
+              "time": "12:45–15:00",
+              "title": "Jagalchi and BIFF/Gukje markets",
+              "detail": "Move downhill into the market corridor for seafood, snacks, and street-life. This is the natural lunch/food anchor for the west-side day.",
+              "logistics": "Confirm a specific seafood restaurant only if you want a sit-down meal."
+            },
+            {
+              "time": "15:30–18:00",
+              "title": "Yongdusan / Busan Tower optional close",
+              "detail": "Add the park/tower only if energy remains, then return to Haeundae in one direct movement.",
+              "logistics": "Skip the tower without regret if the day is already full."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-16",
@@ -18613,7 +19097,36 @@
           ],
           "food": "Coastal café/lunch and a simple Haeundae dinner are sufficient.",
           "watchouts": "Coastal wind can make temple stairs and viewpoints less pleasant; check weather before committing.",
-          "planB": "Use Centum City, Spa Land, and indoor food halls when rain or high wind is forecast."
+          "planB": "Use Centum City, Spa Land, and indoor food halls when rain or high wind is forecast.",
+          "schedule": [
+            {
+              "time": "09:00–11:30",
+              "title": "Haedong Yonggungsa",
+              "detail": "Use Monday for the outdoor temple/coast experience while museum schedules may be narrower. Arrive early for a calmer path and better light.",
+              "logistics": "Confirm wind/rain conditions; stairs are not pleasant in bad weather."
+            },
+            {
+              "time": "12:00–14:00",
+              "title": "Songjeong coast and lunch",
+              "detail": "Keep lunch and a beach/café stop in the same eastern coastal corridor.",
+              "logistics": "Do not add a distant central or western attraction."
+            },
+            {
+              "time": "14:30–17:00",
+              "title": "Choose one light coastal extension",
+              "detail": "Use a short rail-park segment, Haeundae walk, or hotel rest. This is deliberately a less intense day after Gamcheon/Nampo.",
+              "logistics": "The relaxed version is the intended version."
+            },
+            {
+              "time": "18:00–20:00",
+              "title": "Haeundae dinner",
+              "detail": "Eat close to the hotel and confirm the next day’s Gyeongju KTX plan.",
+              "logistics": "If weather is poor, swap the whole day for Centum/Spa Land and move this outdoor plan to the best forecast day."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-17",
@@ -18639,7 +19152,42 @@
           ],
           "food": "Centum’s food options are convenient on an indoor day; use the savings and food research for any live visitor offer only after verifying terms.",
           "watchouts": "Spa rules, age policies, and closing hours must be checked live.",
-          "planB": "Make the whole day an indoor spa/mall day if rain persists; it is designed for exactly that situation."
+          "planB": "Make the whole day an indoor spa/mall day if rain persists; it is designed for exactly that situation.",
+          "schedule": [
+            {
+              "time": "07:45–09:30",
+              "title": "Busan to Singyeongju rail connection",
+              "detail": "Make the Gyeongju day a single historic-center route. Leave Haeundae with enough margin to reach Busan Station, then choose a KTX service that arrives in Singyeongju early enough for daylight.",
+              "logistics": "Book the actual train and save a taxi/bus plan from Singyeongju station."
+            },
+            {
+              "time": "10:00–12:15",
+              "title": "Daereungwon / Hwangridan-gil / old-town orientation",
+              "detail": "Start with the compact royal-tomb and old-town corridor rather than trying to combine it with a distant temple complex.",
+              "logistics": "This is the old-town version of Gyeongju; reserve Bulguksa/Seokguram for a different, dedicated route."
+            },
+            {
+              "time": "12:15–13:30",
+              "title": "Gyeongju lunch",
+              "detail": "Eat in the historic-center area and retain time for a slow afternoon.",
+              "logistics": "Keep a warm café backup in cool/wet weather."
+            },
+            {
+              "time": "13:30–16:30",
+              "title": "Cheomseongdae and Wolji Pond area",
+              "detail": "Walk the connected historic landscape, then start the return before it becomes a rushed night transfer.",
+              "logistics": "Use a taxi on the final leg if it protects your KTX return."
+            },
+            {
+              "time": "Evening",
+              "title": "Return to Haeundae and rest",
+              "detail": "Eat near the hotel or station after the rail day. Do not plan a second nightlife anchor.",
+              "logistics": "If Gyeongju feels too much, replace the entire day with the Busan indoor fallback."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "This is a likely timed-ticket or transport-reservation day. Verify the current official listing and book only the anchor that matters most.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-18",
@@ -18665,7 +19213,36 @@
           ],
           "food": "Seafood or a Yeongdo snack is appropriate if you choose that route; otherwise pick a saved local option near the day’s finish.",
           "watchouts": "This is an outdoor/weather-first day. Wind, rain, and footwear should decide the option.",
-          "planB": "Replace it with Busan Museum of Movies, aquarium, café streets, or a long spa visit."
+          "planB": "Replace it with Busan Museum of Movies, aquarium, café streets, or a long spa visit.",
+          "schedule": [
+            {
+              "time": "10:00–11:30",
+              "title": "F1963 or a nearby culture/design stop",
+              "detail": "Begin in one compact eastern district and check live exhibition opening before leaving.",
+              "logistics": "Choose a cafe/design stop rather than forcing an unavailable museum."
+            },
+            {
+              "time": "12:00–13:00",
+              "title": "Centum lunch",
+              "detail": "Eat in the same Centum corridor to keep the day weather-proof and low-transit.",
+              "logistics": "Use current hours/queues to choose a meal."
+            },
+            {
+              "time": "13:30–16:30",
+              "title": "Shinsegae Centum City and optional Spa Land",
+              "detail": "Use the mall/department-store environment for shopping, food, and a relaxed indoor experience. Add Spa Land only if the group wants it and current rules/hours work.",
+              "logistics": "Check spa policies, attire expectations, and last entry live."
+            },
+            {
+              "time": "17:00–20:00",
+              "title": "One intentional evening choice",
+              "detail": "Choose an observation/view experience or a good dinner, not both if fatigue is building.",
+              "logistics": "Keep Nov. 19 low-stakes and pack in the evening if helpful."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-19",
@@ -18691,7 +19268,36 @@
           ],
           "food": "Choose an easy nearby meal with a confirmed opening time; do not make a cross-city reservation the point of this day.",
           "watchouts": "The retained emergency source flags CSAT traffic management and a possible aviation hold; verify the current notice and avoid treating old timing as live fact.",
-          "planB": "Hotel rest, shopping, room-service-style convenience food, and packing are all valid on this deliberately buffered day."
+          "planB": "Hotel rest, shopping, room-service-style convenience food, and packing are all valid on this deliberately buffered day.",
+          "schedule": [
+            {
+              "time": "10:00–12:00",
+              "title": "Late, slow CSAT morning",
+              "detail": "Do not make an early or time-critical intercity move on the testing day. Begin in the hotel/nearby area after checking current disruption notices.",
+              "logistics": "The source notes traffic/aviation considerations; verify the actual 2026 guidance."
+            },
+            {
+              "time": "12:00–14:00",
+              "title": "Indoor lunch and low-stakes plan",
+              "detail": "Use a nearby indoor meal, café, Centum option, or hotel reset. Preserve flexibility instead of forcing an outdoor itinerary.",
+              "logistics": "Avoid a flight or tight appointment around the known disruption window."
+            },
+            {
+              "time": "14:30–17:30",
+              "title": "Optional BEXCO/G-STAR or indoor alternative",
+              "detail": "If the official event listing still confirms G-STAR and it matters to you, use it as an optional afternoon anchor. Otherwise choose a spa, mall, café, or simple neighborhood activity.",
+              "logistics": "Verify ticket, crowd, and exact schedule before committing."
+            },
+            {
+              "time": "18:00–20:30",
+              "title": "Pack for Seoul transfer",
+              "detail": "Confirm the KTX, Seoul hotel, airline terminal, and airport-transfer plan. Eat near Haeundae and finish packing.",
+              "logistics": "The buffer is intentional; do not add another far-away Busan outing."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Keep bookings flexible. Re-check current CSAT-related traffic/event notices and do not build the day around an unverified ticket or flight connection.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-20",
@@ -18717,7 +19323,36 @@
           ],
           "food": "Return to a favorite Myeongdong/City Hall option or try one saved restaurant within a short walk of the hotel.",
           "watchouts": "Keep passports, tax-refund paperwork, and shopping receipts in one known place tonight.",
-          "planB": "If the train arrives later than expected, skip everything except hotel check-in and a simple meal."
+          "planB": "If the train arrives later than expected, skip everything except hotel check-in and a simple meal.",
+          "schedule": [
+            {
+              "time": "09:00–10:00",
+              "title": "Busan checkout and KTX setup",
+              "detail": "Check out without rushing and reach Busan Station with a sensible buffer.",
+              "logistics": "Do not fit in a final attraction before the train."
+            },
+            {
+              "time": "Late morning–early afternoon",
+              "title": "Direct KTX to Seoul",
+              "detail": "Take the direct KTX, use a simple lunch/snack plan, and protect the transfer as the main task.",
+              "logistics": "Train time and platform must be rechecked in Korail."
+            },
+            {
+              "time": "Afternoon",
+              "title": "Seoul check-in, laundry, and departure review",
+              "detail": "Check into the final Seoul base, sort souvenirs, run laundry if useful, and verify the airline terminal, online check-in, and ICN route.",
+              "logistics": "This is departure insurance, not wasted time."
+            },
+            {
+              "time": "18:00–20:00",
+              "title": "Easy final Seoul dinner",
+              "detail": "Use a familiar hotel-neighborhood meal and short walk. Keep passports and receipts organized.",
+              "logistics": "No late cross-city event."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-21",
@@ -18743,7 +19378,36 @@
           ],
           "food": "Repeat your best Seoul meal or choose a final food-library favorite close to the hotel. Reliability beats novelty before departure.",
           "watchouts": "Saturday crowd density can make a long retail list frustrating. Make a short priority list and stop when it is done.",
-          "planB": "Use a hotel-neighborhood day with a café, light shopping, and packing if the weather or energy does not support a full outing."
+          "planB": "Use a hotel-neighborhood day with a café, light shopping, and packing if the weather or energy does not support a full outing.",
+          "schedule": [
+            {
+              "time": "09:30–12:00",
+              "title": "One final Seoul priority",
+              "detail": "Choose exactly one: a weather-friendly Namsan/Seoul view, a favorite museum/design neighborhood, or a cultural repeat you would truly regret missing.",
+              "logistics": "Do not create a new all-city itinerary on the final full day."
+            },
+            {
+              "time": "12:00–13:30",
+              "title": "Final lunch",
+              "detail": "Eat near the chosen morning district, then move into a compact shopping/packing afternoon.",
+              "logistics": "Use a saved food favorite rather than a risky new queue."
+            },
+            {
+              "time": "14:00–17:00",
+              "title": "Souvenirs, receipts, and return to hotel",
+              "detail": "Buy only the remaining priority items, then return early enough to pack completely and sort tax-refund paperwork.",
+              "logistics": "Use one neighborhood—Myeongdong, Namdaemun, or a preferred district—not all three."
+            },
+            {
+              "time": "18:00–21:00",
+              "title": "Farewell meal and departure lock",
+              "detail": "Have a close final meal, set multiple alarms, verify airport route/terminal, and sleep early.",
+              "logistics": "No overnight temple stay or late-show plan before a 13:00 flight."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-22",
@@ -18769,7 +19433,51 @@
           ],
           "food": "Airport meal only after airline and security tasks are handled.",
           "watchouts": "Terminal, airline cutoff, tax-refund rules, and transit schedule must be reconfirmed close to departure.",
-          "planB": "There is no sightseeing backup: the buffer itself is the plan."
+          "planB": "There is no sightseeing backup: the buffer itself is the plan.",
+          "schedule": [
+            {
+              "time": "07:00–08:00",
+              "title": "Final hotel check and checkout",
+              "detail": "Check passports, boarding pass, devices, medicines, baggage, receipts, and hotel-room safe before leaving.",
+              "logistics": "Do not add sightseeing or shopping."
+            },
+            {
+              "time": "07:45–09:30",
+              "title": "Seoul to ICN",
+              "detail": "Leave on the route chosen for the actual hotel and terminal. The target is arrival at ICN around three hours before a 13:00 international departure, following airline guidance.",
+              "logistics": "AREX works well near Seoul Station; limousine/taxi can be cleaner with heavy bags or a different hotel."
+            },
+            {
+              "time": "Around 10:00–12:00",
+              "title": "Check-in, baggage, security, and valid refund steps",
+              "detail": "Complete mandatory airport tasks first. Use any tax-refund process only after confirming eligibility and terminal location.",
+              "logistics": "Do not postpone security for shopping."
+            },
+            {
+              "time": "After airport tasks",
+              "title": "Meal, gate, and departure",
+              "detail": "Eat, refill water, and browse only after you know the gate and boarding timeline.",
+              "logistics": "Boarding time—not the scheduled departure—is the final hard deadline."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Confirm airline terminal, check-in cutoff, baggage allowance, airport transfer, and any valid tax-refund procedure the day before departure.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
+        }
+      ],
+      "recommendation": "Choose this route if experience quality and middle-city variety are the deciding factors. Daejeon earns five nights through science/design, food, parks, and a hot-spring/nature contrast.",
+      "budgetScenarios": [
+        {
+          "label": "Value-forward one-room stay example",
+          "subtotal": "≈ $1,524–$2,285 room subtotal before taxes/fees",
+          "assumptions": "9 Seoul nights at Ibis Styles Ambassador Seoul Myeongdong research range ($90–130), 5 Daejeon nights at Aank Air Hotel Daejeon Station ($42–62), and 7 Busan nights at Shilla Stay Haeundae ($72–115).",
+          "note": "Prioritize one uncomplicated base per city; this is the best value version of the experience-rich route."
+        },
+        {
+          "label": "More-comfort one-room stay example",
+          "subtotal": "≈ $2,030–$2,935 room subtotal before taxes/fees",
+          "assumptions": "9 Seoul nights at Nine Tree by Parnas Myeongdong 1 research range ($100–145), 5 Daejeon nights at Ramada by Wyndham Daejeon ($65–95), and 7 Busan nights at L7 Haeundae ($115–165).",
+          "note": "This raises hotel comfort while keeping the same low-friction base structure."
         }
       ]
     },
@@ -18910,7 +19618,36 @@
           ],
           "food": "Keep food simple: airport, hotel, or convenience-store backup only.",
           "watchouts": "No restaurant reservation, palace ticket, or long neighborhood walk belongs on this night.",
-          "planB": "If immigration is slow or trains are no longer suitable, use the official taxi queue or hotel-arranged transfer rather than improvising."
+          "planB": "If immigration is slow or trains are no longer suitable, use the official taxi queue or hotel-arranged transfer rather than improvising.",
+          "schedule": [
+            {
+              "time": "21:00–22:30",
+              "title": "ICN arrival, immigration, and baggage",
+              "detail": "Treat this as a variable-duration window. Complete entry and baggage first; keep hotel information, insurance, and emergency contacts offline and accessible.",
+              "logistics": "Do not commit to a fixed train or restaurant until bags are in hand."
+            },
+            {
+              "time": "22:30–23:00",
+              "title": "Connectivity and minimum essentials",
+              "detail": "Activate the already-selected eSIM/SIM or roaming plan, save the hotel address in Korean, and handle only the payment/cash task that is genuinely needed tonight.",
+              "logistics": "If queues are long, defer card setup and use the simplest safe transfer."
+            },
+            {
+              "time": "23:00–00:30",
+              "title": "ICN to Seoul hotel",
+              "detail": "Use the transfer chosen for the actual time and hotel: airport limousine or official taxi is often the low-stress choice after a 21:00 landing; use AREX only if live service and the final hotel connection are simple.",
+              "logistics": "Confirm the terminal and late-night operating window on travel day."
+            },
+            {
+              "time": "After check-in",
+              "title": "Sleep and reset",
+              "detail": "Check in, hydrate, set alarms, and sleep. A hotel-area snack is enough; tomorrow is intentionally gentle.",
+              "logistics": "No sightseeing or reservation tonight."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-02",
@@ -18936,7 +19673,36 @@
           ],
           "food": "Choose one Myeongdong food bookmark; a short walk from the hotel matters more than the perfect first meal.",
           "watchouts": "Jet lag makes a low-stakes neighborhood day the quality choice.",
-          "planB": "Use the day for hotel rest, laundry, and map setup if energy is low."
+          "planB": "Use the day for hotel rest, laundry, and map setup if energy is low.",
+          "schedule": [
+            {
+              "time": "10:30–11:30",
+              "title": "Slow start and Seoul setup",
+              "detail": "Sleep in, have breakfast, obtain/load transit payment if needed, pin the hotel in Naver Map and KakaoMap, and identify the nearest subway entrance/convenience store.",
+              "logistics": "This is purposeful recovery time, not lost sightseeing."
+            },
+            {
+              "time": "12:00–14:00",
+              "title": "Myeongdong and City Hall orientation",
+              "detail": "Walk the compact hotel-neighborhood corridor at an easy pace. Note a few realistic meal options and use this first outing to understand pedestrian flow and subway exits.",
+              "logistics": "Stay near the hotel; avoid a cross-city destination."
+            },
+            {
+              "time": "14:30–16:30",
+              "title": "Deoksugung / stone-wall walk or indoor swap",
+              "detail": "Use the central historic streets for a low-navigation afternoon. The goal is visual orientation and a gentle first cultural stop, not a full palace checklist.",
+              "logistics": "Verify same-day hours; use a gallery, café, or department-store area if weather is poor."
+            },
+            {
+              "time": "18:00–20:00",
+              "title": "Early neighborhood dinner and rest",
+              "detail": "Choose one Myeongdong food bookmark with a short walk. Return early and protect sleep after the late arrival.",
+              "logistics": "Skip the temptation to add a distant night market."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-03",
@@ -18962,7 +19728,36 @@
           ],
           "food": "Use a Yongsan or Itaewon saved food option after checking current hours.",
           "watchouts": "The retained research notes a typical Tuesday Gyeongbokgung closure; verify current palace schedules.",
-          "planB": "Let the museum become a full day and skip the second neighborhood."
+          "planB": "Let the museum become a full day and skip the second neighborhood.",
+          "schedule": [
+            {
+              "time": "09:30–11:45",
+              "title": "Namsan / N Seoul Tower weather window",
+              "detail": "Start with the Namsan side when visibility is best. Use the cable car or bus only if the live queue, weather, and your energy make it worthwhile; the view is the anchor, not a mandatory transport novelty.",
+              "logistics": "Check official operating and weather status before leaving the hotel."
+            },
+            {
+              "time": "12:15–13:30",
+              "title": "Myeongdong lunch",
+              "detail": "Eat near the base rather than chasing a famous restaurant across town. This creates a clean handoff to the east-side afternoon.",
+              "logistics": "Choose a current-open saved option."
+            },
+            {
+              "time": "14:30–16:30",
+              "title": "Dongdaemun Design Plaza and design district",
+              "detail": "Explore DDP public architecture, any live exhibition of interest, and the surrounding design/shopping area at a measured pace.",
+              "logistics": "Confirm exhibition admission/closing time; public exterior is the fallback."
+            },
+            {
+              "time": "17:30–20:00",
+              "title": "Gwangjang Market evening food loop",
+              "detail": "Use the market as the day’s food experience, then return directly to the hotel. Choose a seated backup nearby if the market feels too crowded.",
+              "logistics": "Keep bags secure in dense pedestrian areas."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-04",
@@ -18988,7 +19783,36 @@
           ],
           "food": "Market grazing plus a nearby tea-house or classic-Korean backup.",
           "watchouts": "Palace hours, crowd controls, and air quality are live checks.",
-          "planB": "Palace museums, Insadong tea houses, and market food make a coherent rain version."
+          "planB": "Palace museums, Insadong tea houses, and market food make a coherent rain version.",
+          "schedule": [
+            {
+              "time": "09:00–11:30",
+              "title": "Gyeongbokgung Palace",
+              "detail": "Begin at the palace so the rest of the historic route flows logically south/east. Check the current guard-ceremony timing and final entry before leaving the hotel.",
+              "logistics": "Palace closure and guard schedules are live details; confirm them."
+            },
+            {
+              "time": "12:00–13:00",
+              "title": "Historic-district lunch",
+              "detail": "Have lunch near Gyeongbokgung, Anguk, or Bukchon so the afternoon remains walkable.",
+              "logistics": "Do not detour to another Seoul district for lunch."
+            },
+            {
+              "time": "13:15–15:30",
+              "title": "Bukchon and Samcheong",
+              "detail": "Walk selected lanes slowly, respect the residential setting, and choose one craft/café stop rather than attempting every photo location.",
+              "logistics": "Use a rain-friendly café or small museum if outdoor walking is uncomfortable."
+            },
+            {
+              "time": "16:00–18:30",
+              "title": "Insadong tea, craft, and cultural close",
+              "detail": "Continue downhill to Insadong for a tea house, craft browsing, or a compact cultural stop. End with dinner in the same area or return to the hotel.",
+              "logistics": "Avoid a late-night cross-city add-on."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "This is a likely timed-ticket or transport-reservation day. Verify the current official listing and book only the anchor that matters most.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-05",
@@ -19014,7 +19838,36 @@
           ],
           "food": "Choose a nearby food bookmark after you have checked the actual queue and closing time.",
           "watchouts": "Keep a modest walking radius and use the hotel as an easy reset if crowds feel tiring.",
-          "planB": "Use indoor cafés and shops, then return early."
+          "planB": "Use indoor cafés and shops, then return early.",
+          "schedule": [
+            {
+              "time": "09:00–12:00",
+              "title": "Changdeokgung and Secret Garden",
+              "detail": "Use a timed Secret Garden entry only if the official schedule and ticket availability work. The palace/garden combination is the day’s single paid cultural anchor.",
+              "logistics": "Reserve/reconfirm the exact garden tour before the day; do not assume old English-tour times."
+            },
+            {
+              "time": "12:15–13:30",
+              "title": "Insadong/Jongno lunch",
+              "detail": "Eat nearby and leave room to reset before the temple and craft stops.",
+              "logistics": "Prioritize a warm seated meal if the day is cool."
+            },
+            {
+              "time": "14:00–15:00",
+              "title": "Jogyesa Temple",
+              "detail": "Visit the temple as a quiet cultural counterpoint to the palace. Keep expectations simple: it is a short, respectful visit, not a full temple stay.",
+              "logistics": "Dress and behave respectfully; check access during ceremonies."
+            },
+            {
+              "time": "15:30–18:00",
+              "title": "Choose one compact culture extension",
+              "detail": "Choose a craft museum, a tea house, Cheonggyecheon walk, or a return to the hotel; do not force all four into the afternoon.",
+              "logistics": "This is the main energy buffer before Hongdae day."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "This is a likely timed-ticket or transport-reservation day. Verify the current official listing and book only the anchor that matters most.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-06",
@@ -19040,7 +19893,36 @@
           ],
           "food": "Seongsu café or Gangnam/COEX meal selected from the library after a live check.",
           "watchouts": "Temporary pop-ups are not reliable anchors.",
-          "planB": "Extend Seongsu and skip COEX; it is the calmer version."
+          "planB": "Extend Seongsu and skip COEX; it is the calmer version.",
+          "schedule": [
+            {
+              "time": "10:30–12:30",
+              "title": "Hongdae and Gyeongui Line Forest Park",
+              "detail": "Arrive after the commute peak and walk the park into the Hongdae/Yeonnam area. This is a neighborhood-experience day, not a checklist of ticketed attractions.",
+              "logistics": "Use Naver Map for the exact exit and a current café/restaurant pin."
+            },
+            {
+              "time": "12:30–14:00",
+              "title": "Hongdae lunch",
+              "detail": "Pick one saved food option in the exact block where you finish the walk. Keep a second choice in case of a queue.",
+              "logistics": "Do not travel to another district for a lunch reservation."
+            },
+            {
+              "time": "14:00–17:30",
+              "title": "Yeonnam, small shops, café, or PC bang",
+              "detail": "Choose two interests at most: vintage/design browsing, café, music store, PC bang, or a creative workshop. The point is unhurried youth-culture texture.",
+              "logistics": "Keep a warm indoor pause available if weather is poor."
+            },
+            {
+              "time": "18:00–21:00",
+              "title": "Flexible evening",
+              "detail": "Stay for a live music/culture option only if you find one with a confirmed time and energy remains; otherwise have dinner and return before late crowds.",
+              "logistics": "Do not prepay an event based on an unverified listing."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-07",
@@ -19066,7 +19948,36 @@
           ],
           "food": "Suwon lunch if you go; otherwise a nearby Seoul saved idea.",
           "watchouts": "Saturday weather/crowd conditions decide whether the trip is worth it.",
-          "planB": "Stay in Seoul for a reserved garden, museum, or favorite neighborhood repeat."
+          "planB": "Stay in Seoul for a reserved garden, museum, or favorite neighborhood repeat.",
+          "schedule": [
+            {
+              "time": "08:30–10:00",
+              "title": "Seoul to Suwon",
+              "detail": "Use Suwon Hwaseong as the default value-friendly Saturday day trip. It keeps the travel simple and avoids basing the day on a potentially crowded weekend foliage queue.",
+              "logistics": "Confirm live train timing and the station-to-fortress connection the night before."
+            },
+            {
+              "time": "10:00–13:00",
+              "title": "Hwaseong Fortress focus",
+              "detail": "Walk a realistic section of the fortress, gate area, and nearby streets. Take the views without turning the entire wall into a mileage goal.",
+              "logistics": "Wear comfortable shoes and check weather."
+            },
+            {
+              "time": "13:00–15:30",
+              "title": "Suwon lunch and one local extension",
+              "detail": "Have lunch, then choose one nearby museum/market/walk extension rather than stacking a second city attraction.",
+              "logistics": "Use a taxi if it buys back meaningful energy."
+            },
+            {
+              "time": "16:00–19:30",
+              "title": "Return, pack, and confirm KTX",
+              "detail": "Return to Seoul before a late rush, eat near the hotel, and prepare a separate train-day bag. Confirm the next hotel, exact KTX, and check-out process.",
+              "logistics": "DMZ or Nami Island can replace Suwon only if their live conditions and your interests make them the better choice."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "This is a likely timed-ticket or transport-reservation day. Verify the current official listing and book only the anchor that matters most.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-08",
@@ -19092,7 +20003,36 @@
           ],
           "food": "Start with Hakwha walnut pastry if convenient, then choose a central Cheonan meal from the food library.",
           "watchouts": "Cheonan-Asan is the KTX hub; central Cheonan is the more lived-in base. Planning a taxi intentionally makes both work well.",
-          "planB": "Check in, eat near the hotel, and leave all sightseeing for tomorrow."
+          "planB": "Check in, eat near the hotel, and leave all sightseeing for tomorrow.",
+          "schedule": [
+            {
+              "time": "09:00–10:00",
+              "title": "Seoul checkout and KTX station arrival",
+              "detail": "Check out with a calm margin and prepare a small day bag. This is a short KTX hop, but station/last-mile handoffs still benefit from a buffer.",
+              "logistics": "Keep the Cheonan hotel and Cheonan-Asan taxi route saved."
+            },
+            {
+              "time": "Late morning–early afternoon",
+              "title": "Direct KTX Seoul → Cheonan-Asan",
+              "detail": "Use the direct rail leg as the route’s main convenience advantage. Choose a central Cheonan hotel only if you are comfortable treating the taxi from Cheonan-Asan as part of the plan.",
+              "logistics": "Recheck departure station and train at booking."
+            },
+            {
+              "time": "13:00–14:30",
+              "title": "Taxi to hotel and settle in",
+              "detail": "Go straight to the central/Sinbu-dong base, drop luggage, confirm the local taxi pickup point for departure day, and locate a simple dinner option.",
+              "logistics": "Avoid dragging bags through an unnecessary local transfer."
+            },
+            {
+              "time": "15:30–20:00",
+              "title": "Central market, walnut pastry, and city rhythm",
+              "detail": "Walk the central area, try Hakwha walnut pastry if convenient, and choose a nearby meal. The point is an easy local introduction rather than a ticketed attraction sprint.",
+              "logistics": "If tired, make it a hotel-neighborhood evening only."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-09",
@@ -19118,7 +20058,36 @@
           ],
           "food": "Central Cheonan food bookmark, walnut pastry, and market snacks work naturally here.",
           "watchouts": "Monday can have attraction closures; a flexible city-and-food day avoids wasted transport.",
-          "planB": "Use a hotel breakfast, department-store/café time, and a short local walk only."
+          "planB": "Use a hotel breakfast, department-store/café time, and a short local walk only.",
+          "schedule": [
+            {
+              "time": "10:00–12:00",
+              "title": "Cheonan city center and Arario area",
+              "detail": "Use Monday for walkable city texture: station district, Arario small-city sculpture/gallery setting, cafés, and nearby shopping streets.",
+              "logistics": "This avoids relying on closure-sensitive major sites."
+            },
+            {
+              "time": "12:00–13:30",
+              "title": "Central Cheonan lunch",
+              "detail": "Choose a food bookmark within the same central zone and keep a backup for queues.",
+              "logistics": "No cross-city lunch detour."
+            },
+            {
+              "time": "14:00–16:30",
+              "title": "Market / Street of Culture / city-view option",
+              "detail": "Browse the central market and cultural streets at a relaxed pace. Add a city-view or department-store pause only if it remains convenient.",
+              "logistics": "This is intentionally the low-pressure middle-city day."
+            },
+            {
+              "time": "18:00–20:00",
+              "title": "Local dinner and KTX-day rehearsal",
+              "detail": "Eat near the base, verify tomorrow’s Independence Hall route, and confirm how you will return to Cheonan-Asan on Nov. 13.",
+              "logistics": "A small logistics check now prevents a rushed transfer later."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-10",
@@ -19144,7 +20113,36 @@
           ],
           "food": "Byeongcheon sundae is the natural regional experience; keep a central Cheonan backup if the excursion runs long.",
           "watchouts": "Exhibition schedules, buses, and weather should be checked the evening before.",
-          "planB": "If weather or opening details are poor, use Cheonan museums/galleries and defer the hall to the clearest day."
+          "planB": "If weather or opening details are poor, use Cheonan museums/galleries and defer the hall to the clearest day.",
+          "schedule": [
+            {
+              "time": "09:00–10:00",
+              "title": "Travel to Independence Hall",
+              "detail": "Use taxi/bus only after confirming current opening time and route. Build a generous arrival margin for the one full heritage excursion of the Cheonan stay.",
+              "logistics": "Check official hours, closures, and weather the evening before."
+            },
+            {
+              "time": "10:00–12:30",
+              "title": "Independence Hall exhibitions and grounds",
+              "detail": "Choose exhibition halls that genuinely interest you and allow time for the grounds; do not attempt every room just to complete the site.",
+              "logistics": "Indoor halls make this a resilient weather day."
+            },
+            {
+              "time": "12:30–13:30",
+              "title": "Lunch near the excursion or on return",
+              "detail": "Have a straightforward lunch where the day naturally places you.",
+              "logistics": "Keep a snack backup if restaurant options are limited."
+            },
+            {
+              "time": "14:00–16:30",
+              "title": "Maple avenue / grounds / return to city",
+              "detail": "Use the outdoor heritage landscape only if conditions are good, then return to central Cheonan before evening.",
+              "logistics": "Byeongcheon food can be a regional add-on only if timing and opening hours are easy—not a forced detour."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-11",
@@ -19170,7 +20168,36 @@
           ],
           "food": "Use a central food bookmark after returning; do not make food a distant second excursion.",
           "watchouts": "Outdoor steps and parks are weather-sensitive; wear layers and choose a taxi if the local connection is inconvenient.",
-          "planB": "Arario Gallery, an indoor café, and the market make an easy urban substitute."
+          "planB": "Arario Gallery, an indoor café, and the market make an easy urban substitute.",
+          "schedule": [
+            {
+              "time": "09:30–11:30",
+              "title": "Gakwonsa Temple",
+              "detail": "Visit the temple and giant bronze Buddha while the area is calm. Let it be the day’s cultural anchor rather than adding multiple temples.",
+              "logistics": "Use a taxi if public-transit complexity would dilute the experience."
+            },
+            {
+              "time": "12:00–13:30",
+              "title": "Lunch and reset",
+              "detail": "Eat near the route or after returning to central Cheonan.",
+              "logistics": "Warm, seated lunch is useful in cool weather."
+            },
+            {
+              "time": "14:00–16:30",
+              "title": "Samgeori Park or central city extension",
+              "detail": "Choose one nearby park/city-view/culture extension. The plan leaves room to return to an earlier favorite or just take a café pause.",
+              "logistics": "Outdoor plan depends on weather."
+            },
+            {
+              "time": "18:00–20:00",
+              "title": "Dinner near the base",
+              "detail": "Keep evening local and protect the open-value day tomorrow.",
+              "logistics": "No need for a nightlife program if it does not suit the group."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-12",
@@ -19196,7 +20223,36 @@
           ],
           "food": "Use the city food list to repeat a favorite or try one specialty; this is the best night to avoid an overplanned meal.",
           "watchouts": "The point of Cheonan is efficient breathing room. Do not turn this into a forced Seoul day trip.",
-          "planB": "Hotel rest, shopping, and packing are a successful version of the day."
+          "planB": "Hotel rest, shopping, and packing are a successful version of the day.",
+          "schedule": [
+            {
+              "time": "10:00–12:00",
+              "title": "Choose an open middle-city experience",
+              "detail": "Pick one live-confirmed option: a Cheonan museum/culture stop, an Asan/Onyang warm-reset outing, or a slow food-and-café circuit. Do not try to do all three.",
+              "logistics": "This is a choice day, designed to reflect weather and energy."
+            },
+            {
+              "time": "12:30–14:00",
+              "title": "Flexible lunch",
+              "detail": "Use a saved option near the chosen morning activity. Choose quality over an elaborate transit detour.",
+              "logistics": "Keep the afternoon deliberately light."
+            },
+            {
+              "time": "14:30–16:30",
+              "title": "Return, revisit, or rest",
+              "detail": "Use the buffer for a missed market/café, light shopping, or rest. Cheonan’s value is that it does not demand a busy schedule to feel worthwhile.",
+              "logistics": "Do not force a Seoul day trip into this route."
+            },
+            {
+              "time": "17:30–20:00",
+              "title": "Pack and confirm Busan transfer",
+              "detail": "Confirm taxi pickup to Cheonan-Asan, KTX, and Busan Haeundae check-in. Have a final convenient dinner.",
+              "logistics": "The smooth KTX handoff is tomorrow’s priority."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-13",
@@ -19222,7 +20278,36 @@
           ],
           "food": "Haeundae dinner close to the hotel; a Busan Station fish-cake snack is an easy optional stop.",
           "watchouts": "Gamcheon, Nampo, and the cable car deserve their own day; do not add them to arrival day.",
-          "planB": "Use a Haeundae café, hotel rest, and indoor dinner if weather is rough."
+          "planB": "Use a Haeundae café, hotel rest, and indoor dinner if weather is rough.",
+          "schedule": [
+            {
+              "time": "09:00–10:00",
+              "title": "Check out and station handoff",
+              "detail": "Finish check-out, buy a simple train snack if useful, and reach the KTX station with a platform/time cushion.",
+              "logistics": "Keep the middle-city hotel address, Busan hotel address, and ticket accessible offline."
+            },
+            {
+              "time": "Late morning–early afternoon",
+              "title": "Direct KTX to Busan",
+              "detail": "Use the direct KTX as the convenience anchor. Treat rail duration and train number as live booking details, not a fixed generic estimate.",
+              "logistics": "Choose seat/meal plan at booking; luggage should remain easy to manage."
+            },
+            {
+              "time": "Afternoon",
+              "title": "Busan Station to Haeundae hotel",
+              "detail": "Go straight to the Haeundae base, drop bags, and orient yourself to Line 2. A taxi can be worthwhile after a transfer day.",
+              "logistics": "Save the Korean hotel address and local food backup."
+            },
+            {
+              "time": "17:00–20:00",
+              "title": "Haeundae first evening",
+              "detail": "Walk the beach or Dongbaek shoreline at sunset if weather is welcoming, then eat close to the hotel.",
+              "logistics": "No Gamcheon, cable car, or west-Busan attraction today."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-14",
@@ -19248,7 +20333,36 @@
           ],
           "food": "Haeundae lunch, Gwangalli dinner; use neighborhood filtering in the food library.",
           "watchouts": "Weekend queues and weather matter. Make only one paid coast booking the non-negotiable.",
-          "planB": "Spa Land Centum City and Shinsegae make a high-quality indoor coastal substitute."
+          "planB": "Spa Land Centum City and Shinsegae make a high-quality indoor coastal substitute.",
+          "schedule": [
+            {
+              "time": "09:30–11:30",
+              "title": "Blue Line Park / Cheongsapo coast",
+              "detail": "Start with the coast while light and energy are good. Book only the Blue Line Park or Sky Capsule component you genuinely care about; the public coastal walk remains a strong-value experience.",
+              "logistics": "Check weather, queue, and reservation status before departure."
+            },
+            {
+              "time": "12:00–14:00",
+              "title": "Haeundae lunch and reset",
+              "detail": "Return toward Haeundae for lunch and a café or beach pause. Leave a buffer before the evening across the bay.",
+              "logistics": "Use this as recovery from the long west-side day tomorrow."
+            },
+            {
+              "time": "16:30–18:00",
+              "title": "Gwangalli waterfront",
+              "detail": "Move to Gwangalli with daylight still available for bridge views and a beachside walk.",
+              "logistics": "Use direct transit or taxi depending on weather and energy."
+            },
+            {
+              "time": "18:00–21:00",
+              "title": "Gwangalli dinner and optional drone show",
+              "detail": "Have dinner in the same area and watch the Saturday drone show only if the official listing still confirms it and weather permits.",
+              "logistics": "Treat it as a bonus—not the only reason for the night."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "This is a likely timed-ticket or transport-reservation day. Verify the current official listing and book only the anchor that matters most.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-15",
@@ -19274,7 +20388,36 @@
           ],
           "food": "Jagalchi/Nampo seafood or market food is the natural anchor.",
           "watchouts": "Use a taxi for one hill or long connection if the value of saved energy beats a local-transit puzzle.",
-          "planB": "Nampo/Jagalchi/indoor museum first; skip Gamcheon in sustained rain."
+          "planB": "Nampo/Jagalchi/indoor museum first; skip Gamcheon in sustained rain.",
+          "schedule": [
+            {
+              "time": "08:30–10:00",
+              "title": "Haeundae to Gamcheon",
+              "detail": "Leave early for the one transit-heavier Busan day. A taxi for one leg can be a smart value when it protects the whole day.",
+              "logistics": "Wear comfortable shoes and use live navigation for hill routes."
+            },
+            {
+              "time": "10:00–12:15",
+              "title": "Gamcheon Culture Village",
+              "detail": "Explore a curated part of the village with respect for residents. Choose a few viewpoints/alleys rather than attempting every marked stop.",
+              "logistics": "Rain makes steep lanes unpleasant; use the Nampo fallback if needed."
+            },
+            {
+              "time": "12:45–15:00",
+              "title": "Jagalchi and BIFF/Gukje markets",
+              "detail": "Move downhill into the market corridor for seafood, snacks, and street-life. This is the natural lunch/food anchor for the west-side day.",
+              "logistics": "Confirm a specific seafood restaurant only if you want a sit-down meal."
+            },
+            {
+              "time": "15:30–18:00",
+              "title": "Yongdusan / Busan Tower optional close",
+              "detail": "Add the park/tower only if energy remains, then return to Haeundae in one direct movement.",
+              "logistics": "Skip the tower without regret if the day is already full."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-16",
@@ -19300,7 +20443,36 @@
           ],
           "food": "Coastal café/lunch and a simple Haeundae dinner.",
           "watchouts": "Wind and temple stairs decide whether the outdoor version is enjoyable.",
-          "planB": "Centum City and Spa Land give an indoor answer without wasting the day."
+          "planB": "Centum City and Spa Land give an indoor answer without wasting the day.",
+          "schedule": [
+            {
+              "time": "09:00–11:30",
+              "title": "Haedong Yonggungsa",
+              "detail": "Use Monday for the outdoor temple/coast experience while museum schedules may be narrower. Arrive early for a calmer path and better light.",
+              "logistics": "Confirm wind/rain conditions; stairs are not pleasant in bad weather."
+            },
+            {
+              "time": "12:00–14:00",
+              "title": "Songjeong coast and lunch",
+              "detail": "Keep lunch and a beach/café stop in the same eastern coastal corridor.",
+              "logistics": "Do not add a distant central or western attraction."
+            },
+            {
+              "time": "14:30–17:00",
+              "title": "Choose one light coastal extension",
+              "detail": "Use a short rail-park segment, Haeundae walk, or hotel rest. This is deliberately a less intense day after Gamcheon/Nampo.",
+              "logistics": "The relaxed version is the intended version."
+            },
+            {
+              "time": "18:00–20:00",
+              "title": "Haeundae dinner",
+              "detail": "Eat close to the hotel and confirm the next day’s Gyeongju KTX plan.",
+              "logistics": "If weather is poor, swap the whole day for Centum/Spa Land and move this outdoor plan to the best forecast day."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-17",
@@ -19326,7 +20498,42 @@
           ],
           "food": "Centum food halls and nearby café options are useful on an indoor day.",
           "watchouts": "Verify spa requirements and closing hours live.",
-          "planB": "Make the day fully indoor with a spa, mall, and food hall."
+          "planB": "Make the day fully indoor with a spa, mall, and food hall.",
+          "schedule": [
+            {
+              "time": "07:45–09:30",
+              "title": "Busan to Singyeongju rail connection",
+              "detail": "Make the Gyeongju day a single historic-center route. Leave Haeundae with enough margin to reach Busan Station, then choose a KTX service that arrives in Singyeongju early enough for daylight.",
+              "logistics": "Book the actual train and save a taxi/bus plan from Singyeongju station."
+            },
+            {
+              "time": "10:00–12:15",
+              "title": "Daereungwon / Hwangridan-gil / old-town orientation",
+              "detail": "Start with the compact royal-tomb and old-town corridor rather than trying to combine it with a distant temple complex.",
+              "logistics": "This is the old-town version of Gyeongju; reserve Bulguksa/Seokguram for a different, dedicated route."
+            },
+            {
+              "time": "12:15–13:30",
+              "title": "Gyeongju lunch",
+              "detail": "Eat in the historic-center area and retain time for a slow afternoon.",
+              "logistics": "Keep a warm café backup in cool/wet weather."
+            },
+            {
+              "time": "13:30–16:30",
+              "title": "Cheomseongdae and Wolji Pond area",
+              "detail": "Walk the connected historic landscape, then start the return before it becomes a rushed night transfer.",
+              "logistics": "Use a taxi on the final leg if it protects your KTX return."
+            },
+            {
+              "time": "Evening",
+              "title": "Return to Haeundae and rest",
+              "detail": "Eat near the hotel or station after the rail day. Do not plan a second nightlife anchor.",
+              "logistics": "If Gyeongju feels too much, replace the entire day with the Busan indoor fallback."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "This is a likely timed-ticket or transport-reservation day. Verify the current official listing and book only the anchor that matters most.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-18",
@@ -19352,7 +20559,36 @@
           ],
           "food": "Seafood or Yeongdo snack if that is the route; otherwise choose nearby food after seeing the day’s pace.",
           "watchouts": "Wind, rain, footwear, and daylight decide the outdoor option.",
-          "planB": "Aquarium, museum, café streets, or a long spa stop."
+          "planB": "Aquarium, museum, café streets, or a long spa stop.",
+          "schedule": [
+            {
+              "time": "10:00–11:30",
+              "title": "F1963 or a nearby culture/design stop",
+              "detail": "Begin in one compact eastern district and check live exhibition opening before leaving.",
+              "logistics": "Choose a cafe/design stop rather than forcing an unavailable museum."
+            },
+            {
+              "time": "12:00–13:00",
+              "title": "Centum lunch",
+              "detail": "Eat in the same Centum corridor to keep the day weather-proof and low-transit.",
+              "logistics": "Use current hours/queues to choose a meal."
+            },
+            {
+              "time": "13:30–16:30",
+              "title": "Shinsegae Centum City and optional Spa Land",
+              "detail": "Use the mall/department-store environment for shopping, food, and a relaxed indoor experience. Add Spa Land only if the group wants it and current rules/hours work.",
+              "logistics": "Check spa policies, attire expectations, and last entry live."
+            },
+            {
+              "time": "17:00–20:00",
+              "title": "One intentional evening choice",
+              "detail": "Choose an observation/view experience or a good dinner, not both if fatigue is building.",
+              "logistics": "Keep Nov. 19 low-stakes and pack in the evening if helpful."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-19",
@@ -19378,7 +20614,36 @@
           ],
           "food": "Choose a nearby meal with confirmed hours; no cross-city reservation today.",
           "watchouts": "The retained emergency source flags CSAT traffic management and a possible aviation hold. Re-check current notices before travel.",
-          "planB": "Hotel rest, shopping, packing, and simple food are intentional buffer uses."
+          "planB": "Hotel rest, shopping, packing, and simple food are intentional buffer uses.",
+          "schedule": [
+            {
+              "time": "10:00–12:00",
+              "title": "Late, slow CSAT morning",
+              "detail": "Do not make an early or time-critical intercity move on the testing day. Begin in the hotel/nearby area after checking current disruption notices.",
+              "logistics": "The source notes traffic/aviation considerations; verify the actual 2026 guidance."
+            },
+            {
+              "time": "12:00–14:00",
+              "title": "Indoor lunch and low-stakes plan",
+              "detail": "Use a nearby indoor meal, café, Centum option, or hotel reset. Preserve flexibility instead of forcing an outdoor itinerary.",
+              "logistics": "Avoid a flight or tight appointment around the known disruption window."
+            },
+            {
+              "time": "14:30–17:30",
+              "title": "Optional BEXCO/G-STAR or indoor alternative",
+              "detail": "If the official event listing still confirms G-STAR and it matters to you, use it as an optional afternoon anchor. Otherwise choose a spa, mall, café, or simple neighborhood activity.",
+              "logistics": "Verify ticket, crowd, and exact schedule before committing."
+            },
+            {
+              "time": "18:00–20:30",
+              "title": "Pack for Seoul transfer",
+              "detail": "Confirm the KTX, Seoul hotel, airline terminal, and airport-transfer plan. Eat near Haeundae and finish packing.",
+              "logistics": "The buffer is intentional; do not add another far-away Busan outing."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Keep bookings flexible. Re-check current CSAT-related traffic/event notices and do not build the day around an unverified ticket or flight connection.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-20",
@@ -19404,7 +20669,36 @@
           ],
           "food": "A close Myeongdong/City Hall favorite is ideal.",
           "watchouts": "Keep passports, receipts, and tax-refund paperwork in one place tonight.",
-          "planB": "If rail arrival is late, go straight to hotel check-in and dinner."
+          "planB": "If rail arrival is late, go straight to hotel check-in and dinner.",
+          "schedule": [
+            {
+              "time": "09:00–10:00",
+              "title": "Busan checkout and KTX setup",
+              "detail": "Check out without rushing and reach Busan Station with a sensible buffer.",
+              "logistics": "Do not fit in a final attraction before the train."
+            },
+            {
+              "time": "Late morning–early afternoon",
+              "title": "Direct KTX to Seoul",
+              "detail": "Take the direct KTX, use a simple lunch/snack plan, and protect the transfer as the main task.",
+              "logistics": "Train time and platform must be rechecked in Korail."
+            },
+            {
+              "time": "Afternoon",
+              "title": "Seoul check-in, laundry, and departure review",
+              "detail": "Check into the final Seoul base, sort souvenirs, run laundry if useful, and verify the airline terminal, online check-in, and ICN route.",
+              "logistics": "This is departure insurance, not wasted time."
+            },
+            {
+              "time": "18:00–20:00",
+              "title": "Easy final Seoul dinner",
+              "detail": "Use a familiar hotel-neighborhood meal and short walk. Keep passports and receipts organized.",
+              "logistics": "No late cross-city event."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-21",
@@ -19430,7 +20724,36 @@
           ],
           "food": "Repeat your best Seoul meal or use one nearby saved favorite.",
           "watchouts": "Saturday crowds can turn a huge shopping list into stress; keep only a short priority list.",
-          "planB": "Hotel-neighborhood café, light shopping, and packing is a complete final day."
+          "planB": "Hotel-neighborhood café, light shopping, and packing is a complete final day.",
+          "schedule": [
+            {
+              "time": "09:30–12:00",
+              "title": "One final Seoul priority",
+              "detail": "Choose exactly one: a weather-friendly Namsan/Seoul view, a favorite museum/design neighborhood, or a cultural repeat you would truly regret missing.",
+              "logistics": "Do not create a new all-city itinerary on the final full day."
+            },
+            {
+              "time": "12:00–13:30",
+              "title": "Final lunch",
+              "detail": "Eat near the chosen morning district, then move into a compact shopping/packing afternoon.",
+              "logistics": "Use a saved food favorite rather than a risky new queue."
+            },
+            {
+              "time": "14:00–17:00",
+              "title": "Souvenirs, receipts, and return to hotel",
+              "detail": "Buy only the remaining priority items, then return early enough to pack completely and sort tax-refund paperwork.",
+              "logistics": "Use one neighborhood—Myeongdong, Namdaemun, or a preferred district—not all three."
+            },
+            {
+              "time": "18:00–21:00",
+              "title": "Farewell meal and departure lock",
+              "detail": "Have a close final meal, set multiple alarms, verify airport route/terminal, and sleep early.",
+              "logistics": "No overnight temple stay or late-show plan before a 13:00 flight."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Check live hours, closing days, ticket availability, weather, and route details before finalizing this day.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
         },
         {
           "date": "2026-11-22",
@@ -19456,7 +20779,51 @@
           ],
           "food": "Airport food only after essential departure tasks are complete.",
           "watchouts": "Terminal, airline cutoff, tax-refund requirements, and airport transport must be confirmed near departure.",
-          "planB": "The time buffer is the plan; do not add an activity."
+          "planB": "The time buffer is the plan; do not add an activity.",
+          "schedule": [
+            {
+              "time": "07:00–08:00",
+              "title": "Final hotel check and checkout",
+              "detail": "Check passports, boarding pass, devices, medicines, baggage, receipts, and hotel-room safe before leaving.",
+              "logistics": "Do not add sightseeing or shopping."
+            },
+            {
+              "time": "07:45–09:30",
+              "title": "Seoul to ICN",
+              "detail": "Leave on the route chosen for the actual hotel and terminal. The target is arrival at ICN around three hours before a 13:00 international departure, following airline guidance.",
+              "logistics": "AREX works well near Seoul Station; limousine/taxi can be cleaner with heavy bags or a different hotel."
+            },
+            {
+              "time": "Around 10:00–12:00",
+              "title": "Check-in, baggage, security, and valid refund steps",
+              "detail": "Complete mandatory airport tasks first. Use any tax-refund process only after confirming eligibility and terminal location.",
+              "logistics": "Do not postpone security for shopping."
+            },
+            {
+              "time": "After airport tasks",
+              "title": "Meal, gate, and departure",
+              "detail": "Eat, refill water, and browse only after you know the gate and boarding timeline.",
+              "logistics": "Boarding time—not the scheduled departure—is the final hard deadline."
+            }
+          ],
+          "scheduleLabel": "Target schedule windows",
+          "reservationNote": "Confirm airline terminal, check-in cutoff, baggage allowance, airport transfer, and any valid tax-refund procedure the day before departure.",
+          "costNote": "Use current official pricing and compare it with the value of the full day; prices in old drafts are not booking quotes."
+        }
+      ],
+      "recommendation": "Choose this route if rail efficiency, hotel value, and a calmer middle-city rhythm are the deciding factors. Cheonan is the cleaner KTX-corridor choice with one strong heritage day and less transfer friction.",
+      "budgetScenarios": [
+        {
+          "label": "Value-forward one-room stay example",
+          "subtotal": "≈ $1,614–$2,425 room subtotal before taxes/fees",
+          "assumptions": "9 Seoul nights at Ibis Styles Ambassador Seoul Myeongdong research range ($90–130), 5 Cheonan nights at Ramada Encore by Wyndham Cheonan ($60–90), and 7 Busan nights at Shilla Stay Haeundae ($72–115).",
+          "note": "This is the strongest cost-and-rail-efficiency combination in the two-route comparison."
+        },
+        {
+          "label": "More-comfort one-room stay example",
+          "subtotal": "≈ $2,030–$2,935 room subtotal before taxes/fees",
+          "assumptions": "9 Seoul nights at Nine Tree by Parnas Myeongdong 1 research range ($100–145), 5 Cheonan nights at Shilla Stay Cheonan ($65–95), and 7 Busan nights at L7 Haeundae ($115–165).",
+          "note": "This keeps a high-quality chain-hotel rhythm without adding hotel moves."
         }
       ]
     }
