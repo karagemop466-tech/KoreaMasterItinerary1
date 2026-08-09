@@ -47,6 +47,7 @@
     },
     itinerary: [],
     saved: [],
+    reminders: [],
     tasks: {},
   };
 
@@ -243,6 +244,7 @@
     base.saved = Array.isArray(input?.saved)
       ? [...new Set(input.saved.filter((key) => typeof key === "string" && key.length < 180))]
       : [];
+    base.reminders = Array.isArray(input?.reminders) ? input.reminders.filter((item) => item && typeof item === "object").slice(0, 100).map((item) => ({ id: cleanText(item.id || uniqueId("reminder"), 100), label: cleanText(item.label || "Reminder", 160), date: validDate(item.date) ? item.date : "", done: Boolean(item.done) })) : [];
     base.tasks = input?.tasks && typeof input.tasks === "object" ? input.tasks : {};
     base.itinerary = Array.isArray(input?.itinerary)
       ? input.itinerary
@@ -1025,7 +1027,7 @@
     const days = range.map((date) => renderDay(date, inRangeItems.filter((item) => item.date === date))).join("");
 
     return `<section class="view">
-      <div class="print-only"><h1>Korea Compass · My plan</h1><p>${e(state.profile.name || "My Korea trip")} · ${e(profileDateLabel())} · ${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"} · printed from your local planner</p></div>
+      <div class="print-only"><h1>Korea Compass · My plan</h1><p>${e(state.profile.name || "My Korea trip")} · ${e(profileDateLabel())} · ${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"} · printed from your local planner</p><div class="print-essentials-only"><p><strong>Essentials:</strong> Verify hotel Korean addresses, flight terminal, KTX times, event status, weather, entry requirements, and emergency contacts before acting.</p></div></div>
       <header class="view-head">
         <div class="view-head-copy">
           <span class="eyebrow">A flexible outline, not a rigid itinerary</span>
@@ -1097,6 +1099,20 @@
     showToast("A duplicate experiment was added. Edit or remove the copy to test an alternative.");
   }
 
+  function exportHandoff() {
+    const openReminders = state.reminders.filter((item) => !item.done);
+    const report = [
+      `KOREA TRIP HANDOFF REPORT — ${state.profile.name || "My Korea trip"}`,
+      profileDateLabel(), `${state.profile.travelers} travelers`, `Pace: ${state.profile.pace || "balanced"}`, "",
+      "ROUTE AND PLAN", planExportText(), "",
+      "OPEN DECISIONS / REMINDERS", ...(openReminders.length ? openReminders.map((item) => `- ${item.label}${item.date ? ` (${item.date})` : ""}`) : ["- None recorded"]), "",
+      "FINAL CHECKS", "- Confirm flights and terminals", "- Confirm hotel addresses and late check-in", "- Verify KTX timetable, fares, and station", "- Recheck events, hours, weather, and entry rules", "- Share emergency contacts and insurance details", "",
+      "This report is a planning snapshot, not a booking confirmation.",
+    ].join("\n");
+    downloadBlob(new Blob([report], { type: "text/plain;charset=utf-8" }), `${slug(state.profile.name || "korea-trip")}-handoff-report.txt`);
+    showToast("Trip handoff report exported.");
+  }
+
   function exportOfflinePack() {
     const pack = [
       `Korea Compass offline trip pack — ${state.profile.name || "Korea trip"}`,
@@ -1107,6 +1123,41 @@
     ].join("\n");
     downloadBlob(new Blob([pack], { type: "text/plain;charset=utf-8" }), `${slug(state.profile.name || "korea-trip")}-offline-pack.txt`);
     showToast("Offline trip pack exported as text.");
+  }
+
+  function renderDependencyWarnings() {
+    const dated = sortedPlanItems().filter((item) => item.date);
+    const warnings = [];
+    dated.forEach((item, index) => {
+      const next = dated[index + 1];
+      if (!next || next.date !== item.date) return;
+      if (item.type === "Transit" && next.type === "Food" && item.time && next.time && next.time < item.time) warnings.push(`${item.title} appears after ${next.title} on the same day.`);
+      if (item.type === "Transit" && next.energy === "high") warnings.push(`High-energy activity follows ${item.title}; leave extra arrival buffer.`);
+    });
+    const open = warnings.length ? warnings.slice(0, 3).map((warning) => `<li>${e(warning)}</li>`).join("") : "<li>No obvious same-day conflicts found.</li>";
+    return `<article class="panel panel-warn"><div class="section-kicker">Plan checks</div><h3 style="margin:0 0 7px;font-size:14px">Dependency warnings</h3><ul class="dependency-list">${open}</ul><small>These are heuristics. Confirm against live travel times and reservations.</small></article>`;
+  }
+
+  function renderReminders() {
+    const reminders = [...state.reminders].sort((a, b) => `${a.done}-${a.date}`.localeCompare(`${b.done}-${b.date}`));
+    return `<article class="panel panel-soft"><div class="section-kicker">Local reminders</div><h3 style="margin:0 0 7px;font-size:14px">Keep the next check visible</h3><div class="reminder-list">${reminders.length ? reminders.map((item) => `<div class="reminder-row ${item.done ? "is-done" : ""}"><label><input type="checkbox" data-action="toggle-reminder" data-id="${e(item.id)}" ${item.done ? "checked" : ""}><span>${e(item.label)}${item.date ? ` · ${e(item.date)}` : ""}</span></label><button class="icon-button danger" type="button" data-action="delete-reminder" data-id="${e(item.id)}">×</button></div>`).join("") : `<p class="text-note">No reminders yet. Add live checks for flights, KTX, hotels, or events.</p>`}</div><button class="button button-link" type="button" data-action="add-reminder">+ Add local reminder</button></article>`;
+  }
+
+  function addReminder() {
+    const label = window.prompt("Reminder", "Verify a live trip detail");
+    if (!label) return;
+    const date = window.prompt("Due date (YYYY-MM-DD, optional)", "") || "";
+    state.reminders.push({ id: uniqueId("reminder"), label: cleanText(label, 160), date: validDate(date) ? date : "", done: false });
+    persistState(); renderCurrentView(); showToast("Local reminder added.");
+  }
+
+  function toggleReminder(id) {
+    const item = state.reminders.find((entry) => entry.id === id); if (!item) return;
+    item.done = !item.done; persistState(); renderCurrentView();
+  }
+
+  function deleteReminder(id) {
+    state.reminders = state.reminders.filter((entry) => entry.id !== id); persistState(); renderCurrentView();
   }
 
   function renderDailyEfficiency() {
@@ -1125,8 +1176,10 @@
     return `<aside class="plan-side">
       <article class="planning-principle"><h3>Keep the plan breathable</h3><p>For a first draft, one anchor per day is enough: a must-see, a transport leg, or a reservation.</p><p>Leave open time for the weather, your energy, and small discoveries.</p></article>
       <article class="panel panel-soft"><div class="section-head"><div><div class="section-kicker">Trip snapshot</div><h3>${e(profileDateLabel())}</h3></div></div><div class="detail-list"><div class="detail-row"><strong>${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}</strong><p>Change this at any time in trip setup.</p></div><div class="detail-row"><strong>${cities.length ? e(cities.map((city) => city.name).join(" · ")) : "No cities pinned"}</strong><p>City choices help organize discovery; they do not create bookings.</p></div></div><button class="button button-quiet button-small" type="button" data-action="open-profile" style="margin-top:14px">Edit trip setup</button></article>
-      <article class="panel panel-soft planning-tools"><div class="section-kicker">Planning tools</div><h3 style="margin:0 0 7px;font-size:14px">Build a better day</h3><p class="text-note">Add a starting template, then edit or remove anything that does not fit.</p><div class="button-row" style="margin-top:10px"><span class="tool-label">Pace</span><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="slow">Relaxed</button><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="balanced">Balanced</button><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="full">Ambitious</button></div><div class="button-row" style="margin-top:10px"><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="slow">Slow day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="rain">Rain plan</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="food">Food day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="coastal">Coastal day</button><button class="button button-link" type="button" data-action="toggle-weather">${ui.weatherMode === "rain" ? "Use regular plan" : "Show rain-friendly notes"}</button></div><div class="button-row" style="margin-top:8px"><button class="button button-link" type="button" data-action="duplicate-scenario">Duplicate as experiment</button><button class="button button-link" type="button" data-action="export-offline-pack">Export offline pack</button></div></article>
+      <article class="panel panel-soft planning-tools"><div class="section-kicker">Planning tools</div><h3 style="margin:0 0 7px;font-size:14px">Build a better day</h3><p class="text-note">Add a starting template, then edit or remove anything that does not fit.</p><div class="button-row" style="margin-top:10px"><span class="tool-label">Pace</span><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="slow">Relaxed</button><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="balanced">Balanced</button><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="full">Ambitious</button></div><div class="button-row" style="margin-top:10px"><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="slow">Slow day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="rain">Rain plan</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="food">Food day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="coastal">Coastal day</button><button class="button button-link" type="button" data-action="toggle-weather">${ui.weatherMode === "rain" ? "Use regular plan" : "Show rain-friendly notes"}</button></div><div class="button-row" style="margin-top:8px"><button class="button button-link" type="button" data-action="duplicate-scenario">Duplicate as experiment</button><button class="button button-link" type="button" data-action="export-offline-pack">Export offline pack</button></div><div class="button-row" style="margin-top:8px"><button class="button button-link" type="button" data-action="export-handoff">Handoff report</button><button class="button button-link" type="button" data-action="print-compact">Compact print</button><button class="button button-link" type="button" data-action="print-transfers">Transfer days</button><button class="button button-link" type="button" data-action="print-food">Meals</button><button class="button button-link" type="button" data-action="print-essentials">Essentials</button></div></article>
       ${renderDailyEfficiency()}
+      ${renderReminders()}
+      ${renderDependencyWarnings()}
       <article class="panel panel-tint"><div class="section-kicker">Take it with you</div><h3 style="margin:0 0 7px;font-size:14px">Your data stays portable</h3><p class="text-note">Take the editable plan with you as PDF, Word, plain text, JSON, calendar, or CSV. PDF uses your browser’s print dialog so you can choose “Save to PDF.”</p><div class="button-row" style="margin-top:12px"><button class="button button-soft button-small" type="button" data-action="print-plan">PDF</button><button class="button button-soft button-small" type="button" data-action="export-plan-doc">Word</button><button class="button button-soft button-small" type="button" data-action="export-plan-txt">TXT</button><button class="button button-soft button-small" type="button" data-action="export-plan">JSON</button><button class="button button-soft button-small" type="button" data-action="export-ics">Calendar</button><button class="button button-soft button-small" type="button" data-action="export-csv">CSV</button><button class="button button-link" type="button" data-action="import-plan">Import</button></div></article>
     </aside>`;
   }
@@ -1141,7 +1194,7 @@
   }
 
   function renderPlanEntry(item) {
-    return `<div class="plan-entry"><span class="plan-time">${e(item.time || "Anytime")}</span><div class="plan-entry-copy"><strong>${e(item.title)}</strong><span>${e([item.type, item.city, item.neighborhood, item.mealType, item.duration, item.recommendedWindow, item.indoor ? "Indoor backup" : "", item.reservationRequired ? "Reservation needed" : "", item.notes].filter(Boolean).join(" · "))}</span>${item.closureNote ? `<small class="plan-warning">Verify: ${e(item.closureNote)}</small>` : ""}</div><div class="entry-actions"><button class="icon-button" type="button" title="Edit ${e(item.title)}" data-action="edit-plan-item" data-id="${e(item.id)}">✎</button><button class="icon-button danger" type="button" title="Remove ${e(item.title)}" data-action="delete-plan-item" data-id="${e(item.id)}">×</button></div></div>`;
+    return `<div class="plan-entry plan-type-${slug(item.type)} ${item.reservationRequired ? "has-reservation" : ""}"><span class="plan-time">${e(item.time || "Anytime")}</span><div class="plan-entry-copy"><strong>${e(item.title)}</strong><span>${e([item.type, item.city, item.neighborhood, item.mealType, item.duration, item.recommendedWindow, item.indoor ? "Indoor backup" : "", item.reservationRequired ? "Reservation needed" : "", item.notes].filter(Boolean).join(" · "))}</span>${item.closureNote ? `<small class="plan-warning">Verify: ${e(item.closureNote)}</small>` : ""}</div><div class="entry-actions"><button class="icon-button" type="button" title="Edit ${e(item.title)}" data-action="edit-plan-item" data-id="${e(item.id)}">✎</button><button class="icon-button danger" type="button" title="Remove ${e(item.title)}" data-action="delete-plan-item" data-id="${e(item.id)}">×</button></div></div>`;
   }
 
   function renderLoosePlanItem(item) {
@@ -1276,10 +1329,21 @@
     return `<section class="view"><header class="view-head"><div class="view-head-copy"><span class="eyebrow">Provenance over mystery</span><h1 class="page-title">Sources & research vault</h1><p class="page-subtitle">Every master-library record points back to a user-provided repository or a local source snapshot. The planner is deliberately transparent about what was imported.</p></div></header>
       <section class="panel panel-tint"><div class="section-head"><div><div class="section-kicker">GitHub Pages ready</div><h2>This site deploys from <code>main</code> at the repository root.</h2><p>GitHub Pages is already configured for <code>main</code> / <code>/</code>. Once this branch is merged into main, the root <code>index.html</code> is the published app — no build step needed.</p></div></div><div class="button-row"><a class="button button-soft button-small" href="https://karagemop466-tech.github.io/KoreaMasterItinerary1/" target="_blank" rel="noreferrer">Open Pages site ↗</a><button class="button button-quiet button-small" type="button" data-action="export-plan">Export my local plan</button></div></section>
       ${renderFreshnessCenter()}
+      ${renderSourceHealth()}
       <section class="panel" style="margin-top:18px"><div class="section-head"><div><div class="section-kicker">What was consolidated</div><h2>Master library inventory</h2><p>Structured records power the interface; full source documents are also retained in the local research vault.</p></div></div><div class="inventory-grid">${inventoryItem(counts.places, "destinations")} ${inventoryItem(counts.routes, "transport routes")} ${inventoryItem(counts.hotels, "stay options")} ${inventoryItem(counts.food, "food bookmarks")} ${inventoryItem(counts.events, "dated events")} ${inventoryItem(counts.activities, "activity notes")} ${inventoryItem(counts.savingsGuides, "savings notes")} ${inventoryItem(counts.apps, "essential apps")} ${inventoryItem(counts.sources, "source repos")}</div></section>
       <section class="source-grid" style="margin-top:18px">${catalog.sources.map(renderSourceCard).join("")}</section>
       <section class="content-grid" style="margin-top:18px"><article class="panel"><div class="section-kicker">Maintainer notes</div><h2 style="margin:0 0 9px;font-size:17px">How the master stays refreshable</h2><div class="prose"><p>Source snapshots live under <code>research/sources/</code>. The browser-friendly catalog is generated from them by <code>scripts/build_catalog.py</code>.</p><p>When source research changes, update the relevant snapshot, run the script, review the data diff, then publish. This avoids a hidden scraping dependency in GitHub Pages.</p></div></article><aside class="panel panel-warn"><div class="section-kicker">Important data note</div><h2 style="margin:0 0 9px;font-size:17px">Research is not a live feed</h2><p class="text-note">The imported material includes time-sensitive claims. Prices, events, operating hours, eligibility, entry rules, and services must be confirmed with the linked official source before action.</p></aside></section>
     </section>`;
+  }
+
+  function renderSourceHealth() {
+    const checks = [
+      ["Destinations missing source URL", (catalog.places || []).filter((item) => !item.officialUrl && !item.sourceUrl).length],
+      ["Transit routes missing provider link", (catalog.routes || []).filter((item) => !item.booking_site && !item.officialUrl).length],
+      ["Hotels missing comparison link", (catalog.hotels || []).filter((item) => !item.compareUrl && !item.officialUrl).length],
+      ["Events in catalog", catalog.meta?.counts?.events ? 0 : 1],
+    ];
+    return `<section class="source-health panel"><div class="section-head"><div><div class="section-kicker">Catalog maintenance</div><h2>Source health check</h2><p>Quick structural checks for the local catalog. A missing link is a review task, not proof that a record is unusable.</p></div></div><div class="health-grid">${checks.map(([label, count]) => `<div class="health-item ${count ? "needs-review" : "healthy"}"><strong>${count ? count : "✓"}</strong><span>${e(label)}</span></div>`).join("")}</div></section>`;
   }
 
   function renderFreshnessCenter() {
@@ -1351,6 +1415,14 @@
       case "toggle-weather": ui.weatherMode = ui.weatherMode === "rain" ? "normal" : "rain"; renderCurrentView(); break;
       case "duplicate-scenario": duplicateScenario(); break;
       case "set-pace": setPacePreset(button.dataset.pace); break;
+      case "add-reminder": addReminder(); break;
+      case "toggle-reminder": toggleReminder(button.dataset.id); break;
+      case "delete-reminder": deleteReminder(button.dataset.id); break;
+      case "print-compact": printView("printing-compact"); break;
+      case "print-transfers": printView("printing-transfers"); break;
+      case "print-food": printView("printing-food"); break;
+      case "print-essentials": printView("printing-essentials"); break;
+      case "export-handoff": exportHandoff(); break;
       case "import-plan": openImportModal(); break;
       case "clear-saved": clearSaved(); break;
       case "print": window.print(); break;

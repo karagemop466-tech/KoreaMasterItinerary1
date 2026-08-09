@@ -445,6 +445,21 @@ h1, h2, h3, p { margin-top: 0; }
 .route-prep-card b { color: var(--ink); }
 .route-budget .detail-row p.route-budget-total { margin-top: 5px; color: var(--forest); font-size: 12px; font-weight: 760; }
 .route-budget .detail-row small { display: block; margin-top: 5px; color: var(--pine); font-size: 10px; line-height: 1.45; }
+.dependency-list { padding-left: 17px; margin: 0; color: var(--ink-soft); font-size: 11px; line-height: 1.5; }
+.dependency-list li + li { margin-top: 4px; }
+.panel-warn > small { color: var(--ink-faint); font-size: 9px; }
+.reminder-list { display: grid; gap: 5px; margin-bottom: 8px; }
+.reminder-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 6px 7px; background: white; border: 1px solid var(--line); border-radius: 7px; }
+.reminder-row label { display: flex; align-items: center; gap: 6px; min-width: 0; color: var(--ink-soft); font-size: 10px; }
+.reminder-row label span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.reminder-row.is-done span { color: var(--ink-faint); text-decoration: line-through; }
+.source-health { margin-top: 18px; background: #fbfaf7; border-color: var(--line); }
+.health-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.health-item { padding: 10px; border: 1px solid var(--line); border-radius: 9px; background: white; }
+.health-item strong, .health-item span { display: block; }
+.health-item strong { color: var(--pine); font-size: 18px; }
+.health-item.needs-review strong { color: var(--coral); }
+.health-item span { margin-top: 3px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
 .tool-label { align-self: center; color: var(--ink-faint); font-size: 10px; font-weight: 760; letter-spacing: .07em; text-transform: uppercase; }
 .plan-warning { display: block; margin-top: 4px; color: #8b5a12; font-size: 10px; line-height: 1.4; }
 .freshness-center { margin-top: 18px; }
@@ -777,7 +792,7 @@ mark { padding: 0 1px; color: inherit; font-weight: 700; background: var(--sun-s
   .route-cost { padding: 8px 0 0; text-align: left; border-top: 1px solid var(--line); border-left: 0; }
   .inventory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .route-guidance, .route-detail-head { align-items: flex-start; flex-direction: column; }
-  .route-comparison-grid, .route-decision-grid, .route-side, .route-prep-grid, .readiness-panel, .decision-tool-grid, .route-efficiency-grid, .freshness-grid, .stress-grid { grid-template-columns: 1fr; }
+  .route-comparison-grid, .route-decision-grid, .route-side, .route-prep-grid, .readiness-panel, .decision-tool-grid, .route-efficiency-grid, .freshness-grid, .stress-grid, .health-grid { grid-template-columns: 1fr; }
   .readiness-list, .decision-results { grid-template-columns: 1fr; }
   .route-detail-panel { padding: 20px; border-radius: 18px; }
   .route-scorecard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -829,6 +844,12 @@ button, a, input, select, textarea { touch-action: manipulation; }
   .countdown-copy p, .countdown-days span { opacity: 1; color: #444; }
   .countdown-prep .progress-line { background: #e2e2e2; }
   .countdown-prep .progress-line > span { background: #555; }
+  body.printing-transfers .plan-entry:not(.plan-type-transit) { display: none !important; }
+  body.printing-food .plan-entry:not(.plan-type-food) { display: none !important; }
+  body.printing-essentials .day-card, body.printing-essentials .unassigned, body.printing-essentials .plan-layout, body.printing-essentials .planning-tools { display: none !important; }
+  .print-essentials-only { display: none; }
+  body.printing-essentials .print-essentials-only { display: block; }
+  body.printing-compact .plan-entry-copy span { display: none !important; }
   /* Force expanded day details so the whole itinerary lands on paper. */
   .blueprint-day .blueprint-body { display: block !important; }
   .blueprint-toggle { display: none; }
