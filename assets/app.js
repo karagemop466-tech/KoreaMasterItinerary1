@@ -53,6 +53,7 @@
   const ui = {
     discover: { type: "all", city: "", query: "", limit: 18, duringTrip: false },
     itineraryId: "seoul-daejeon-busan",
+    decisionWeights: { experience: 3, convenience: 3, value: 3, flexibility: 3 },
   };
 
   // Large collections load on demand after the small data/index.json arrives.
@@ -158,6 +159,11 @@
     document.addEventListener("change", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLInputElement)) return;
+      if (target.matches("input[data-decision-weight]")) {
+        ui.decisionWeights[target.dataset.decisionWeight] = Number(target.value);
+        renderCurrentView();
+        return;
+      }
       if (!target.matches("input[data-task]")) return;
       state.tasks[target.dataset.task] = target.checked;
       persistState();
@@ -355,6 +361,18 @@
       : "Private local workspace · set dates when ready";
   }
 
+  function renderReadinessDashboard() {
+    const checks = [
+      ["Trip dates", hasTripDates(), "Set arrival and departure dates"],
+      ["Cities", selectedCities().length >= 3, "Keep Seoul, Busan, and one middle-city option"],
+      ["Route decision", state.itinerary.length > 0, "Choose a blueprint and load it into My plan"],
+      ["Personal edits", state.itinerary.some((item) => item.notes || item.referenceId), "Add confirmations, preferences, or reservations"],
+      ["Export copy", false, "Export the final plan after your last edits"],
+    ];
+    const done = checks.filter((item) => item[1]).length;
+    return `<section class="readiness-panel"><div><span class="section-kicker">Final-trip readiness</span><h2>${done}/${checks.length} planning foundations in place</h2><p>Use this as a lightweight finish line. It does not replace official booking or entry checks.</p></div><div class="readiness-list">${checks.map(([label, complete, next]) => `<div class="readiness-row ${complete ? "is-ready" : ""}"><span>${complete ? "✓" : "○"}</span><strong>${e(label)}</strong><small>${complete ? "Ready" : e(next)}</small></div>`).join("")}</div></section>`;
+  }
+
   function renderDashboard() {
     const cities = selectedCities();
     const planItems = sortedPlanItems();
@@ -383,6 +401,7 @@
       </section>
 
       ${renderTripCountdown()}
+      ${renderReadinessDashboard()}
 
       <section class="stat-grid" aria-label="Planner overview">
         ${metricCard("Trip window", hasTripDates() ? `${tripLength()} days` : "Not set", hasTripDates() ? profileDateLabel() : "Choose dates when you are ready")}
@@ -594,6 +613,9 @@
       </section>
 
       ${renderRoutePrepFacts(trip)}
+      ${renderDecisionTools(blueprints)}
+      ${renderRouteEfficiency(blueprints)}
+      ${renderDayComparison(blueprints)}
 
       <section class="route-comparison-grid" aria-label="Compare route blueprints">
         ${blueprints.map((item) => renderRouteOptionCard(item, item.id === selected.id)).join("")}
@@ -628,6 +650,45 @@
         </aside>
       </section>
     </section>`;
+  }
+
+  function routeDecisionScores(route) {
+    const daejeon = route.id.includes("daejeon");
+    return { experience: daejeon ? 5 : 3, convenience: daejeon ? 3 : 5, value: 4, flexibility: daejeon ? 5 : 3 };
+  }
+
+  function renderDecisionTools(blueprints) {
+    const labels = { experience: "Middle-city experience", convenience: "Rail / logistics ease", value: "Value potential", flexibility: "Weather and plan flexibility" };
+    const weights = ui.decisionWeights;
+    const rows = Object.entries(labels).map(([key, label]) => `<div class="decision-weight"><label for="weight-${key}">${label}<output>${weights[key]}/5</output></label><input id="weight-${key}" type="range" min="1" max="5" value="${weights[key]}" data-decision-weight="${key}"></div>`).join("");
+    const totals = blueprints.map((route) => {
+      const score = routeDecisionScores(route);
+      const total = Object.keys(labels).reduce((sum, key) => sum + score[key] * weights[key], 0);
+      return { route, total, score };
+    });
+    const winner = [...totals].sort((a, b) => b.total - a.total)[0];
+    return `<section class="decision-tools panel panel-tint"><div class="section-head"><div><div class="section-kicker">Personal decision lens</div><h2>Weight what matters to you</h2><p>These are planning judgments, not objective facts. Adjust the sliders and use the result as a conversation starter.</p></div><span class="meta-chip accent">Suggested: ${e(winner.route.shortTitle)}</span></div><div class="decision-tool-grid"><div class="decision-weights">${rows}</div><div class="decision-results">${totals.map(({ route, total, score }) => `<article><strong>${e(route.shortTitle)}</strong><span class="decision-total">${total}/100</span><p>${e(route.id.includes("daejeon") ? "More depth and flexibility; longer rail leg." : "Easier rail flow; lighter middle-city commitment.")}</p><div class="decision-bars">${Object.entries(labels).map(([key, label]) => `<div><span>${e(label)}</span><b style="width:${score[key] * 20}%"></b></div>`).join("")}</div></article>`).join("")}</div></div></section>`;
+  }
+
+  function renderRouteEfficiency(blueprints) {
+    const details = blueprints.map((route) => {
+      const middle = route.bases?.find((base) => !["Seoul", "Busan"].includes(base.city));
+      const transfers = route.transfers || [];
+      const rail = transfers.filter((item) => /KTX|rail|train/i.test(`${item.title} ${item.detail || ""}`)).length;
+      return `<article><span class="section-kicker">${e(middle?.city || route.shortTitle)}</span><h3>${e(route.id.includes("daejeon") ? "More destination, more transfer time" : "Simpler middle-city logistics")}</h3><p>${rail || 1} planned rail movement${rail === 1 ? "" : "s"} in the route-transfer plan. ${e(route.tradeoff || "Compare the detailed days before booking.")}</p></article>`;
+    }).join("");
+    return `<section class="route-efficiency"><div class="section-head"><div><div class="section-kicker">Efficiency check</div><h2>Where the route spends your energy</h2><p>Use this to decide whether the middle city earns its hotel move. The detailed days below remain the source of truth.</p></div></div><div class="route-efficiency-grid">${details}</div></section>`;
+  }
+
+  function renderDayComparison(blueprints) {
+    if (blueprints.length < 2) return "";
+    const left = blueprints[0];
+    const right = blueprints[1];
+    const rows = (left.days || []).map((day, index) => {
+      const other = right.days?.[index] || {};
+      return `<tr><th>${e(day.day)}<small>${e(day.date)}</small></th><td><strong>${e(day.city || "")}</strong><br>${e(day.anchor || day.title || "Open day")}</td><td><strong>${e(other.city || "")}</strong><br>${e(other.anchor || other.title || "Open day")}</td></tr>`;
+    }).join("");
+    return `<section class="route-day-compare panel"><div class="section-head"><div><div class="section-kicker">Day-by-day decision view</div><h2>Compare the middle-city days at a glance</h2><p>Same trip window, two different ways to spend the flexible middle chapter. Open either route below for full schedules and Plan B details.</p></div></div><div class="table-scroll"><table class="day-compare-table"><thead><tr><th>Day</th><th>${e(left.shortTitle)}</th><th>${e(right.shortTitle)}</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
   }
 
   function renderRoutePrepFacts(trip) {
@@ -975,11 +1036,20 @@
     return `<section class="empty-state"><div class="empty-state-icon" aria-hidden="true">▤</div><h3>${items.length ? "Your notes are saved, but the trip window is open" : "Set a trip window when you are ready"}</h3><p>${items.length ? "Choose dates to lay your saved plan items onto a simple day-by-day timeline." : "You can still save ideas and add undated notes now. Dates only create the timeline view."}</p><button class="button" type="button" data-action="open-profile">${items.length ? "Add dates" : "Set trip basics"}</button></section>`;
   }
 
+  function renderDailyEfficiency() {
+    const dated = state.itinerary.filter((item) => item.date);
+    const counts = Object.entries(dated.reduce((map, item) => { map[item.date] = (map[item.date] || 0) + 1; return map; }, {}));
+    const busiest = counts.sort((a, b) => b[1] - a[1])[0];
+    const openDays = hasTripDates() ? getDateRange().filter((date) => !dated.some((item) => item.date === date)).length : 0;
+    return `<article class="panel panel-soft"><div class="section-kicker">Daily efficiency</div><h3 style="margin:0 0 7px;font-size:14px">Protect your best days</h3><p class="text-note">${dated.length ? `${dated.length} dated items across ${counts.length} days.` : "Load a route or add items to see pacing."} ${busiest && busiest[1] > 3 ? `Your busiest day has ${busiest[1]} items — consider moving one.` : ""}</p>${hasTripDates() ? `<p class="text-note"><strong>${openDays}</strong> open day${openDays === 1 ? "" : "s"} remain for weather, rest, or discoveries.</p>` : ""}</article>`;
+  }
+
   function renderPlanSidebar() {
     const cities = selectedCities();
     return `<aside class="plan-side">
       <article class="planning-principle"><h3>Keep the plan breathable</h3><p>For a first draft, one anchor per day is enough: a must-see, a transport leg, or a reservation.</p><p>Leave open time for the weather, your energy, and small discoveries.</p></article>
       <article class="panel panel-soft"><div class="section-head"><div><div class="section-kicker">Trip snapshot</div><h3>${e(profileDateLabel())}</h3></div></div><div class="detail-list"><div class="detail-row"><strong>${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}</strong><p>Change this at any time in trip setup.</p></div><div class="detail-row"><strong>${cities.length ? e(cities.map((city) => city.name).join(" · ")) : "No cities pinned"}</strong><p>City choices help organize discovery; they do not create bookings.</p></div></div><button class="button button-quiet button-small" type="button" data-action="open-profile" style="margin-top:14px">Edit trip setup</button></article>
+      ${renderDailyEfficiency()}
       <article class="panel panel-tint"><div class="section-kicker">Take it with you</div><h3 style="margin:0 0 7px;font-size:14px">Your data stays portable</h3><p class="text-note">Take the editable plan with you as PDF, Word, plain text, JSON, calendar, or CSV. PDF uses your browser’s print dialog so you can choose “Save to PDF.”</p><div class="button-row" style="margin-top:12px"><button class="button button-soft button-small" type="button" data-action="print-plan">PDF</button><button class="button button-soft button-small" type="button" data-action="export-plan-doc">Word</button><button class="button button-soft button-small" type="button" data-action="export-plan-txt">TXT</button><button class="button button-soft button-small" type="button" data-action="export-plan">JSON</button><button class="button button-soft button-small" type="button" data-action="export-ics">Calendar</button><button class="button button-soft button-small" type="button" data-action="export-csv">CSV</button><button class="button button-link" type="button" data-action="import-plan">Import</button></div></article>
     </aside>`;
   }
