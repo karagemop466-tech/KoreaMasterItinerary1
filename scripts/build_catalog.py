@@ -17,12 +17,24 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "research" / "sources"
-OUTPUT = ROOT / "data" / "catalog.json"
+INDEX_OUTPUT = ROOT / "data" / "index.json"
+COLLECTION_OUTPUT = ROOT / "data" / "collections"
 ITINERARY_BLUEPRINTS = ROOT / "data" / "itineraries.json"
 
 # This date identifies the curation pass, not a promise that third-party
 # opening times, prices, visas, or event dates are current.
-CATALOG_DATE = "2026-08-07"
+CATALOG_DATE = "2026-08-08"
+
+# Large collections are written to their own files so the browser can load a
+# small index first and fetch each collection on demand.
+COLLECTION_FILES = {
+    "events": "events.json",
+    "activities": "activities.json",
+    "food": "food.json",
+    "hotels": "hotels.json",
+    "savingsGuides": "savingsGuides.json",
+    "itineraryBlueprints": "blueprints.json",
+}
 
 SOURCE_META = [
     {
@@ -156,6 +168,44 @@ def strip_markdown(value: str) -> str:
 def first_url(value: str) -> str | None:
     match = re.search(r"https?://[^\s)>,]+", value)
     return match.group(0).rstrip(".,;") if match else None
+
+
+URL_FINDER = re.compile(r"https?://[^\s\"'<>;,)}\]]+")
+PORT_FINDER = re.compile(r"https?://[^/\s]+:(\d+)")
+
+
+def iter_strings(value: Any):
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, list):
+        for entry in value:
+            yield from iter_strings(entry)
+    elif isinstance(value, dict):
+        for entry in value.values():
+            yield from iter_strings(entry)
+
+
+def audit_urls(catalog: dict[str, Any]) -> list[str]:
+    """Flag URL shapes that usually indicate a broken or scraped artifact.
+
+    The catalog is a static planning reference, so links should be ordinary
+    http(s) destinations. Non-standard ports (a past scraping proxy leaked
+    ':8501' into an official site) and localhost hosts fail the build.
+    """
+    issues: list[str] = []
+    seen: set[str] = set()
+    for text in iter_strings(catalog):
+        for url in URL_FINDER.findall(text):
+            if url in seen:
+                continue
+            seen.add(url)
+            port_match = PORT_FINDER.match(url)
+            if port_match and port_match.group(1) not in {"80", "443"}:
+                issues.append(f"non-standard port: {url}")
+            host = re.sub(r"^https?://", "", url).split("/", 1)[0].lower()
+            if host.startswith(("localhost", "127.0.0.1", "0.0.0.0", "[::1]")):
+                issues.append(f"localhost host: {url}")
+    return issues
 
 
 def normalize_status(value: str) -> str:
@@ -471,13 +521,31 @@ def build_catalog() -> dict[str, Any]:
 
 def main() -> None:
     catalog = build_catalog()
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(
-        json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+
+    issues = audit_urls(catalog)
+    if issues:
+        print("URL audit found problems (fix the source snapshots first):")
+        for issue in issues:
+            print(f"  - {issue}")
+        raise SystemExit(1)
+
+    INDEX_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    COLLECTION_OUTPUT.mkdir(parents=True, exist_ok=True)
+
+    index = {key: value for key, value in catalog.items() if key not in COLLECTION_FILES}
+    INDEX_OUTPUT.write_text(
+        json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+
+    for key, filename in COLLECTION_FILES.items():
+        (COLLECTION_OUTPUT / filename).write_text(
+            json.dumps(catalog[key], ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
     counts = catalog["meta"]["counts"]
     print(
-        "Built data/catalog.json — "
+        "Built data/index.json + data/collections/ — "
         + ", ".join(f"{key}: {value}" for key, value in counts.items())
     )
 
