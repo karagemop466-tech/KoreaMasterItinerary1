@@ -477,6 +477,12 @@ h1, h2, h3, p { margin-top: 0; }
 .stress-grid small { margin-top: 5px; color: var(--pine); font-size: 10px; line-height: 1.4; }
 .stress-grid p { margin: 7px 0 0; color: var(--ink-soft); font-size: 10px; line-height: 1.45; }
 .weather-mode-note { padding: 8px 10px; margin: 8px 0; color: #6b5318; font-size: 11px; line-height: 1.45; background: var(--sun-soft); border: 1px solid #efd58f; border-radius: 8px; }
+.weather-snapshot { margin-top: 18px; background: #f8fbf7; border-color: #d5e8df; }
+.weather-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.weather-card { padding: 11px; background: white; border: 1px solid var(--line); border-radius: 9px; }
+.weather-card strong, .weather-card span { display: block; }
+.weather-card strong { color: var(--forest); font-size: 12px; }
+.weather-card span { margin-top: 4px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
 .readiness-panel, .route-efficiency, .decision-tools { padding: 20px 22px; margin-top: 18px; border: 1px solid #d5e8df; border-radius: var(--radius); }
 .readiness-panel { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(0, 1.2fr); gap: 20px; background: var(--mint-2); }
 .readiness-panel h2, .route-efficiency h2, .decision-tools h2 { margin: 0 0 6px; font-size: 18px; letter-spacing: -.035em; }
@@ -792,7 +798,7 @@ mark { padding: 0 1px; color: inherit; font-weight: 700; background: var(--sun-s
   .route-cost { padding: 8px 0 0; text-align: left; border-top: 1px solid var(--line); border-left: 0; }
   .inventory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .route-guidance, .route-detail-head { align-items: flex-start; flex-direction: column; }
-  .route-comparison-grid, .route-decision-grid, .route-side, .route-prep-grid, .readiness-panel, .decision-tool-grid, .route-efficiency-grid, .freshness-grid, .stress-grid, .health-grid { grid-template-columns: 1fr; }
+  .route-comparison-grid, .route-decision-grid, .route-side, .route-prep-grid, .readiness-panel, .decision-tool-grid, .route-efficiency-grid, .freshness-grid, .stress-grid, .health-grid, .weather-grid { grid-template-columns: 1fr; }
   .readiness-list, .decision-results { grid-template-columns: 1fr; }
   .route-detail-panel { padding: 20px; border-radius: 18px; }
   .route-scorecard { grid-template-columns: repeat(2, minmax(0, 1fr)); }

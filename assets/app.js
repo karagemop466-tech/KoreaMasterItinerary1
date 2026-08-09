@@ -59,6 +59,7 @@
     itineraryId: "seoul-daejeon-busan",
     decisionWeights: { experience: 3, convenience: 3, value: 3, flexibility: 3 },
     weatherMode: "normal",
+    weather: { status: "idle", cities: [] },
   };
 
   // Large collections load on demand after the small data/index.json arrives.
@@ -122,8 +123,14 @@
 
   function registerServiceWorker() {
     if (!("serviceWorker" in navigator)) return;
+    const updateConnectionStatus = () => {
+      syncNote.textContent = navigator.onLine ? "Online · local planner ready" : "Offline · cached planner";
+    };
+    window.addEventListener("online", updateConnectionStatus);
+    window.addEventListener("offline", updateConnectionStatus);
+    updateConnectionStatus();
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("sw.js").catch((error) => {
+      navigator.serviceWorker.register("sw.js").then(() => updateConnectionStatus()).catch((error) => {
         console.warn("Offline mode unavailable:", error);
       });
     });
@@ -363,6 +370,7 @@
     if (currentView === "discover") bindDiscoverControls();
     if (currentView === "bookings") updateChecklistProgress("pre");
     if (currentView === "safety") updateChecklistProgress("during");
+    if (currentView === "dashboard") loadWeatherSnapshot();
   }
 
   function updateChrome() {
@@ -373,21 +381,52 @@
     });
 
     const dateLabel = profileDateLabel();
+    const connection = navigator.onLine === false ? "Offline · cached planner" : "Online · local planner";
     syncNote.textContent = hasTripDates()
-      ? `${dateLabel} · saved in this browser`
-      : "Private local workspace · set dates when ready";
+      ? `${connection} · ${dateLabel}`
+      : `${connection} · set dates when ready`;
   }
 
   function renderReadinessDashboard() {
+    const dated = state.itinerary.filter((item) => item.date);
     const checks = [
-      ["Trip dates", hasTripDates(), "Set arrival and departure dates"],
-      ["Cities", selectedCities().length >= 3, "Keep Seoul, Busan, and one middle-city option"],
-      ["Route decision", state.itinerary.length > 0, "Choose a blueprint and load it into My plan"],
-      ["Personal edits", state.itinerary.some((item) => item.notes || item.referenceId), "Add confirmations, preferences, or reservations"],
-      ["Export copy", false, "Export the final plan after your last edits"],
+      ["Trip foundation", hasTripDates() && selectedCities().length >= 3, "Set dates and keep Seoul, Busan, and one middle city"],
+      ["Route choice", state.itinerary.length > 0, "Choose a blueprint and load it into My Plan"],
+      ["Daily coverage", dated.length >= Math.max(1, Math.min(tripLength() || 1, 5)), "Add dates and daily anchors"],
+      ["Verification notes", state.itinerary.some((item) => item.closureNote || item.recommendedWindow || item.reservationRequired), "Add live-check notes to time-sensitive items"],
+      ["Weather backups", state.itinerary.length > 0 && state.itinerary.some((item) => item.indoor), "Tag at least one indoor alternative"],
+      ["Open decisions", state.reminders.filter((item) => !item.done).length === 0, "Review or complete local reminders"],
     ];
     const done = checks.filter((item) => item[1]).length;
-    return `<section class="readiness-panel"><div><span class="section-kicker">Final-trip readiness</span><h2>${done}/${checks.length} planning foundations in place</h2><p>Use this as a lightweight finish line. It does not replace official booking or entry checks.</p></div><div class="readiness-list">${checks.map(([label, complete, next]) => `<div class="readiness-row ${complete ? "is-ready" : ""}"><span>${complete ? "✓" : "○"}</span><strong>${e(label)}</strong><small>${complete ? "Ready" : e(next)}</small></div>`).join("")}</div></section>`;
+    return `<section class="readiness-panel"><div><span class="section-kicker">Plan completeness</span><h2>${Math.round((done / checks.length) * 100)}% ready for final review</h2><p>Scores planning foundations by category. Optional activities do not count against you.</p></div><div class="readiness-list">${checks.map(([label, complete, next]) => `<div class="readiness-row ${complete ? "is-ready" : ""}"><span>${complete ? "✓" : "○"}</span><strong>${e(label)}</strong><small>${complete ? "Ready" : e(next)}</small></div>`).join("")}</div></section>`;
+  }
+
+  function renderWeatherSnapshot() {
+    const cityNames = ["Seoul", ...state.profile.cities.filter((city) => !["Seoul", "Busan"].includes(city)), "Busan"].filter((city, index, list) => list.indexOf(city) === index).slice(0, 4);
+    const cards = cityNames.map((city) => `<article class="weather-card"><strong>${e(city)}</strong><span>${e(ui.weather.status === "ready" ? (ui.weather.cities.find((item) => item.name === city)?.summary || "Weather loaded") : ui.weather.status === "offline" ? "Offline — verify forecast later" : "Loading weather…")}</span></article>`).join("");
+    return `<section id="weather-snapshot" class="weather-snapshot panel"><div class="section-head"><div><div class="section-kicker">Live weather snapshot</div><h2>Check conditions before committing outdoor time</h2><p>Uses a no-key weather service when online. Forecasts for November are not available this far ahead, so recheck closer to departure.</p></div><span class="meta-chip accent">${navigator.onLine === false ? "Offline" : "Current conditions"}</span></div><div class="weather-grid">${cards}</div></section>`;
+  }
+
+  async function loadWeatherSnapshot() {
+    if (ui.weather.status === "loading" || ui.weather.status === "ready") return;
+    ui.weather.status = navigator.onLine === false ? "offline" : "loading";
+    const coords = { Seoul: [37.5665, 126.978], Busan: [35.1796, 129.0756], Daejeon: [36.3504, 127.3845], Cheonan: [36.8151, 127.1139] };
+    const cities = ["Seoul", ...state.profile.cities.filter((city) => !["Seoul", "Busan"].includes(city)), "Busan"].filter((city, index, list) => list.indexOf(city) === index).slice(0, 4);
+    try {
+      const results = await Promise.all(cities.map(async (name) => {
+        const point = coords[name] || coords.Seoul;
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${point[0]}&longitude=${point[1]}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&timezone=Asia%2FSeoul`);
+        if (!response.ok) throw new Error("weather request failed");
+        const data = await response.json();
+        const current = data.current || {};
+        return { name, summary: `${Math.round(current.temperature_2m ?? 0)}°C · feels ${Math.round(current.apparent_temperature ?? 0)}°C · wind ${Math.round(current.wind_speed_10m ?? 0)} km/h` };
+      }));
+      ui.weather = { status: "ready", cities: results };
+    } catch (error) {
+      console.warn("Weather unavailable", error);
+      ui.weather = { status: "offline", cities: [] };
+    }
+    if (currentView === "dashboard") renderCurrentView();
   }
 
   function renderDashboard() {
@@ -419,6 +458,7 @@
 
       ${renderTripCountdown()}
       ${renderReadinessDashboard()}
+      ${renderWeatherSnapshot()}
 
       <section class="stat-grid" aria-label="Planner overview">
         ${metricCard("Trip window", hasTripDates() ? `${tripLength()} days` : "Not set", hasTripDates() ? profileDateLabel() : "Choose dates when you are ready")}
@@ -1327,7 +1367,7 @@
   function renderSources() {
     const counts = catalog.meta.counts;
     return `<section class="view"><header class="view-head"><div class="view-head-copy"><span class="eyebrow">Provenance over mystery</span><h1 class="page-title">Sources & research vault</h1><p class="page-subtitle">Every master-library record points back to a user-provided repository or a local source snapshot. The planner is deliberately transparent about what was imported.</p></div></header>
-      <section class="panel panel-tint"><div class="section-head"><div><div class="section-kicker">GitHub Pages ready</div><h2>This site deploys from <code>main</code> at the repository root.</h2><p>GitHub Pages is already configured for <code>main</code> / <code>/</code>. Once this branch is merged into main, the root <code>index.html</code> is the published app — no build step needed.</p></div></div><div class="button-row"><a class="button button-soft button-small" href="https://karagemop466-tech.github.io/KoreaMasterItinerary1/" target="_blank" rel="noreferrer">Open Pages site ↗</a><button class="button button-quiet button-small" type="button" data-action="export-plan">Export my local plan</button></div></section>
+      <section class="panel panel-tint"><div class="section-head"><div><div class="section-kicker">GitHub Pages ready</div><h2>This site deploys from <code>main</code> at the repository root.</h2><p>GitHub Pages is already configured for <code>main</code> / <code>/</code>. Once this branch is merged into main, the root <code>index.html</code> is the published app — no build step needed.</p></div></div><div class="button-row"><a class="button button-soft button-small" href="https://karagemop466-tech.github.io/KoreaMasterItinerary1/" target="_blank" rel="noreferrer">Open Pages site ↗</a><button class="button button-quiet button-small" type="button" data-action="export-plan">Export my local plan</button><button class="button button-quiet button-small" type="button" data-action="refresh-research">Refresh cached research</button></div></section>
       ${renderFreshnessCenter()}
       ${renderSourceHealth()}
       <section class="panel" style="margin-top:18px"><div class="section-head"><div><div class="section-kicker">What was consolidated</div><h2>Master library inventory</h2><p>Structured records power the interface; full source documents are also retained in the local research vault.</p></div></div><div class="inventory-grid">${inventoryItem(counts.places, "destinations")} ${inventoryItem(counts.routes, "transport routes")} ${inventoryItem(counts.hotels, "stay options")} ${inventoryItem(counts.food, "food bookmarks")} ${inventoryItem(counts.events, "dated events")} ${inventoryItem(counts.activities, "activity notes")} ${inventoryItem(counts.savingsGuides, "savings notes")} ${inventoryItem(counts.apps, "essential apps")} ${inventoryItem(counts.sources, "source repos")}</div></section>
@@ -1423,6 +1463,7 @@
       case "print-food": printView("printing-food"); break;
       case "print-essentials": printView("printing-essentials"); break;
       case "export-handoff": exportHandoff(); break;
+      case "refresh-research": refreshResearch(); break;
       case "import-plan": openImportModal(); break;
       case "clear-saved": clearSaved(); break;
       case "print": window.print(); break;
@@ -1811,6 +1852,21 @@
     anchor.click();
     anchor.remove();
     window.setTimeout(() => URL.revokeObjectURL(url), 0);
+  }
+
+  async function refreshResearch() {
+    if (navigator.onLine === false) { showToast("You are offline. Cached research remains available.", "warning"); return; }
+    showToast("Refreshing the research catalog…");
+    try {
+      const response = await fetch(new URL("data/index.json", DATA_BASE).href, { cache: "reload" });
+      if (!response.ok) throw new Error("refresh failed");
+      catalog = await response.json();
+      Object.keys(LAZY_COLLECTIONS).forEach((name) => { catalog[name] = []; delete collectionPromises[name]; });
+      await showView(currentView);
+      showToast("Research catalog refreshed. Open a collection to update its cached data.");
+    } catch (error) {
+      showToast("Research refresh failed. Cached data is still available.", "warning");
+    }
   }
 
   function exportPlan() {
