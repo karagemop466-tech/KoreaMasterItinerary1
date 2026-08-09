@@ -445,6 +445,83 @@ h1, h2, h3, p { margin-top: 0; }
 .route-prep-card b { color: var(--ink); }
 .route-budget .detail-row p.route-budget-total { margin-top: 5px; color: var(--forest); font-size: 12px; font-weight: 760; }
 .route-budget .detail-row small { display: block; margin-top: 5px; color: var(--pine); font-size: 10px; line-height: 1.45; }
+.dependency-list { padding-left: 17px; margin: 0; color: var(--ink-soft); font-size: 11px; line-height: 1.5; }
+.dependency-list li + li { margin-top: 4px; }
+.panel-warn > small { color: var(--ink-faint); font-size: 9px; }
+.reminder-list { display: grid; gap: 5px; margin-bottom: 8px; }
+.reminder-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 6px 7px; background: white; border: 1px solid var(--line); border-radius: 7px; }
+.reminder-row label { display: flex; align-items: center; gap: 6px; min-width: 0; color: var(--ink-soft); font-size: 10px; }
+.reminder-row label span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.reminder-row.is-done span { color: var(--ink-faint); text-decoration: line-through; }
+.source-health { margin-top: 18px; background: #fbfaf7; border-color: var(--line); }
+.health-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.health-item { padding: 10px; border: 1px solid var(--line); border-radius: 9px; background: white; }
+.health-item strong, .health-item span { display: block; }
+.health-item strong { color: var(--pine); font-size: 18px; }
+.health-item.needs-review strong { color: var(--coral); }
+.health-item span { margin-top: 3px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
+.tool-label { align-self: center; color: var(--ink-faint); font-size: 10px; font-weight: 760; letter-spacing: .07em; text-transform: uppercase; }
+.plan-warning { display: block; margin-top: 4px; color: #8b5a12; font-size: 10px; line-height: 1.4; }
+.freshness-center { margin-top: 18px; }
+.freshness-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.freshness-grid div { padding: 10px; background: rgba(255,255,255,.65); border: 1px solid #f0d99f; border-radius: 9px; }
+.freshness-grid strong, .freshness-grid span { display: block; }
+.freshness-grid strong { font-size: 11px; }
+.freshness-grid span { margin-top: 3px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
+.stress-checker { margin-top: 18px; background: #fbfaf7; border-color: var(--line); }
+.stress-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.stress-grid article { padding: 11px; background: white; border: 1px solid var(--line); border-radius: 10px; }
+.stress-dot { display: block; margin-bottom: 6px; color: var(--sun); font-size: 18px; line-height: 1; }
+.stress-grid strong, .stress-grid small { display: block; }
+.stress-grid strong { font-size: 11px; }
+.stress-grid small { margin-top: 5px; color: var(--pine); font-size: 10px; line-height: 1.4; }
+.stress-grid p { margin: 7px 0 0; color: var(--ink-soft); font-size: 10px; line-height: 1.45; }
+.weather-mode-note { padding: 8px 10px; margin: 8px 0; color: #6b5318; font-size: 11px; line-height: 1.45; background: var(--sun-soft); border: 1px solid #efd58f; border-radius: 8px; }
+.weather-snapshot { margin-top: 18px; background: #f8fbf7; border-color: #d5e8df; }
+.weather-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.weather-card { padding: 11px; background: white; border: 1px solid var(--line); border-radius: 9px; }
+.weather-card strong, .weather-card span { display: block; }
+.weather-card strong { color: var(--forest); font-size: 12px; }
+.weather-card span { margin-top: 4px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
+.readiness-panel, .route-efficiency, .decision-tools { padding: 20px 22px; margin-top: 18px; border: 1px solid #d5e8df; border-radius: var(--radius); }
+.readiness-panel { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(0, 1.2fr); gap: 20px; background: var(--mint-2); }
+.readiness-panel h2, .route-efficiency h2, .decision-tools h2 { margin: 0 0 6px; font-size: 18px; letter-spacing: -.035em; }
+.readiness-panel p { margin: 0; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
+.readiness-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+.readiness-row { display: grid; grid-template-columns: 20px minmax(0, 1fr); column-gap: 7px; padding: 9px 10px; background: white; border: 1px solid var(--line); border-radius: 9px; }
+.readiness-row > span { grid-row: span 2; color: var(--pine); font-weight: 800; }
+.readiness-row strong { font-size: 11px; }
+.readiness-row small { color: var(--ink-soft); font-size: 10px; line-height: 1.35; }
+.readiness-row:not(.is-ready) > span { color: var(--sun); }
+.route-efficiency { background: var(--paper); border-color: var(--line); }
+.route-efficiency .section-head { margin-bottom: 10px; }
+.route-efficiency-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.route-efficiency-grid article { padding: 13px; background: #fbfaf7; border: 1px solid var(--line); border-radius: 11px; }
+.route-efficiency-grid h3 { margin: 0 0 5px; font-size: 14px; }
+.route-efficiency-grid p { margin: 0; color: var(--ink-soft); font-size: 11px; line-height: 1.5; }
+.decision-tool-grid { display: grid; grid-template-columns: minmax(220px, .55fr) minmax(0, 1.45fr); gap: 18px; }
+.decision-weights { display: grid; gap: 9px; align-content: start; }
+.decision-weight label { display: flex; justify-content: space-between; gap: 8px; color: var(--ink); font-size: 11px; font-weight: 700; }
+.decision-weight output { color: var(--pine); font-variant-numeric: tabular-nums; }
+.decision-weight input { width: 100%; accent-color: var(--pine); }
+.decision-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.decision-results article { padding: 12px; background: white; border: 1px solid #d1e4da; border-radius: 11px; }
+.decision-results article > strong { font-size: 13px; }
+.decision-results p { min-height: 30px; margin: 5px 0 10px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
+.decision-total { float: right; color: var(--forest); font-size: 13px; font-weight: 800; }
+.decision-bars { display: grid; gap: 5px; }
+.decision-bars div { position: relative; height: 16px; overflow: hidden; background: #edf2ee; border-radius: 4px; }
+.decision-bars span { position: relative; z-index: 1; display: block; padding: 3px 5px; color: var(--ink-soft); font-size: 8px; font-weight: 700; }
+.decision-bars b { position: absolute; inset: 0 auto 0 0; display: block; background: #b8ddca; }
+.route-day-compare { margin-top: 18px; }
+.table-scroll { overflow-x: auto; }
+.day-compare-table { width: 100%; min-width: 650px; border-collapse: collapse; }
+.day-compare-table th, .day-compare-table td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-size: 11px; line-height: 1.45; }
+.day-compare-table thead th { color: var(--pine); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; background: var(--mint-2); }
+.day-compare-table tbody th { width: 86px; color: var(--forest); font-weight: 760; white-space: nowrap; }
+.day-compare-table tbody th small { display: block; margin-top: 2px; color: var(--ink-faint); font-size: 9px; font-weight: 500; }
+.day-compare-table td { color: var(--ink-soft); }
+.day-compare-table td strong { color: var(--ink); font-size: 11px; }
 .route-comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; margin-bottom: 18px; }
 .route-option-card { min-width: 0; padding: 22px; background: var(--paper); border: 1px solid var(--line-strong); border-radius: 17px; box-shadow: var(--shadow-sm); transition: border .16s ease, box-shadow .16s ease, transform .16s ease; }
 .route-option-card:hover { border-color: #91bea9; box-shadow: var(--shadow-md); transform: translateY(-2px); }
@@ -721,7 +798,8 @@ mark { padding: 0 1px; color: inherit; font-weight: 700; background: var(--sun-s
   .route-cost { padding: 8px 0 0; text-align: left; border-top: 1px solid var(--line); border-left: 0; }
   .inventory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .route-guidance, .route-detail-head { align-items: flex-start; flex-direction: column; }
-  .route-comparison-grid, .route-decision-grid, .route-side, .route-prep-grid { grid-template-columns: 1fr; }
+  .route-comparison-grid, .route-decision-grid, .route-side, .route-prep-grid, .readiness-panel, .decision-tool-grid, .route-efficiency-grid, .freshness-grid, .stress-grid, .health-grid, .weather-grid { grid-template-columns: 1fr; }
+  .readiness-list, .decision-results { grid-template-columns: 1fr; }
   .route-detail-panel { padding: 20px; border-radius: 18px; }
   .route-scorecard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .route-badge { white-space: normal; }
@@ -748,6 +826,11 @@ mark { padding: 0 1px; color: inherit; font-weight: 700; background: var(--sun-s
   .countdown-prep { width: 100%; }
 }
 
+button, a, input, select, textarea { touch-action: manipulation; }
+:focus-visible { outline: 3px solid #f5b94f; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
 @media print {
   @page { margin: 13mm; }
   :root { color: #111; background: white; }
@@ -767,6 +850,12 @@ mark { padding: 0 1px; color: inherit; font-weight: 700; background: var(--sun-s
   .countdown-copy p, .countdown-days span { opacity: 1; color: #444; }
   .countdown-prep .progress-line { background: #e2e2e2; }
   .countdown-prep .progress-line > span { background: #555; }
+  body.printing-transfers .plan-entry:not(.plan-type-transit) { display: none !important; }
+  body.printing-food .plan-entry:not(.plan-type-food) { display: none !important; }
+  body.printing-essentials .day-card, body.printing-essentials .unassigned, body.printing-essentials .plan-layout, body.printing-essentials .planning-tools { display: none !important; }
+  .print-essentials-only { display: none; }
+  body.printing-essentials .print-essentials-only { display: block; }
+  body.printing-compact .plan-entry-copy span { display: none !important; }
   /* Force expanded day details so the whole itinerary lands on paper. */
   .blueprint-day .blueprint-body { display: block !important; }
   .blueprint-toggle { display: none; }

@@ -11,7 +11,7 @@ A calm, beginner-friendly South Korea trip-planning workspace. **Korea Compass**
 - **Private trip setup** — optional dates, group size, and cities; it does not force a default itinerary.
 - **Trip countdown & prep progress** — once dates are set, the overview shows days-to-departure (or your current trip day) plus booking-checklist progress.
 - **Two detailed route blueprints** — compare a Seoul → Daejeon → Busan → Seoul route against a Seoul → Cheonan → Busan → Seoul route for the actual Nov. 1–22, 2026 travel window; load either into the editable planner. Each route deep-links (`#/itineraries/<id>`) and prints as a clean paper itinerary.
-- **Flexible timeline** — add, edit, delete, export, and import plan items when an itinerary is ready. Export as JSON, calendar (`.ics`), or CSV; print the plan with one tap.
+- **Flexible timeline** — add, edit, delete, export, and import plan items when an itinerary is ready. Export as PDF via the browser print dialog, Word-compatible `.doc`, plain `.txt`, JSON, calendar (`.ics`), or CSV.
 - **Searchable discovery library** — destinations, dated events, long-form activity ideas, restaurants, hotels, transit routes, and savings notes. Ranked search with highlighted matches, a `/` keyboard shortcut, and a "During my trip dates" filter that surfaces events overlapping your travel window.
 - **Offline-ready PWA** — a service worker caches the shell and research data, so a visited planner keeps working without roaming data; it can be installed to a phone home screen.
 - **Saved ideas** — a browser-local shortlist of possibilities.
@@ -103,4 +103,4 @@ python3 scripts/make_icons.py
 
 ## Planned next step
 
-Open **Route options**, compare the Daejeon and Cheonan middle-city tradeoffs, and use **Use as my editable plan** on the preferred route. The planner will load all 22 calendar days as editable items; hotel confirmations, exact KTX trains, restaurant reservations, and any personal itinerary changes can then be layered in without rebuilding the master repository.
+Open **Route options**, compare the Daejeon and Cheonan middle-city tradeoffs, and use **Use as my editable plan** on the preferred route. The planner will load all 22 calendar days as editable items; hotel confirmations, exact KTX trains, restaurant reservations, and any personal itinerary changes can then be layered in without rebuilding the master repository. From Route options you can export either complete blueprint as PDF (browser print), Word-compatible `.doc`, or `.txt`; from My plan you can export the edited version in those formats plus JSON, calendar, and CSV.

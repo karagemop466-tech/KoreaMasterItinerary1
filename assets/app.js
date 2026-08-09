@@ -40,10 +40,14 @@
       startDate: "",
       endDate: "",
       travelers: 2,
+      walking: "medium",
+      pace: "balanced",
+      interests: [],
       cities: [],
     },
     itinerary: [],
     saved: [],
+    reminders: [],
     tasks: {},
   };
 
@@ -53,6 +57,9 @@
   const ui = {
     discover: { type: "all", city: "", query: "", limit: 18, duringTrip: false },
     itineraryId: "seoul-daejeon-busan",
+    decisionWeights: { experience: 3, convenience: 3, value: 3, flexibility: 3 },
+    weatherMode: "normal",
+    weather: { status: "idle", cities: [] },
   };
 
   // Large collections load on demand after the small data/index.json arrives.
@@ -116,8 +123,14 @@
 
   function registerServiceWorker() {
     if (!("serviceWorker" in navigator)) return;
+    const updateConnectionStatus = () => {
+      syncNote.textContent = navigator.onLine ? "Online · local planner ready" : "Offline · cached planner";
+    };
+    window.addEventListener("online", updateConnectionStatus);
+    window.addEventListener("offline", updateConnectionStatus);
+    updateConnectionStatus();
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("sw.js").catch((error) => {
+      navigator.serviceWorker.register("sw.js").then(() => updateConnectionStatus()).catch((error) => {
         console.warn("Offline mode unavailable:", error);
       });
     });
@@ -158,6 +171,11 @@
     document.addEventListener("change", (event) => {
       const target = event.target;
       if (!(target instanceof HTMLInputElement)) return;
+      if (target.matches("input[data-decision-weight]")) {
+        ui.decisionWeights[target.dataset.decisionWeight] = Number(target.value);
+        renderCurrentView();
+        return;
+      }
       if (!target.matches("input[data-task]")) return;
       state.tasks[target.dataset.task] = target.checked;
       persistState();
@@ -223,6 +241,9 @@
       startDate: validDate(profile.startDate) ? profile.startDate : "",
       endDate: validDate(profile.endDate) ? profile.endDate : "",
       travelers: clampInteger(profile.travelers, 1, 20, 2),
+      walking: ["low", "medium", "high"].includes(profile.walking) ? profile.walking : "medium",
+      pace: ["slow", "balanced", "full"].includes(profile.pace) ? profile.pace : "balanced",
+      interests: Array.isArray(profile.interests) ? profile.interests.slice(0, 8).map((item) => cleanText(item, 40)) : [],
       cities: Array.isArray(profile.cities)
         ? [...new Set(profile.cities.filter((city) => typeof city === "string" && city.length < 50))]
         : [],
@@ -230,6 +251,7 @@
     base.saved = Array.isArray(input?.saved)
       ? [...new Set(input.saved.filter((key) => typeof key === "string" && key.length < 180))]
       : [];
+    base.reminders = Array.isArray(input?.reminders) ? input.reminders.filter((item) => item && typeof item === "object").slice(0, 100).map((item) => ({ id: cleanText(item.id || uniqueId("reminder"), 100), label: cleanText(item.label || "Reminder", 160), date: validDate(item.date) ? item.date : "", done: Boolean(item.done) })) : [];
     base.tasks = input?.tasks && typeof input.tasks === "object" ? input.tasks : {};
     base.itinerary = Array.isArray(input?.itinerary)
       ? input.itinerary
@@ -243,6 +265,14 @@
             city: cleanText(item.city || "", 70),
             type: cleanText(item.type || "Note", 40),
             notes: cleanText(item.notes || "", 2000),
+            neighborhood: cleanText(item.neighborhood || "", 90),
+            energy: ["low", "medium", "high"].includes(item.energy) ? item.energy : "medium",
+            duration: cleanText(item.duration || "", 40),
+            indoor: Boolean(item.indoor),
+            mealType: cleanText(item.mealType || "", 40),
+            recommendedWindow: cleanText(item.recommendedWindow || "", 80),
+            closureNote: cleanText(item.closureNote || "", 180),
+            reservationRequired: Boolean(item.reservationRequired),
             referenceType: TYPE_META[item.referenceType] ? item.referenceType : "",
             referenceId: cleanText(item.referenceId || "", 180),
             createdAt: cleanText(item.createdAt || "", 60),
@@ -340,6 +370,7 @@
     if (currentView === "discover") bindDiscoverControls();
     if (currentView === "bookings") updateChecklistProgress("pre");
     if (currentView === "safety") updateChecklistProgress("during");
+    if (currentView === "dashboard") loadWeatherSnapshot();
   }
 
   function updateChrome() {
@@ -350,9 +381,52 @@
     });
 
     const dateLabel = profileDateLabel();
+    const connection = navigator.onLine === false ? "Offline · cached planner" : "Online · local planner";
     syncNote.textContent = hasTripDates()
-      ? `${dateLabel} · saved in this browser`
-      : "Private local workspace · set dates when ready";
+      ? `${connection} · ${dateLabel}`
+      : `${connection} · set dates when ready`;
+  }
+
+  function renderReadinessDashboard() {
+    const dated = state.itinerary.filter((item) => item.date);
+    const checks = [
+      ["Trip foundation", hasTripDates() && selectedCities().length >= 3, "Set dates and keep Seoul, Busan, and one middle city"],
+      ["Route choice", state.itinerary.length > 0, "Choose a blueprint and load it into My Plan"],
+      ["Daily coverage", dated.length >= Math.max(1, Math.min(tripLength() || 1, 5)), "Add dates and daily anchors"],
+      ["Verification notes", state.itinerary.some((item) => item.closureNote || item.recommendedWindow || item.reservationRequired), "Add live-check notes to time-sensitive items"],
+      ["Weather backups", state.itinerary.length > 0 && state.itinerary.some((item) => item.indoor), "Tag at least one indoor alternative"],
+      ["Open decisions", state.reminders.filter((item) => !item.done).length === 0, "Review or complete local reminders"],
+    ];
+    const done = checks.filter((item) => item[1]).length;
+    return `<section class="readiness-panel"><div><span class="section-kicker">Plan completeness</span><h2>${Math.round((done / checks.length) * 100)}% ready for final review</h2><p>Scores planning foundations by category. Optional activities do not count against you.</p></div><div class="readiness-list">${checks.map(([label, complete, next]) => `<div class="readiness-row ${complete ? "is-ready" : ""}"><span>${complete ? "✓" : "○"}</span><strong>${e(label)}</strong><small>${complete ? "Ready" : e(next)}</small></div>`).join("")}</div></section>`;
+  }
+
+  function renderWeatherSnapshot() {
+    const cityNames = ["Seoul", ...state.profile.cities.filter((city) => !["Seoul", "Busan"].includes(city)), "Busan"].filter((city, index, list) => list.indexOf(city) === index).slice(0, 4);
+    const cards = cityNames.map((city) => `<article class="weather-card"><strong>${e(city)}</strong><span>${e(ui.weather.status === "ready" ? (ui.weather.cities.find((item) => item.name === city)?.summary || "Weather loaded") : ui.weather.status === "offline" ? "Offline — verify forecast later" : "Loading weather…")}</span></article>`).join("");
+    return `<section id="weather-snapshot" class="weather-snapshot panel"><div class="section-head"><div><div class="section-kicker">Live weather snapshot</div><h2>Check conditions before committing outdoor time</h2><p>Uses a no-key weather service when online. Forecasts for November are not available this far ahead, so recheck closer to departure.</p></div><span class="meta-chip accent">${navigator.onLine === false ? "Offline" : "Current conditions"}</span></div><div class="weather-grid">${cards}</div></section>`;
+  }
+
+  async function loadWeatherSnapshot() {
+    if (ui.weather.status === "loading" || ui.weather.status === "ready") return;
+    ui.weather.status = navigator.onLine === false ? "offline" : "loading";
+    const coords = { Seoul: [37.5665, 126.978], Busan: [35.1796, 129.0756], Daejeon: [36.3504, 127.3845], Cheonan: [36.8151, 127.1139] };
+    const cities = ["Seoul", ...state.profile.cities.filter((city) => !["Seoul", "Busan"].includes(city)), "Busan"].filter((city, index, list) => list.indexOf(city) === index).slice(0, 4);
+    try {
+      const results = await Promise.all(cities.map(async (name) => {
+        const point = coords[name] || coords.Seoul;
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${point[0]}&longitude=${point[1]}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&timezone=Asia%2FSeoul`);
+        if (!response.ok) throw new Error("weather request failed");
+        const data = await response.json();
+        const current = data.current || {};
+        return { name, summary: `${Math.round(current.temperature_2m ?? 0)}°C · feels ${Math.round(current.apparent_temperature ?? 0)}°C · wind ${Math.round(current.wind_speed_10m ?? 0)} km/h` };
+      }));
+      ui.weather = { status: "ready", cities: results };
+    } catch (error) {
+      console.warn("Weather unavailable", error);
+      ui.weather = { status: "offline", cities: [] };
+    }
+    if (currentView === "dashboard") renderCurrentView();
   }
 
   function renderDashboard() {
@@ -383,6 +457,8 @@
       </section>
 
       ${renderTripCountdown()}
+      ${renderReadinessDashboard()}
+      ${renderWeatherSnapshot()}
 
       <section class="stat-grid" aria-label="Planner overview">
         ${metricCard("Trip window", hasTripDates() ? `${tripLength()} days` : "Not set", hasTripDates() ? profileDateLabel() : "Choose dates when you are ready")}
@@ -585,7 +661,7 @@
           <h1 class="page-title">Choose the middle chapter that fits you.</h1>
           <p class="page-subtitle">Both routes use the corrected Korea-based window: arrive at ICN at <strong>21:00 on Sun, Nov 1, 2026</strong>; depart ICN at <strong>13:00 on Sun, Nov 22, 2026</strong>. Every day now has explicit target time windows, operational notes, and a weather/energy fallback.</p>
         </div>
-        <div class="head-actions"><button class="button button-quiet" type="button" data-action="print-itinerary">Print route overview</button><button class="button button-quiet" type="button" data-action="copy-itinerary" data-id="${e(selected.id)}">Copy selected itinerary</button><button class="button" type="button" data-action="adopt-itinerary" data-id="${e(selected.id)}">Use as my editable plan</button></div>
+        <div class="head-actions"><button class="button button-quiet" type="button" data-action="print-itinerary">Save selected route as PDF</button><button class="button button-quiet" type="button" data-action="export-blueprint-doc" data-id="${e(selected.id)}">Word (.doc)</button><button class="button button-quiet" type="button" data-action="export-blueprint-txt" data-id="${e(selected.id)}">Text (.txt)</button><button class="button button-quiet" type="button" data-action="copy-itinerary" data-id="${e(selected.id)}">Copy selected itinerary</button><button class="button" type="button" data-action="adopt-itinerary" data-id="${e(selected.id)}">Use as my editable plan</button></div>
       </header>
 
       <section class="route-guidance">
@@ -594,6 +670,9 @@
       </section>
 
       ${renderRoutePrepFacts(trip)}
+      ${renderDecisionTools(blueprints)}
+      ${renderRouteEfficiency(blueprints)}
+      ${renderDayComparison(blueprints)}
 
       <section class="route-comparison-grid" aria-label="Compare route blueprints">
         ${blueprints.map((item) => renderRouteOptionCard(item, item.id === selected.id)).join("")}
@@ -628,6 +707,45 @@
         </aside>
       </section>
     </section>`;
+  }
+
+  function routeDecisionScores(route) {
+    const daejeon = route.id.includes("daejeon");
+    return { experience: daejeon ? 5 : 3, convenience: daejeon ? 3 : 5, value: 4, flexibility: daejeon ? 5 : 3 };
+  }
+
+  function renderDecisionTools(blueprints) {
+    const labels = { experience: "Middle-city experience", convenience: "Rail / logistics ease", value: "Value potential", flexibility: "Weather and plan flexibility" };
+    const weights = ui.decisionWeights;
+    const rows = Object.entries(labels).map(([key, label]) => `<div class="decision-weight"><label for="weight-${key}">${label}<output>${weights[key]}/5</output></label><input id="weight-${key}" type="range" min="1" max="5" value="${weights[key]}" data-decision-weight="${key}"></div>`).join("");
+    const totals = blueprints.map((route) => {
+      const score = routeDecisionScores(route);
+      const total = Object.keys(labels).reduce((sum, key) => sum + score[key] * weights[key], 0);
+      return { route, total, score };
+    });
+    const winner = [...totals].sort((a, b) => b.total - a.total)[0];
+    return `<section class="decision-tools panel panel-tint"><div class="section-head"><div><div class="section-kicker">Personal decision lens</div><h2>Weight what matters to you</h2><p>These are planning judgments, not objective facts. Adjust the sliders and use the result as a conversation starter.</p></div><span class="meta-chip accent">Suggested: ${e(winner.route.shortTitle)}</span></div><div class="decision-tool-grid"><div class="decision-weights">${rows}</div><div class="decision-results">${totals.map(({ route, total, score }) => `<article><strong>${e(route.shortTitle)}</strong><span class="decision-total">${total}/100</span><p>${e(route.id.includes("daejeon") ? "More depth and flexibility; longer rail leg." : "Easier rail flow; lighter middle-city commitment.")}</p><div class="decision-bars">${Object.entries(labels).map(([key, label]) => `<div><span>${e(label)}</span><b style="width:${score[key] * 20}%"></b></div>`).join("")}</div></article>`).join("")}</div></div></section>`;
+  }
+
+  function renderRouteEfficiency(blueprints) {
+    const details = blueprints.map((route) => {
+      const middle = route.bases?.find((base) => !["Seoul", "Busan"].includes(base.city));
+      const transfers = route.transfers || [];
+      const rail = transfers.filter((item) => /KTX|rail|train/i.test(`${item.title} ${item.detail || ""}`)).length;
+      return `<article><span class="section-kicker">${e(middle?.city || route.shortTitle)}</span><h3>${e(route.id.includes("daejeon") ? "More destination, more transfer time" : "Simpler middle-city logistics")}</h3><p>${rail || 1} planned rail movement${rail === 1 ? "" : "s"} in the route-transfer plan. ${e(route.tradeoff || "Compare the detailed days before booking.")}</p></article>`;
+    }).join("");
+    return `<section class="route-efficiency"><div class="section-head"><div><div class="section-kicker">Efficiency check</div><h2>Where the route spends your energy</h2><p>Use this to decide whether the middle city earns its hotel move. The detailed days below remain the source of truth.</p></div></div><div class="route-efficiency-grid">${details}</div></section>`;
+  }
+
+  function renderDayComparison(blueprints) {
+    if (blueprints.length < 2) return "";
+    const left = blueprints[0];
+    const right = blueprints[1];
+    const rows = (left.days || []).map((day, index) => {
+      const other = right.days?.[index] || {};
+      return `<tr><th>${e(day.day)}<small>${e(day.date)}</small></th><td><strong>${e(day.city || "")}</strong><br>${e(day.anchor || day.title || "Open day")}</td><td><strong>${e(other.city || "")}</strong><br>${e(other.anchor || other.title || "Open day")}</td></tr>`;
+    }).join("");
+    return `<section class="route-day-compare panel"><div class="section-head"><div><div class="section-kicker">Day-by-day decision view</div><h2>Compare the middle-city days at a glance</h2><p>Same trip window, two different ways to spend the flexible middle chapter. Open either route below for full schedules and Plan B details.</p></div></div><div class="table-scroll"><table class="day-compare-table"><thead><tr><th>Day</th><th>${e(left.shortTitle)}</th><th>${e(right.shortTitle)}</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
   }
 
   function renderRoutePrepFacts(trip) {
@@ -949,7 +1067,7 @@
     const days = range.map((date) => renderDay(date, inRangeItems.filter((item) => item.date === date))).join("");
 
     return `<section class="view">
-      <div class="print-only"><h1>Korea Compass · My plan</h1><p>${e(state.profile.name || "My Korea trip")} · ${e(profileDateLabel())} · ${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"} · printed from your local planner</p></div>
+      <div class="print-only"><h1>Korea Compass · My plan</h1><p>${e(state.profile.name || "My Korea trip")} · ${e(profileDateLabel())} · ${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"} · printed from your local planner</p><div class="print-essentials-only"><p><strong>Essentials:</strong> Verify hotel Korean addresses, flight terminal, KTX times, event status, weather, entry requirements, and emergency contacts before acting.</p></div></div>
       <header class="view-head">
         <div class="view-head-copy">
           <span class="eyebrow">A flexible outline, not a rigid itinerary</span>
@@ -957,7 +1075,9 @@
           <p class="page-subtitle">Add only what feels useful. A plan item can be a booking, a meal, a transit leg, or a loose reminder — it never has to be final.</p>
         </div>
         <div class="head-actions">
-          <button class="button button-quiet" type="button" data-action="print-plan">Print this plan</button>
+          <button class="button button-quiet" type="button" data-action="print-plan">Save as PDF</button>
+          <button class="button button-quiet" type="button" data-action="export-plan-doc">Word (.doc)</button>
+          <button class="button button-quiet" type="button" data-action="export-plan-txt">Text (.txt)</button>
           <button class="button button-quiet" type="button" data-action="copy-brief">Copy planning brief</button>
           <button class="button" type="button" data-action="open-plan-item">+ Add plan item</button>
         </div>
@@ -973,12 +1093,134 @@
     return `<section class="empty-state"><div class="empty-state-icon" aria-hidden="true">▤</div><h3>${items.length ? "Your notes are saved, but the trip window is open" : "Set a trip window when you are ready"}</h3><p>${items.length ? "Choose dates to lay your saved plan items onto a simple day-by-day timeline." : "You can still save ideas and add undated notes now. Dates only create the timeline view."}</p><button class="button" type="button" data-action="open-profile">${items.length ? "Add dates" : "Set trip basics"}</button></section>`;
   }
 
+  function setPacePreset(pace) {
+    if (!["slow", "balanced", "full"].includes(pace)) return;
+    state.profile.pace = pace;
+    persistState();
+    renderCurrentView();
+    showToast(`${pace === "slow" ? "Relaxed" : pace === "full" ? "Ambitious" : "Balanced"} pace saved to trip setup.`);
+  }
+
+  function addPlanTemplate(template) {
+    const date = state.profile.startDate || "";
+    const templates = {
+      slow: [
+        { title: "Slow morning and neighborhood breakfast", type: "Activity", energy: "low", mealType: "Breakfast", indoor: true },
+        { title: "One flexible local anchor", type: "Visit", energy: "medium", notes: "Choose one nearby place; leave the rest open." },
+        { title: "Early dinner and reset", type: "Food", energy: "low", mealType: "Dinner", indoor: true },
+      ],
+      rain: [
+        { title: "Indoor museum, market, or café option", type: "Activity", energy: "medium", indoor: true, notes: "Confirm current hours and closures." },
+        { title: "Indoor meal near the day’s anchor", type: "Food", energy: "low", mealType: "Lunch", indoor: true },
+      ],
+      food: [
+        { title: "Breakfast or bakery stop", type: "Food", energy: "low", mealType: "Breakfast" },
+        { title: "Market or neighborhood food crawl", type: "Food", energy: "medium", mealType: "Lunch" },
+        { title: "Dinner reservation or saved favorite", type: "Food", energy: "medium", mealType: "Dinner", notes: "Verify hours, queue, and reservation policy." },
+      ],
+      coastal: [
+        { title: "Coastal walk or viewpoint", type: "Visit", energy: "high", notes: "Weather-dependent; use an indoor backup if needed." },
+        { title: "Nearby seafood or café stop", type: "Food", energy: "low", mealType: "Lunch" },
+      ],
+    };
+    const items = templates[template] || [];
+    items.forEach((item, index) => state.itinerary.push({ id: uniqueId("template"), date, time: "", title: item.title, city: "", type: item.type, notes: item.notes || "", neighborhood: "", energy: item.energy, duration: "", indoor: Boolean(item.indoor), mealType: item.mealType || "", referenceType: "", referenceId: "", createdAt: new Date().toISOString() }));
+    persistState();
+    renderCurrentView();
+    showToast(`${items.length} ${template} template items added. Edit or remove anything you do not need.`);
+  }
+
+  function duplicateScenario() {
+    if (!state.itinerary.length) { showToast("Add or load a plan before creating an experiment.", "warning"); return; }
+    const copy = state.itinerary.map((item) => ({ ...item, id: uniqueId("scenario"), title: `${item.title} [experiment]` }));
+    state.itinerary.push(...copy);
+    persistState();
+    renderCurrentView();
+    showToast("A duplicate experiment was added. Edit or remove the copy to test an alternative.");
+  }
+
+  function exportHandoff() {
+    const openReminders = state.reminders.filter((item) => !item.done);
+    const report = [
+      `KOREA TRIP HANDOFF REPORT — ${state.profile.name || "My Korea trip"}`,
+      profileDateLabel(), `${state.profile.travelers} travelers`, `Pace: ${state.profile.pace || "balanced"}`, "",
+      "ROUTE AND PLAN", planExportText(), "",
+      "OPEN DECISIONS / REMINDERS", ...(openReminders.length ? openReminders.map((item) => `- ${item.label}${item.date ? ` (${item.date})` : ""}`) : ["- None recorded"]), "",
+      "FINAL CHECKS", "- Confirm flights and terminals", "- Confirm hotel addresses and late check-in", "- Verify KTX timetable, fares, and station", "- Recheck events, hours, weather, and entry rules", "- Share emergency contacts and insurance details", "",
+      "This report is a planning snapshot, not a booking confirmation.",
+    ].join("\n");
+    downloadBlob(new Blob([report], { type: "text/plain;charset=utf-8" }), `${slug(state.profile.name || "korea-trip")}-handoff-report.txt`);
+    showToast("Trip handoff report exported.");
+  }
+
+  function exportOfflinePack() {
+    const pack = [
+      `Korea Compass offline trip pack — ${state.profile.name || "Korea trip"}`,
+      profileDateLabel(), "", planExportText(), "",
+      "IMPORTANT LIVE CHECKS", "Verify flight terminal, hotel address, KTX times, event status, weather, entry requirements, and emergency information close to travel.",
+      "HOTEL / ADDRESS NOTES", ...sortedPlanItems().filter((item) => item.type === "Stay" || /hotel|address/i.test(item.notes)).map((item) => `- ${item.title}: ${item.notes}`),
+      "\nThis offline pack is a planning snapshot, not a booking confirmation.",
+    ].join("\n");
+    downloadBlob(new Blob([pack], { type: "text/plain;charset=utf-8" }), `${slug(state.profile.name || "korea-trip")}-offline-pack.txt`);
+    showToast("Offline trip pack exported as text.");
+  }
+
+  function renderDependencyWarnings() {
+    const dated = sortedPlanItems().filter((item) => item.date);
+    const warnings = [];
+    dated.forEach((item, index) => {
+      const next = dated[index + 1];
+      if (!next || next.date !== item.date) return;
+      if (item.type === "Transit" && next.type === "Food" && item.time && next.time && next.time < item.time) warnings.push(`${item.title} appears after ${next.title} on the same day.`);
+      if (item.type === "Transit" && next.energy === "high") warnings.push(`High-energy activity follows ${item.title}; leave extra arrival buffer.`);
+    });
+    const open = warnings.length ? warnings.slice(0, 3).map((warning) => `<li>${e(warning)}</li>`).join("") : "<li>No obvious same-day conflicts found.</li>";
+    return `<article class="panel panel-warn"><div class="section-kicker">Plan checks</div><h3 style="margin:0 0 7px;font-size:14px">Dependency warnings</h3><ul class="dependency-list">${open}</ul><small>These are heuristics. Confirm against live travel times and reservations.</small></article>`;
+  }
+
+  function renderReminders() {
+    const reminders = [...state.reminders].sort((a, b) => `${a.done}-${a.date}`.localeCompare(`${b.done}-${b.date}`));
+    return `<article class="panel panel-soft"><div class="section-kicker">Local reminders</div><h3 style="margin:0 0 7px;font-size:14px">Keep the next check visible</h3><div class="reminder-list">${reminders.length ? reminders.map((item) => `<div class="reminder-row ${item.done ? "is-done" : ""}"><label><input type="checkbox" data-action="toggle-reminder" data-id="${e(item.id)}" ${item.done ? "checked" : ""}><span>${e(item.label)}${item.date ? ` · ${e(item.date)}` : ""}</span></label><button class="icon-button danger" type="button" data-action="delete-reminder" data-id="${e(item.id)}">×</button></div>`).join("") : `<p class="text-note">No reminders yet. Add live checks for flights, KTX, hotels, or events.</p>`}</div><button class="button button-link" type="button" data-action="add-reminder">+ Add local reminder</button></article>`;
+  }
+
+  function addReminder() {
+    const label = window.prompt("Reminder", "Verify a live trip detail");
+    if (!label) return;
+    const date = window.prompt("Due date (YYYY-MM-DD, optional)", "") || "";
+    state.reminders.push({ id: uniqueId("reminder"), label: cleanText(label, 160), date: validDate(date) ? date : "", done: false });
+    persistState(); renderCurrentView(); showToast("Local reminder added.");
+  }
+
+  function toggleReminder(id) {
+    const item = state.reminders.find((entry) => entry.id === id); if (!item) return;
+    item.done = !item.done; persistState(); renderCurrentView();
+  }
+
+  function deleteReminder(id) {
+    state.reminders = state.reminders.filter((entry) => entry.id !== id); persistState(); renderCurrentView();
+  }
+
+  function renderDailyEfficiency() {
+    const dated = state.itinerary.filter((item) => item.date);
+    const counts = Object.entries(dated.reduce((map, item) => { map[item.date] = (map[item.date] || 0) + 1; return map; }, {}));
+    const busiest = counts.sort((a, b) => b[1] - a[1])[0];
+    const energyPoints = dated.reduce((sum, item) => sum + ({ low: 1, medium: 2, high: 3 }[item.energy] || 2), 0);
+    const highDays = counts.filter(([date]) => dated.filter((item) => item.date === date).reduce((sum, item) => sum + ({ low: 1, medium: 2, high: 3 }[item.energy] || 2), 0) >= 7).length;
+    const rainReady = dated.filter((item) => item.indoor).length;
+    const openDays = hasTripDates() ? getDateRange().filter((date) => !dated.some((item) => item.date === date)).length : 0;
+    return `<article class="panel panel-soft"><div class="section-kicker">Daily efficiency</div><h3 style="margin:0 0 7px;font-size:14px">Protect your best days</h3><p class="text-note">${dated.length ? `${dated.length} dated items across ${counts.length} days.` : "Load a route or add items to see pacing."} ${busiest && busiest[1] > 3 ? `Your busiest day has ${busiest[1]} items — consider moving one.` : ""}</p>${dated.length ? `<p class="text-note"><strong>${energyPoints}</strong> total energy points · <strong>${highDays}</strong> demanding day${highDays === 1 ? "" : "s"} · <strong>${rainReady}</strong> rain-friendly item${rainReady === 1 ? "" : "s"}.</p>` : ""}${hasTripDates() ? `<p class="text-note"><strong>${openDays}</strong> open day${openDays === 1 ? "" : "s"} remain for weather, rest, or discoveries.</p>` : ""}</article>`;
+  }
+
   function renderPlanSidebar() {
     const cities = selectedCities();
     return `<aside class="plan-side">
       <article class="planning-principle"><h3>Keep the plan breathable</h3><p>For a first draft, one anchor per day is enough: a must-see, a transport leg, or a reservation.</p><p>Leave open time for the weather, your energy, and small discoveries.</p></article>
       <article class="panel panel-soft"><div class="section-head"><div><div class="section-kicker">Trip snapshot</div><h3>${e(profileDateLabel())}</h3></div></div><div class="detail-list"><div class="detail-row"><strong>${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}</strong><p>Change this at any time in trip setup.</p></div><div class="detail-row"><strong>${cities.length ? e(cities.map((city) => city.name).join(" · ")) : "No cities pinned"}</strong><p>City choices help organize discovery; they do not create bookings.</p></div></div><button class="button button-quiet button-small" type="button" data-action="open-profile" style="margin-top:14px">Edit trip setup</button></article>
-      <article class="panel panel-tint"><div class="section-kicker">Take it with you</div><h3 style="margin:0 0 7px;font-size:14px">Your data stays portable</h3><p class="text-note">Export your plan as JSON, drop dated items into a calendar (.ics), or open them in a spreadsheet (CSV).</p><div class="button-row" style="margin-top:12px"><button class="button button-soft button-small" type="button" data-action="export-plan">Export JSON</button><button class="button button-soft button-small" type="button" data-action="export-ics">Calendar (.ics)</button><button class="button button-soft button-small" type="button" data-action="export-csv">CSV</button><button class="button button-link" type="button" data-action="import-plan">Import</button></div></article>
+      <article class="panel panel-soft planning-tools"><div class="section-kicker">Planning tools</div><h3 style="margin:0 0 7px;font-size:14px">Build a better day</h3><p class="text-note">Add a starting template, then edit or remove anything that does not fit.</p><div class="button-row" style="margin-top:10px"><span class="tool-label">Pace</span><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="slow">Relaxed</button><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="balanced">Balanced</button><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="full">Ambitious</button></div><div class="button-row" style="margin-top:10px"><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="slow">Slow day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="rain">Rain plan</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="food">Food day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="coastal">Coastal day</button><button class="button button-link" type="button" data-action="toggle-weather">${ui.weatherMode === "rain" ? "Use regular plan" : "Show rain-friendly notes"}</button></div><div class="button-row" style="margin-top:8px"><button class="button button-link" type="button" data-action="duplicate-scenario">Duplicate as experiment</button><button class="button button-link" type="button" data-action="export-offline-pack">Export offline pack</button></div><div class="button-row" style="margin-top:8px"><button class="button button-link" type="button" data-action="export-handoff">Handoff report</button><button class="button button-link" type="button" data-action="print-compact">Compact print</button><button class="button button-link" type="button" data-action="print-transfers">Transfer days</button><button class="button button-link" type="button" data-action="print-food">Meals</button><button class="button button-link" type="button" data-action="print-essentials">Essentials</button></div></article>
+      ${renderDailyEfficiency()}
+      ${renderReminders()}
+      ${renderDependencyWarnings()}
+      <article class="panel panel-tint"><div class="section-kicker">Take it with you</div><h3 style="margin:0 0 7px;font-size:14px">Your data stays portable</h3><p class="text-note">Take the editable plan with you as PDF, Word, plain text, JSON, calendar, or CSV. PDF uses your browser’s print dialog so you can choose “Save to PDF.”</p><div class="button-row" style="margin-top:12px"><button class="button button-soft button-small" type="button" data-action="print-plan">PDF</button><button class="button button-soft button-small" type="button" data-action="export-plan-doc">Word</button><button class="button button-soft button-small" type="button" data-action="export-plan-txt">TXT</button><button class="button button-soft button-small" type="button" data-action="export-plan">JSON</button><button class="button button-soft button-small" type="button" data-action="export-ics">Calendar</button><button class="button button-soft button-small" type="button" data-action="export-csv">CSV</button><button class="button button-link" type="button" data-action="import-plan">Import</button></div></article>
     </aside>`;
   }
 
@@ -986,17 +1228,28 @@
     const day = dateParts(date);
     return `<article class="day-card">
       <div class="day-date"><strong class="day-date-day">${day.day}</strong><span class="day-date-month">${e(day.month)}</span><span class="day-date-weekday">${e(day.weekday)}</span></div>
-      <div class="day-content"><div class="day-content-head"><span>${items.length ? `${items.length} ${items.length === 1 ? "item" : "items"}` : "Open day"}</span><button class="button button-link" type="button" data-action="open-plan-item" data-date="${date}">+ Add</button></div>
-      ${items.length ? items.sort(sortPlanByTime).map(renderPlanEntry).join("") : `<p class="day-empty">Nothing pinned — leave it open or add one gentle anchor.</p>`}</div>
+      <div class="day-content"><div class="day-content-head"><span>${items.length ? `${items.length} ${items.length === 1 ? "item" : "items"}` : "Open day"}${items.some((item) => item.mealType) ? ` · ${items.filter((item) => item.mealType).length} meal slot${items.filter((item) => item.mealType).length === 1 ? "" : "s"}` : ""}</span><button class="button button-link" type="button" data-action="open-plan-item" data-date="${date}">+ Add</button></div>
+      ${ui.weatherMode === "rain" ? `<p class="weather-mode-note">Rain mode: favor indoor items, cafés, museums, markets, and flexible transit. ${items.some((item) => item.indoor) ? "An indoor option is already tagged for this day." : "Add an indoor backup before committing."}</p>` : ""}${items.length ? items.sort(sortPlanByTime).map(renderPlanEntry).join("") : `<p class="day-empty">Nothing pinned — leave it open or add one gentle anchor.</p>`}</div>
     </article>`;
   }
 
   function renderPlanEntry(item) {
-    return `<div class="plan-entry"><span class="plan-time">${e(item.time || "Anytime")}</span><div class="plan-entry-copy"><strong>${e(item.title)}</strong><span>${e([item.type, item.city, item.notes].filter(Boolean).join(" · "))}</span></div><div class="entry-actions"><button class="icon-button" type="button" title="Edit ${e(item.title)}" data-action="edit-plan-item" data-id="${e(item.id)}">✎</button><button class="icon-button danger" type="button" title="Remove ${e(item.title)}" data-action="delete-plan-item" data-id="${e(item.id)}">×</button></div></div>`;
+    return `<div class="plan-entry plan-type-${slug(item.type)} ${item.reservationRequired ? "has-reservation" : ""}"><span class="plan-time">${e(item.time || "Anytime")}</span><div class="plan-entry-copy"><strong>${e(item.title)}</strong><span>${e([item.type, item.city, item.neighborhood, item.mealType, item.duration, item.recommendedWindow, item.indoor ? "Indoor backup" : "", item.reservationRequired ? "Reservation needed" : "", item.notes].filter(Boolean).join(" · "))}</span>${item.closureNote ? `<small class="plan-warning">Verify: ${e(item.closureNote)}</small>` : ""}</div><div class="entry-actions"><button class="icon-button" type="button" title="Edit ${e(item.title)}" data-action="edit-plan-item" data-id="${e(item.id)}">✎</button><button class="icon-button danger" type="button" title="Remove ${e(item.title)}" data-action="delete-plan-item" data-id="${e(item.id)}">×</button></div></div>`;
   }
 
   function renderLoosePlanItem(item) {
     return `<div class="mini-item"><span class="mini-dot" aria-hidden="true"></span><div class="mini-copy"><strong>${e(item.title)}</strong><span>${e([item.type, item.city, item.notes].filter(Boolean).join(" · ") || "No date chosen")}</span></div><button class="button button-link mini-action" type="button" data-action="edit-plan-item" data-id="${e(item.id)}">Place it</button></div>`;
+  }
+
+  function renderTravelStressChecker() {
+    const stages = [
+      ["ICN arrival night", "Late arrival · immigration · luggage · hotel late check-in", "No sightseeing or timed dinner; save hotel Korean address."],
+      ["Seoul → middle city", "Checkout · station transfer · KTX · luggage · check-in", "Keep the first evening light and stay near the station or arrange a taxi."],
+      ["Middle city → Busan", "Morning checkout · direct rail · new hotel base", "Protect the train as the day’s anchor; do not add a far-away morning activity."],
+      ["Busan → final Seoul", "KTX · final hotel · airline and ICN review", "Treat this as departure insurance, not a missed sightseeing day."],
+      ["ICN departure", "Hotel exit · airport transfer · terminal · check-in", "Target airport arrival around three hours before the international departure."],
+    ];
+    return `<section class="stress-checker panel"><div class="section-head"><div><div class="section-kicker">Airport and train-day stress checker</div><h2>Protect the high-consequence moments</h2><p>Use the calmest option on transfer days. Check each stage against the actual ticket, hotel, luggage, and current operating details.</p></div></div><div class="stress-grid">${stages.map(([title, detail, advice]) => `<article><span class="stress-dot">○</span><strong>${e(title)}</strong><small>${e(detail)}</small><p>${e(advice)}</p></article>`).join("")}</div></section>`;
   }
 
   function renderBookings() {
@@ -1008,6 +1261,7 @@
         <div class="view-head-copy"><span class="eyebrow">Move from ideas to confirmed details</span><h1 class="page-title">Bookings & prep</h1><p class="page-subtitle">This is the calm checklist between research and reservations. It helps you stage critical checks without pretending that a source snapshot is a confirmed booking.</p></div>
         <div class="head-actions"><button class="button button-quiet" type="button" data-action="open-profile">Trip setup</button><button class="button" type="button" data-action="open-plan-item" data-type="Booking">+ Add a booking note</button></div>
       </header>
+      ${renderTravelStressChecker()}
       <section class="content-grid content-grid-wide">
         <article class="panel">
           <div class="section-head"><div><div class="section-kicker">Before departure</div><h2>Prep checklist</h2><p>Imported from the emergency research and kept editable only as your personal completion state.</p></div><span class="meta-chip accent">${complete.done}/${complete.total} checked</span></div>
@@ -1113,11 +1367,28 @@
   function renderSources() {
     const counts = catalog.meta.counts;
     return `<section class="view"><header class="view-head"><div class="view-head-copy"><span class="eyebrow">Provenance over mystery</span><h1 class="page-title">Sources & research vault</h1><p class="page-subtitle">Every master-library record points back to a user-provided repository or a local source snapshot. The planner is deliberately transparent about what was imported.</p></div></header>
-      <section class="panel panel-tint"><div class="section-head"><div><div class="section-kicker">GitHub Pages ready</div><h2>This site deploys from <code>main</code> at the repository root.</h2><p>GitHub Pages is already configured for <code>main</code> / <code>/</code>. Once this branch is merged into main, the root <code>index.html</code> is the published app — no build step needed.</p></div></div><div class="button-row"><a class="button button-soft button-small" href="https://karagemop466-tech.github.io/KoreaMasterItinerary1/" target="_blank" rel="noreferrer">Open Pages site ↗</a><button class="button button-quiet button-small" type="button" data-action="export-plan">Export my local plan</button></div></section>
+      <section class="panel panel-tint"><div class="section-head"><div><div class="section-kicker">GitHub Pages ready</div><h2>This site deploys from <code>main</code> at the repository root.</h2><p>GitHub Pages is already configured for <code>main</code> / <code>/</code>. Once this branch is merged into main, the root <code>index.html</code> is the published app — no build step needed.</p></div></div><div class="button-row"><a class="button button-soft button-small" href="https://karagemop466-tech.github.io/KoreaMasterItinerary1/" target="_blank" rel="noreferrer">Open Pages site ↗</a><button class="button button-quiet button-small" type="button" data-action="export-plan">Export my local plan</button><button class="button button-quiet button-small" type="button" data-action="refresh-research">Refresh cached research</button></div></section>
+      ${renderFreshnessCenter()}
+      ${renderSourceHealth()}
       <section class="panel" style="margin-top:18px"><div class="section-head"><div><div class="section-kicker">What was consolidated</div><h2>Master library inventory</h2><p>Structured records power the interface; full source documents are also retained in the local research vault.</p></div></div><div class="inventory-grid">${inventoryItem(counts.places, "destinations")} ${inventoryItem(counts.routes, "transport routes")} ${inventoryItem(counts.hotels, "stay options")} ${inventoryItem(counts.food, "food bookmarks")} ${inventoryItem(counts.events, "dated events")} ${inventoryItem(counts.activities, "activity notes")} ${inventoryItem(counts.savingsGuides, "savings notes")} ${inventoryItem(counts.apps, "essential apps")} ${inventoryItem(counts.sources, "source repos")}</div></section>
       <section class="source-grid" style="margin-top:18px">${catalog.sources.map(renderSourceCard).join("")}</section>
       <section class="content-grid" style="margin-top:18px"><article class="panel"><div class="section-kicker">Maintainer notes</div><h2 style="margin:0 0 9px;font-size:17px">How the master stays refreshable</h2><div class="prose"><p>Source snapshots live under <code>research/sources/</code>. The browser-friendly catalog is generated from them by <code>scripts/build_catalog.py</code>.</p><p>When source research changes, update the relevant snapshot, run the script, review the data diff, then publish. This avoids a hidden scraping dependency in GitHub Pages.</p></div></article><aside class="panel panel-warn"><div class="section-kicker">Important data note</div><h2 style="margin:0 0 9px;font-size:17px">Research is not a live feed</h2><p class="text-note">The imported material includes time-sensitive claims. Prices, events, operating hours, eligibility, entry rules, and services must be confirmed with the linked official source before action.</p></aside></section>
     </section>`;
+  }
+
+  function renderSourceHealth() {
+    const checks = [
+      ["Destinations missing source URL", (catalog.places || []).filter((item) => !item.officialUrl && !item.sourceUrl).length],
+      ["Transit routes missing provider link", (catalog.routes || []).filter((item) => !item.booking_site && !item.officialUrl).length],
+      ["Hotels missing comparison link", (catalog.hotels || []).filter((item) => !item.compareUrl && !item.officialUrl).length],
+      ["Events in catalog", catalog.meta?.counts?.events ? 0 : 1],
+    ];
+    return `<section class="source-health panel"><div class="section-head"><div><div class="section-kicker">Catalog maintenance</div><h2>Source health check</h2><p>Quick structural checks for the local catalog. A missing link is a review task, not proof that a record is unusable.</p></div></div><div class="health-grid">${checks.map(([label, count]) => `<div class="health-item ${count ? "needs-review" : "healthy"}"><strong>${count ? count : "✓"}</strong><span>${e(label)}</span></div>`).join("")}</div></section>`;
+  }
+
+  function renderFreshnessCenter() {
+    const snapshotDate = catalog.meta?.snapshotDate || "2026-08-07";
+    return `<section class="freshness-center panel panel-warn"><div class="section-head"><div><div class="section-kicker">Research freshness center</div><h2>Review time-sensitive details before you lock the trip</h2><p>Catalog snapshot: ${e(snapshotDate)}. These prompts are reminders, not live verification.</p></div><button class="button button-quiet button-small" type="button" data-view="discover">Review library</button></div><div class="freshness-grid"><div><strong>Events</strong><span>Verify dates, tickets, and venue status</span></div><div><strong>Hotels</strong><span>Verify live price, room type, and cancellation terms</span></div><div><strong>Transit</strong><span>Verify KTX release times, fares, and station changes</span></div><div><strong>Attractions</strong><span>Verify hours, closures, weather, and entry rules</span></div></div></section>`;
   }
 
   function inventoryItem(value, label) {
@@ -1142,6 +1413,8 @@
         break;
       case "adopt-itinerary": adoptItinerary(button.dataset.id); break;
       case "copy-itinerary": await copyItinerary(button.dataset.id); break;
+      case "export-blueprint-doc": exportBlueprintDoc(button.dataset.id); break;
+      case "export-blueprint-txt": exportBlueprintTxt(button.dataset.id); break;
       case "go-plan": navigate("plan"); break;
       case "go-safety": navigate("safety"); break;
       case "discover-city":
@@ -1175,6 +1448,22 @@
       case "close-modal": closeModal(); break;
       case "copy-brief": await copyPlanningBrief(); break;
       case "export-plan": exportPlan(); break;
+      case "export-plan-doc": exportPlanDoc(); break;
+      case "export-plan-txt": exportPlanTxt(); break;
+      case "export-offline-pack": exportOfflinePack(); break;
+      case "add-template": addPlanTemplate(button.dataset.template); break;
+      case "toggle-weather": ui.weatherMode = ui.weatherMode === "rain" ? "normal" : "rain"; renderCurrentView(); break;
+      case "duplicate-scenario": duplicateScenario(); break;
+      case "set-pace": setPacePreset(button.dataset.pace); break;
+      case "add-reminder": addReminder(); break;
+      case "toggle-reminder": toggleReminder(button.dataset.id); break;
+      case "delete-reminder": deleteReminder(button.dataset.id); break;
+      case "print-compact": printView("printing-compact"); break;
+      case "print-transfers": printView("printing-transfers"); break;
+      case "print-food": printView("printing-food"); break;
+      case "print-essentials": printView("printing-essentials"); break;
+      case "export-handoff": exportHandoff(); break;
+      case "refresh-research": refreshResearch(); break;
       case "import-plan": openImportModal(); break;
       case "clear-saved": clearSaved(); break;
       case "print": window.print(); break;
@@ -1307,6 +1596,8 @@
           <div class="field"><label for="trip-end">End date <span class="muted">(optional)</span></label><input class="input" id="trip-end" name="endDate" type="date" value="${e(state.profile.endDate)}"></div>
           <div class="field"><label for="trip-travelers">Travelers</label><input class="input" id="trip-travelers" name="travelers" type="number" min="1" max="20" value="${state.profile.travelers}"></div>
           <div class="field"><label>Timeline behavior</label><div class="input" style="display:flex;align-items:center;color:var(--ink-soft);font-size:12px">Dates only create a flexible view</div></div>
+          <div class="field"><label for="trip-walking">Walking tolerance</label><select class="select" id="trip-walking" name="walking"><option value="low" ${state.profile.walking === "low" ? "selected" : ""}>Lower walking</option><option value="medium" ${state.profile.walking === "medium" ? "selected" : ""}>Moderate walking</option><option value="high" ${state.profile.walking === "high" ? "selected" : ""}>Walking is welcome</option></select></div>
+          <div class="field"><label for="trip-pace">Preferred pace</label><select class="select" id="trip-pace" name="pace"><option value="slow" ${state.profile.pace === "slow" ? "selected" : ""}>Slow and flexible</option><option value="balanced" ${state.profile.pace === "balanced" ? "selected" : ""}>Balanced</option><option value="full" ${state.profile.pace === "full" ? "selected" : ""}>Full sightseeing</option></select></div>
           <div class="field full"><label>Cities you are considering</label><div class="city-selector">${cityChoices}</div><p class="form-help">Pick as many or as few as you want. These are filters and route signals, not hotel or transport commitments.</p></div>
         </div>
         <div class="modal-footer"><button class="button button-quiet" type="button" data-action="close-modal">Cancel</button><button class="button" type="submit">Save trip setup</button></div>
@@ -1331,6 +1622,9 @@
       startDate: validDate(startDate) ? startDate : "",
       endDate: validDate(endDate) ? endDate : "",
       travelers: clampInteger(data.get("travelers"), 1, 20, 2),
+      walking: ["low", "medium", "high"].includes(String(data.get("walking"))) ? String(data.get("walking")) : "medium",
+      pace: ["slow", "balanced", "full"].includes(String(data.get("pace"))) ? String(data.get("pace")) : "balanced",
+      interests: state.profile.interests || [],
       cities: [...data.getAll("cities")].map((city) => cleanText(city, 50)),
     };
     persistState();
@@ -1366,6 +1660,14 @@
           <div class="field full"><label for="plan-title">What is it?</label><input class="input" id="plan-title" name="title" required maxlength="180" value="${e(title)}" placeholder="Example: Explore the palace area" autofocus></div>
           <div class="field"><label for="plan-city">City / area</label><select class="select" id="plan-city" name="city">${cityOptions}</select></div>
           <div class="field"><label for="plan-type">Kind of plan item</label><select class="select" id="plan-type" name="type">${types.map((entry) => `<option value="${entry}" ${planType === entry ? "selected" : ""}>${entry}</option>`).join("")}</select></div>
+          <div class="field"><label for="plan-neighborhood">Neighborhood <span class="muted">(optional)</span></label><input class="input" id="plan-neighborhood" name="neighborhood" maxlength="90" value="${e(record.neighborhood || (item?.neighborhood || ""))}" placeholder="Myeongdong, Haeundae…"></div>
+          <div class="field"><label for="plan-energy">Energy level</label><select class="select" id="plan-energy" name="energy">${["low", "medium", "high"].map((entry) => `<option value="${entry}" ${(record.energy || "medium") === entry ? "selected" : ""}>${entry[0].toUpperCase() + entry.slice(1)}</option>`).join("")}</select></div>
+          <div class="field"><label for="plan-duration">Estimated duration <span class="muted">(optional)</span></label><input class="input" id="plan-duration" name="duration" maxlength="40" value="${e(record.duration || "")}" placeholder="2 hours"></div>
+          <div class="field"><label class="check-inline" style="margin-top:25px"><input type="checkbox" name="indoor" ${record.indoor ? "checked" : ""}><span>Indoor / rain-friendly</span></label></div>
+          <div class="field"><label for="plan-meal-type">Meal slot <span class="muted">(optional)</span></label><select class="select" id="plan-meal-type" name="mealType"><option value="">Not a meal</option>${["Breakfast", "Lunch", "Dinner", "Café", "Late night"].map((entry) => `<option value="${entry}" ${(record.mealType || "") === entry ? "selected" : ""}>${entry}</option>`).join("")}</select></div>
+          <div class="field"><label for="plan-window">Recommended window <span class="muted">(optional)</span></label><input class="input" id="plan-window" name="recommendedWindow" maxlength="80" value="${e(record.recommendedWindow || "")}" placeholder="Morning / after 17:00"></div>
+          <div class="field"><label class="check-inline" style="margin-top:25px"><input type="checkbox" name="reservationRequired" ${record.reservationRequired ? "checked" : ""}><span>Reservation / ticket needed</span></label></div>
+          <div class="field full"><label for="plan-closure">Closure or verification note <span class="muted">(optional)</span></label><input class="input" id="plan-closure" name="closureNote" maxlength="180" value="${e(record.closureNote || "")}" placeholder="Closed Tuesdays; verify 2026 hours"></div>
           <div class="field full"><label for="plan-notes">Note <span class="muted">(optional)</span></label><textarea class="textarea" id="plan-notes" name="notes" maxlength="2000" placeholder="Reservation number, opening hours to check, who is going, backup idea…">${e(note)}</textarea><p class="form-help">Use a note for confirmation numbers or anything you will be glad to find later. It is stored only in this browser until you export it.</p></div>
         </div>
         <div class="modal-footer"><button class="button button-quiet" type="button" data-action="close-modal">Cancel</button><button class="button" type="submit">${isEdit ? "Save changes" : "Add to plan"}</button></div>
@@ -1398,6 +1700,14 @@
       city: cleanText(data.get("city"), 70),
       type: cleanText(data.get("type") || "Note", 40),
       notes: cleanText(data.get("notes"), 2000),
+      neighborhood: cleanText(data.get("neighborhood"), 90),
+      energy: ["low", "medium", "high"].includes(String(data.get("energy"))) ? String(data.get("energy")) : "medium",
+      duration: cleanText(data.get("duration"), 40),
+      indoor: data.get("indoor") === "on",
+      mealType: cleanText(data.get("mealType"), 40),
+      recommendedWindow: cleanText(data.get("recommendedWindow"), 80),
+      closureNote: cleanText(data.get("closureNote"), 180),
+      reservationRequired: data.get("reservationRequired") === "on",
       referenceType: TYPE_META[data.get("referenceType")] ? String(data.get("referenceType")) : "",
       referenceId: cleanText(data.get("referenceId"), 180),
       createdAt: new Date().toISOString(),
@@ -1544,6 +1854,21 @@
     window.setTimeout(() => URL.revokeObjectURL(url), 0);
   }
 
+  async function refreshResearch() {
+    if (navigator.onLine === false) { showToast("You are offline. Cached research remains available.", "warning"); return; }
+    showToast("Refreshing the research catalog…");
+    try {
+      const response = await fetch(new URL("data/index.json", DATA_BASE).href, { cache: "reload" });
+      if (!response.ok) throw new Error("refresh failed");
+      catalog = await response.json();
+      Object.keys(LAZY_COLLECTIONS).forEach((name) => { catalog[name] = []; delete collectionPromises[name]; });
+      await showView(currentView);
+      showToast("Research catalog refreshed. Open a collection to update its cached data.");
+    } catch (error) {
+      showToast("Research refresh failed. Cached data is still available.", "warning");
+    }
+  }
+
   function exportPlan() {
     const payload = {
       format: "korea-compass-plan/v1",
@@ -1553,6 +1878,50 @@
     };
     downloadBlob(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }), `${slug(state.profile.name || "korea-trip")}-korea-compass-plan.json`);
     showToast("Your local plan was exported as JSON.");
+  }
+
+  function planExportText() {
+    const items = sortedPlanItems();
+    const lines = [
+      state.profile.name || "Korea trip",
+      profileDateLabel(),
+      `${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}`,
+      "",
+      ...(!items.length ? ["No plan items yet."] : items.map((item) => [
+        `${item.date || "Undated"}${item.time ? ` ${item.time}` : ""} — ${item.title}`,
+        [item.type, item.city, item.notes].filter(Boolean).join(" · "),
+      ].filter(Boolean).join("\n"))),
+    ];
+    return lines.join("\n");
+  }
+
+  function exportPlanTxt() {
+    downloadBlob(new Blob([planExportText()], { type: "text/plain;charset=utf-8" }), `${slug(state.profile.name || "korea-trip")}-plan.txt`);
+    showToast("Your editable plan was exported as plain text.");
+  }
+
+  function exportPlanDoc() {
+    const items = sortedPlanItems();
+    const rows = items.map((item) => `<tr><td>${e(item.date || "Undated")}</td><td>${e(item.time || "")}</td><td><strong>${e(item.title)}</strong><br><small>${e([item.type, item.city, item.notes].filter(Boolean).join(" · "))}</small></td></tr>`).join("");
+    const html = `<!doctype html><html><head><meta charset="utf-8"><title>${e(state.profile.name || "Korea trip")}</title><style>body{font-family:Arial,sans-serif;color:#14221f}h1{color:#14332d}table{border-collapse:collapse;width:100%}td{border:1px solid #ccd5ce;padding:8px;vertical-align:top}small{color:#52615c}</style></head><body><h1>${e(state.profile.name || "Korea trip")}</h1><p>${e(profileDateLabel())} · ${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}</p><table><thead><tr><th>Date</th><th>Time</th><th>Plan item</th></tr></thead><tbody>${rows || `<tr><td colspan="3">No plan items yet.</td></tr>`}</tbody></table></body></html>`;
+    downloadBlob(new Blob([html], { type: "application/msword" }), `${slug(state.profile.name || "korea-trip")}-plan.doc`);
+    showToast("Your editable plan was exported as a Word-compatible document.");
+  }
+
+  function exportBlueprintTxt(id) {
+    const blueprint = selectedBlueprint(id);
+    if (!blueprint) return;
+    downloadBlob(new Blob([buildItineraryBrief(blueprint)], { type: "text/plain;charset=utf-8" }), `${slug(blueprint.shortTitle || blueprint.title)}.txt`);
+    showToast("The complete route blueprint was exported as plain text.");
+  }
+
+  function exportBlueprintDoc(id) {
+    const blueprint = selectedBlueprint(id);
+    if (!blueprint) return;
+    const text = buildItineraryBrief(blueprint);
+    const html = `<!doctype html><html><head><meta charset="utf-8"><title>${e(blueprint.title)}</title><style>body{font-family:Arial,sans-serif;color:#14221f;line-height:1.45}h1{color:#14332d}pre{white-space:pre-wrap;font:12px Arial,sans-serif}</style></head><body><h1>${e(blueprint.title)}</h1><pre>${e(text)}</pre></body></html>`;
+    downloadBlob(new Blob([html], { type: "application/msword" }), `${slug(blueprint.shortTitle || blueprint.title)}.doc`);
+    showToast("The complete route blueprint was exported as a Word-compatible document.");
   }
 
   function exportIcs() {

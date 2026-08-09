@@ -5,7 +5,7 @@
  */
 "use strict";
 
-const CACHE_VERSION = "korea-compass-v1";
+const CACHE_VERSION = "korea-compass-v2";
 const SHELL = [
   "./",
   "./index.html",
