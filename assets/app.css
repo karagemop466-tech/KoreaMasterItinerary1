@@ -445,6 +445,22 @@ h1, h2, h3, p { margin-top: 0; }
 .route-prep-card b { color: var(--ink); }
 .route-budget .detail-row p.route-budget-total { margin-top: 5px; color: var(--forest); font-size: 12px; font-weight: 760; }
 .route-budget .detail-row small { display: block; margin-top: 5px; color: var(--pine); font-size: 10px; line-height: 1.45; }
+.tool-label { align-self: center; color: var(--ink-faint); font-size: 10px; font-weight: 760; letter-spacing: .07em; text-transform: uppercase; }
+.plan-warning { display: block; margin-top: 4px; color: #8b5a12; font-size: 10px; line-height: 1.4; }
+.freshness-center { margin-top: 18px; }
+.freshness-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.freshness-grid div { padding: 10px; background: rgba(255,255,255,.65); border: 1px solid #f0d99f; border-radius: 9px; }
+.freshness-grid strong, .freshness-grid span { display: block; }
+.freshness-grid strong { font-size: 11px; }
+.freshness-grid span { margin-top: 3px; color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
+.stress-checker { margin-top: 18px; background: #fbfaf7; border-color: var(--line); }
+.stress-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.stress-grid article { padding: 11px; background: white; border: 1px solid var(--line); border-radius: 10px; }
+.stress-dot { display: block; margin-bottom: 6px; color: var(--sun); font-size: 18px; line-height: 1; }
+.stress-grid strong, .stress-grid small { display: block; }
+.stress-grid strong { font-size: 11px; }
+.stress-grid small { margin-top: 5px; color: var(--pine); font-size: 10px; line-height: 1.4; }
+.stress-grid p { margin: 7px 0 0; color: var(--ink-soft); font-size: 10px; line-height: 1.45; }
 .weather-mode-note { padding: 8px 10px; margin: 8px 0; color: #6b5318; font-size: 11px; line-height: 1.45; background: var(--sun-soft); border: 1px solid #efd58f; border-radius: 8px; }
 .readiness-panel, .route-efficiency, .decision-tools { padding: 20px 22px; margin-top: 18px; border: 1px solid #d5e8df; border-radius: var(--radius); }
 .readiness-panel { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(0, 1.2fr); gap: 20px; background: var(--mint-2); }
@@ -761,7 +777,7 @@ mark { padding: 0 1px; color: inherit; font-weight: 700; background: var(--sun-s
   .route-cost { padding: 8px 0 0; text-align: left; border-top: 1px solid var(--line); border-left: 0; }
   .inventory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .route-guidance, .route-detail-head { align-items: flex-start; flex-direction: column; }
-  .route-comparison-grid, .route-decision-grid, .route-side, .route-prep-grid, .readiness-panel, .decision-tool-grid, .route-efficiency-grid { grid-template-columns: 1fr; }
+  .route-comparison-grid, .route-decision-grid, .route-side, .route-prep-grid, .readiness-panel, .decision-tool-grid, .route-efficiency-grid, .freshness-grid, .stress-grid { grid-template-columns: 1fr; }
   .readiness-list, .decision-results { grid-template-columns: 1fr; }
   .route-detail-panel { padding: 20px; border-radius: 18px; }
   .route-scorecard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -789,6 +805,11 @@ mark { padding: 0 1px; color: inherit; font-weight: 700; background: var(--sun-s
   .countdown-prep { width: 100%; }
 }
 
+button, a, input, select, textarea { touch-action: manipulation; }
+:focus-visible { outline: 3px solid #f5b94f; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
 @media print {
   @page { margin: 13mm; }
   :root { color: #111; background: white; }

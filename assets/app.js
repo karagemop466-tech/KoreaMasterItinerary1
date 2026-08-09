@@ -261,6 +261,9 @@
             duration: cleanText(item.duration || "", 40),
             indoor: Boolean(item.indoor),
             mealType: cleanText(item.mealType || "", 40),
+            recommendedWindow: cleanText(item.recommendedWindow || "", 80),
+            closureNote: cleanText(item.closureNote || "", 180),
+            reservationRequired: Boolean(item.reservationRequired),
             referenceType: TYPE_META[item.referenceType] ? item.referenceType : "",
             referenceId: cleanText(item.referenceId || "", 180),
             createdAt: cleanText(item.createdAt || "", 60),
@@ -1048,6 +1051,14 @@
     return `<section class="empty-state"><div class="empty-state-icon" aria-hidden="true">▤</div><h3>${items.length ? "Your notes are saved, but the trip window is open" : "Set a trip window when you are ready"}</h3><p>${items.length ? "Choose dates to lay your saved plan items onto a simple day-by-day timeline." : "You can still save ideas and add undated notes now. Dates only create the timeline view."}</p><button class="button" type="button" data-action="open-profile">${items.length ? "Add dates" : "Set trip basics"}</button></section>`;
   }
 
+  function setPacePreset(pace) {
+    if (!["slow", "balanced", "full"].includes(pace)) return;
+    state.profile.pace = pace;
+    persistState();
+    renderCurrentView();
+    showToast(`${pace === "slow" ? "Relaxed" : pace === "full" ? "Ambitious" : "Balanced"} pace saved to trip setup.`);
+  }
+
   function addPlanTemplate(template) {
     const date = state.profile.startDate || "";
     const templates = {
@@ -1114,7 +1125,7 @@
     return `<aside class="plan-side">
       <article class="planning-principle"><h3>Keep the plan breathable</h3><p>For a first draft, one anchor per day is enough: a must-see, a transport leg, or a reservation.</p><p>Leave open time for the weather, your energy, and small discoveries.</p></article>
       <article class="panel panel-soft"><div class="section-head"><div><div class="section-kicker">Trip snapshot</div><h3>${e(profileDateLabel())}</h3></div></div><div class="detail-list"><div class="detail-row"><strong>${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}</strong><p>Change this at any time in trip setup.</p></div><div class="detail-row"><strong>${cities.length ? e(cities.map((city) => city.name).join(" · ")) : "No cities pinned"}</strong><p>City choices help organize discovery; they do not create bookings.</p></div></div><button class="button button-quiet button-small" type="button" data-action="open-profile" style="margin-top:14px">Edit trip setup</button></article>
-      <article class="panel panel-soft planning-tools"><div class="section-kicker">Planning tools</div><h3 style="margin:0 0 7px;font-size:14px">Build a better day</h3><p class="text-note">Add a starting template, then edit or remove anything that does not fit.</p><div class="button-row" style="margin-top:10px"><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="slow">Slow day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="rain">Rain plan</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="food">Food day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="coastal">Coastal day</button><button class="button button-link" type="button" data-action="toggle-weather">${ui.weatherMode === "rain" ? "Use regular plan" : "Show rain-friendly notes"}</button></div><div class="button-row" style="margin-top:8px"><button class="button button-link" type="button" data-action="duplicate-scenario">Duplicate as experiment</button><button class="button button-link" type="button" data-action="export-offline-pack">Export offline pack</button></div></article>
+      <article class="panel panel-soft planning-tools"><div class="section-kicker">Planning tools</div><h3 style="margin:0 0 7px;font-size:14px">Build a better day</h3><p class="text-note">Add a starting template, then edit or remove anything that does not fit.</p><div class="button-row" style="margin-top:10px"><span class="tool-label">Pace</span><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="slow">Relaxed</button><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="balanced">Balanced</button><button class="button button-quiet button-small" type="button" data-action="set-pace" data-pace="full">Ambitious</button></div><div class="button-row" style="margin-top:10px"><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="slow">Slow day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="rain">Rain plan</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="food">Food day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="coastal">Coastal day</button><button class="button button-link" type="button" data-action="toggle-weather">${ui.weatherMode === "rain" ? "Use regular plan" : "Show rain-friendly notes"}</button></div><div class="button-row" style="margin-top:8px"><button class="button button-link" type="button" data-action="duplicate-scenario">Duplicate as experiment</button><button class="button button-link" type="button" data-action="export-offline-pack">Export offline pack</button></div></article>
       ${renderDailyEfficiency()}
       <article class="panel panel-tint"><div class="section-kicker">Take it with you</div><h3 style="margin:0 0 7px;font-size:14px">Your data stays portable</h3><p class="text-note">Take the editable plan with you as PDF, Word, plain text, JSON, calendar, or CSV. PDF uses your browser’s print dialog so you can choose “Save to PDF.”</p><div class="button-row" style="margin-top:12px"><button class="button button-soft button-small" type="button" data-action="print-plan">PDF</button><button class="button button-soft button-small" type="button" data-action="export-plan-doc">Word</button><button class="button button-soft button-small" type="button" data-action="export-plan-txt">TXT</button><button class="button button-soft button-small" type="button" data-action="export-plan">JSON</button><button class="button button-soft button-small" type="button" data-action="export-ics">Calendar</button><button class="button button-soft button-small" type="button" data-action="export-csv">CSV</button><button class="button button-link" type="button" data-action="import-plan">Import</button></div></article>
     </aside>`;
@@ -1130,11 +1141,22 @@
   }
 
   function renderPlanEntry(item) {
-    return `<div class="plan-entry"><span class="plan-time">${e(item.time || "Anytime")}</span><div class="plan-entry-copy"><strong>${e(item.title)}</strong><span>${e([item.type, item.city, item.neighborhood, item.mealType, item.duration, item.indoor ? "Indoor backup" : "", item.notes].filter(Boolean).join(" · "))}</span></div><div class="entry-actions"><button class="icon-button" type="button" title="Edit ${e(item.title)}" data-action="edit-plan-item" data-id="${e(item.id)}">✎</button><button class="icon-button danger" type="button" title="Remove ${e(item.title)}" data-action="delete-plan-item" data-id="${e(item.id)}">×</button></div></div>`;
+    return `<div class="plan-entry"><span class="plan-time">${e(item.time || "Anytime")}</span><div class="plan-entry-copy"><strong>${e(item.title)}</strong><span>${e([item.type, item.city, item.neighborhood, item.mealType, item.duration, item.recommendedWindow, item.indoor ? "Indoor backup" : "", item.reservationRequired ? "Reservation needed" : "", item.notes].filter(Boolean).join(" · "))}</span>${item.closureNote ? `<small class="plan-warning">Verify: ${e(item.closureNote)}</small>` : ""}</div><div class="entry-actions"><button class="icon-button" type="button" title="Edit ${e(item.title)}" data-action="edit-plan-item" data-id="${e(item.id)}">✎</button><button class="icon-button danger" type="button" title="Remove ${e(item.title)}" data-action="delete-plan-item" data-id="${e(item.id)}">×</button></div></div>`;
   }
 
   function renderLoosePlanItem(item) {
     return `<div class="mini-item"><span class="mini-dot" aria-hidden="true"></span><div class="mini-copy"><strong>${e(item.title)}</strong><span>${e([item.type, item.city, item.notes].filter(Boolean).join(" · ") || "No date chosen")}</span></div><button class="button button-link mini-action" type="button" data-action="edit-plan-item" data-id="${e(item.id)}">Place it</button></div>`;
+  }
+
+  function renderTravelStressChecker() {
+    const stages = [
+      ["ICN arrival night", "Late arrival · immigration · luggage · hotel late check-in", "No sightseeing or timed dinner; save hotel Korean address."],
+      ["Seoul → middle city", "Checkout · station transfer · KTX · luggage · check-in", "Keep the first evening light and stay near the station or arrange a taxi."],
+      ["Middle city → Busan", "Morning checkout · direct rail · new hotel base", "Protect the train as the day’s anchor; do not add a far-away morning activity."],
+      ["Busan → final Seoul", "KTX · final hotel · airline and ICN review", "Treat this as departure insurance, not a missed sightseeing day."],
+      ["ICN departure", "Hotel exit · airport transfer · terminal · check-in", "Target airport arrival around three hours before the international departure."],
+    ];
+    return `<section class="stress-checker panel"><div class="section-head"><div><div class="section-kicker">Airport and train-day stress checker</div><h2>Protect the high-consequence moments</h2><p>Use the calmest option on transfer days. Check each stage against the actual ticket, hotel, luggage, and current operating details.</p></div></div><div class="stress-grid">${stages.map(([title, detail, advice]) => `<article><span class="stress-dot">○</span><strong>${e(title)}</strong><small>${e(detail)}</small><p>${e(advice)}</p></article>`).join("")}</div></section>`;
   }
 
   function renderBookings() {
@@ -1146,6 +1168,7 @@
         <div class="view-head-copy"><span class="eyebrow">Move from ideas to confirmed details</span><h1 class="page-title">Bookings & prep</h1><p class="page-subtitle">This is the calm checklist between research and reservations. It helps you stage critical checks without pretending that a source snapshot is a confirmed booking.</p></div>
         <div class="head-actions"><button class="button button-quiet" type="button" data-action="open-profile">Trip setup</button><button class="button" type="button" data-action="open-plan-item" data-type="Booking">+ Add a booking note</button></div>
       </header>
+      ${renderTravelStressChecker()}
       <section class="content-grid content-grid-wide">
         <article class="panel">
           <div class="section-head"><div><div class="section-kicker">Before departure</div><h2>Prep checklist</h2><p>Imported from the emergency research and kept editable only as your personal completion state.</p></div><span class="meta-chip accent">${complete.done}/${complete.total} checked</span></div>
@@ -1252,10 +1275,16 @@
     const counts = catalog.meta.counts;
     return `<section class="view"><header class="view-head"><div class="view-head-copy"><span class="eyebrow">Provenance over mystery</span><h1 class="page-title">Sources & research vault</h1><p class="page-subtitle">Every master-library record points back to a user-provided repository or a local source snapshot. The planner is deliberately transparent about what was imported.</p></div></header>
       <section class="panel panel-tint"><div class="section-head"><div><div class="section-kicker">GitHub Pages ready</div><h2>This site deploys from <code>main</code> at the repository root.</h2><p>GitHub Pages is already configured for <code>main</code> / <code>/</code>. Once this branch is merged into main, the root <code>index.html</code> is the published app — no build step needed.</p></div></div><div class="button-row"><a class="button button-soft button-small" href="https://karagemop466-tech.github.io/KoreaMasterItinerary1/" target="_blank" rel="noreferrer">Open Pages site ↗</a><button class="button button-quiet button-small" type="button" data-action="export-plan">Export my local plan</button></div></section>
+      ${renderFreshnessCenter()}
       <section class="panel" style="margin-top:18px"><div class="section-head"><div><div class="section-kicker">What was consolidated</div><h2>Master library inventory</h2><p>Structured records power the interface; full source documents are also retained in the local research vault.</p></div></div><div class="inventory-grid">${inventoryItem(counts.places, "destinations")} ${inventoryItem(counts.routes, "transport routes")} ${inventoryItem(counts.hotels, "stay options")} ${inventoryItem(counts.food, "food bookmarks")} ${inventoryItem(counts.events, "dated events")} ${inventoryItem(counts.activities, "activity notes")} ${inventoryItem(counts.savingsGuides, "savings notes")} ${inventoryItem(counts.apps, "essential apps")} ${inventoryItem(counts.sources, "source repos")}</div></section>
       <section class="source-grid" style="margin-top:18px">${catalog.sources.map(renderSourceCard).join("")}</section>
       <section class="content-grid" style="margin-top:18px"><article class="panel"><div class="section-kicker">Maintainer notes</div><h2 style="margin:0 0 9px;font-size:17px">How the master stays refreshable</h2><div class="prose"><p>Source snapshots live under <code>research/sources/</code>. The browser-friendly catalog is generated from them by <code>scripts/build_catalog.py</code>.</p><p>When source research changes, update the relevant snapshot, run the script, review the data diff, then publish. This avoids a hidden scraping dependency in GitHub Pages.</p></div></article><aside class="panel panel-warn"><div class="section-kicker">Important data note</div><h2 style="margin:0 0 9px;font-size:17px">Research is not a live feed</h2><p class="text-note">The imported material includes time-sensitive claims. Prices, events, operating hours, eligibility, entry rules, and services must be confirmed with the linked official source before action.</p></aside></section>
     </section>`;
+  }
+
+  function renderFreshnessCenter() {
+    const snapshotDate = catalog.meta?.snapshotDate || "2026-08-07";
+    return `<section class="freshness-center panel panel-warn"><div class="section-head"><div><div class="section-kicker">Research freshness center</div><h2>Review time-sensitive details before you lock the trip</h2><p>Catalog snapshot: ${e(snapshotDate)}. These prompts are reminders, not live verification.</p></div><button class="button button-quiet button-small" type="button" data-view="discover">Review library</button></div><div class="freshness-grid"><div><strong>Events</strong><span>Verify dates, tickets, and venue status</span></div><div><strong>Hotels</strong><span>Verify live price, room type, and cancellation terms</span></div><div><strong>Transit</strong><span>Verify KTX release times, fares, and station changes</span></div><div><strong>Attractions</strong><span>Verify hours, closures, weather, and entry rules</span></div></div></section>`;
   }
 
   function inventoryItem(value, label) {
@@ -1321,6 +1350,7 @@
       case "add-template": addPlanTemplate(button.dataset.template); break;
       case "toggle-weather": ui.weatherMode = ui.weatherMode === "rain" ? "normal" : "rain"; renderCurrentView(); break;
       case "duplicate-scenario": duplicateScenario(); break;
+      case "set-pace": setPacePreset(button.dataset.pace); break;
       case "import-plan": openImportModal(); break;
       case "clear-saved": clearSaved(); break;
       case "print": window.print(); break;
@@ -1522,6 +1552,9 @@
           <div class="field"><label for="plan-duration">Estimated duration <span class="muted">(optional)</span></label><input class="input" id="plan-duration" name="duration" maxlength="40" value="${e(record.duration || "")}" placeholder="2 hours"></div>
           <div class="field"><label class="check-inline" style="margin-top:25px"><input type="checkbox" name="indoor" ${record.indoor ? "checked" : ""}><span>Indoor / rain-friendly</span></label></div>
           <div class="field"><label for="plan-meal-type">Meal slot <span class="muted">(optional)</span></label><select class="select" id="plan-meal-type" name="mealType"><option value="">Not a meal</option>${["Breakfast", "Lunch", "Dinner", "Café", "Late night"].map((entry) => `<option value="${entry}" ${(record.mealType || "") === entry ? "selected" : ""}>${entry}</option>`).join("")}</select></div>
+          <div class="field"><label for="plan-window">Recommended window <span class="muted">(optional)</span></label><input class="input" id="plan-window" name="recommendedWindow" maxlength="80" value="${e(record.recommendedWindow || "")}" placeholder="Morning / after 17:00"></div>
+          <div class="field"><label class="check-inline" style="margin-top:25px"><input type="checkbox" name="reservationRequired" ${record.reservationRequired ? "checked" : ""}><span>Reservation / ticket needed</span></label></div>
+          <div class="field full"><label for="plan-closure">Closure or verification note <span class="muted">(optional)</span></label><input class="input" id="plan-closure" name="closureNote" maxlength="180" value="${e(record.closureNote || "")}" placeholder="Closed Tuesdays; verify 2026 hours"></div>
           <div class="field full"><label for="plan-notes">Note <span class="muted">(optional)</span></label><textarea class="textarea" id="plan-notes" name="notes" maxlength="2000" placeholder="Reservation number, opening hours to check, who is going, backup idea…">${e(note)}</textarea><p class="form-help">Use a note for confirmation numbers or anything you will be glad to find later. It is stored only in this browser until you export it.</p></div>
         </div>
         <div class="modal-footer"><button class="button button-quiet" type="button" data-action="close-modal">Cancel</button><button class="button" type="submit">${isEdit ? "Save changes" : "Add to plan"}</button></div>
@@ -1559,6 +1592,9 @@
       duration: cleanText(data.get("duration"), 40),
       indoor: data.get("indoor") === "on",
       mealType: cleanText(data.get("mealType"), 40),
+      recommendedWindow: cleanText(data.get("recommendedWindow"), 80),
+      closureNote: cleanText(data.get("closureNote"), 180),
+      reservationRequired: data.get("reservationRequired") === "on",
       referenceType: TYPE_META[data.get("referenceType")] ? String(data.get("referenceType")) : "",
       referenceId: cleanText(data.get("referenceId"), 180),
       createdAt: new Date().toISOString(),
