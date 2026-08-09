@@ -592,6 +592,59 @@ body.modal-open { overflow: hidden; }
 .prose ul { padding-left: 19px; }
 .prose li + li { margin-top: 5px; }
 
+/* Trip countdown strip on the dashboard */
+.countdown-strip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 22px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  background: linear-gradient(120deg, var(--forest) 0%, var(--forest-2) 68%, var(--pine) 100%);
+  color: #f2f7f4;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+.countdown-days { display: grid; justify-items: center; min-width: 92px; padding: 8px 14px; background: rgba(255, 255, 255, .09); border: 1px solid rgba(255, 255, 255, .16); border-radius: 14px; }
+.countdown-days strong { font-size: 31px; line-height: 1; letter-spacing: -.04em; }
+.countdown-days span { margin-top: 3px; font-size: 10px; font-weight: 720; letter-spacing: .07em; text-transform: uppercase; opacity: .85; }
+.countdown-copy strong { font-size: 15px; }
+.countdown-copy p { margin: 4px 0 0; font-size: 12px; opacity: .85; }
+.countdown-prep { display: grid; gap: 7px; justify-items: start; }
+.countdown-prep-label { font-size: 11px; font-weight: 720; letter-spacing: .03em; opacity: .92; }
+.countdown-prep .progress-line { width: 100%; background: rgba(255, 255, 255, .22); }
+.countdown-prep .progress-line > span { background: linear-gradient(90deg, #9fd6bd, #d7f0e3); }
+.countdown-prep .button-quiet { color: #eaf4ee; border-color: rgba(255, 255, 255, .3); }
+.countdown-prep .button-quiet:hover { background: rgba(255, 255, 255, .12); }
+
+/* Inline "during my trip dates" Discover toggle */
+.check-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  user-select: none;
+}
+.check-inline input { accent-color: var(--pine); width: 15px; height: 15px; }
+.check-inline:has(input:checked) { color: var(--forest); border-color: var(--pine); background: var(--mint-2); }
+.check-inline:has(input:disabled) { opacity: .55; cursor: not-allowed; }
+
+/* Highlighted search terms */
+mark { padding: 0 1px; color: inherit; font-weight: 700; background: var(--sun-soft); border-radius: 3px; box-shadow: inset 0 -2px 0 var(--sun); }
+
+/* "During your trip" event chip */
+.meta-chip.during { color: var(--forest); font-weight: 760; background: linear-gradient(90deg, var(--mint), #c9e8da); }
+
+/* Print-only header block */
+.print-only { display: none; }
+
 @media (max-width: 1180px) {
   :root { --sidebar: 196px; }
   .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -689,14 +742,34 @@ body.modal-open { overflow: hidden; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
+@media (max-width: 900px) {
+  .countdown-strip { grid-template-columns: 1fr; gap: 14px; }
+  .countdown-days { justify-items: start; min-width: 0; width: fit-content; padding: 8px 14px; }
+  .countdown-prep { width: 100%; }
+}
+
 @media print {
+  @page { margin: 13mm; }
   :root { color: #111; background: white; }
-  .topbar, .side-nav, .head-actions, .button, .save-button, .card-actions, .toast-root, .modal-root { display: none !important; }
+  .topbar, .side-nav, .head-actions, .button, .save-button, .card-actions, .toast-root, .modal-root, .skip-link { display: none !important; }
   .app-layout { display: block; }
   .main-content { padding: 0; }
   .view { max-width: none; }
   .hero { min-height: 0; color: #111; background: white; border: 1px solid #999; box-shadow: none; }
   .hero .eyebrow, .hero-copy p, .trip-pulse, .page-subtitle { color: #333; }
-  .panel, .day-card, .catalog-card { break-inside: avoid; box-shadow: none; }
-  .content-grid, .plan-layout { grid-template-columns: 1fr; }
+  .panel, .day-card, .catalog-card, .blueprint-day, .plan-entry, .route-transfer, .route-base { break-inside: avoid; box-shadow: none; }
+  .content-grid, .plan-layout, .route-layout, .countdown-strip, .route-prep-grid { grid-template-columns: 1fr; }
+  .print-only { display: block; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #111; }
+  .print-only h1 { margin: 0 0 4px; font-size: 21px; }
+  .print-only p { margin: 0; font-size: 11px; color: #444; }
+  .countdown-strip { color: #111; background: white; border: 1px solid #999; box-shadow: none; }
+  .countdown-days { background: none; border-color: #999; }
+  .countdown-copy p, .countdown-days span { opacity: 1; color: #444; }
+  .countdown-prep .progress-line { background: #e2e2e2; }
+  .countdown-prep .progress-line > span { background: #555; }
+  /* Force expanded day details so the whole itinerary lands on paper. */
+  .blueprint-day .blueprint-body { display: block !important; }
+  .blueprint-toggle { display: none; }
+  a { color: inherit; text-decoration: none; }
+  mark { background: none; box-shadow: none; font-weight: 700; }
 }

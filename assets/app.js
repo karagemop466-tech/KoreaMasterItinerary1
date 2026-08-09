@@ -5,7 +5,7 @@
   "use strict";
 
   const STORAGE_KEY = "korea-compass-plan-v1";
-  const DATA_URL = new URL("data/catalog.json", document.baseURI).href;
+  const DATA_BASE = new URL("data/", document.baseURI).href;
   const app = document.querySelector("#app");
   const modalRoot = document.querySelector("#modal-root");
   const toastRoot = document.querySelector("#toast-root");
@@ -51,19 +51,55 @@
   let state = loadState();
   let currentView = "dashboard";
   const ui = {
-    discover: { type: "all", city: "", query: "", limit: 18 },
+    discover: { type: "all", city: "", query: "", limit: 18, duringTrip: false },
     itineraryId: "seoul-daejeon-busan",
   };
+
+  // Large collections load on demand after the small data/index.json arrives.
+  const LAZY_COLLECTIONS = {
+    events: "collections/events.json",
+    activities: "collections/activities.json",
+    food: "collections/food.json",
+    hotels: "collections/hotels.json",
+    savingsGuides: "collections/savingsGuides.json",
+    itineraryBlueprints: "collections/blueprints.json",
+  };
+  const collectionPromises = {};
+
+  function ensureCollection(name) {
+    if (!catalog) return Promise.resolve();
+    if (!LAZY_COLLECTIONS[name]) return Promise.resolve();
+    if (!collectionPromises[name]) {
+      collectionPromises[name] = fetch(new URL(LAZY_COLLECTIONS[name], DATA_BASE).href)
+        .then((response) => {
+          if (!response.ok) throw new Error(`Collection ${name} failed (${response.status})`);
+          return response.json();
+        })
+        .then((items) => { catalog[name] = Array.isArray(items) ? items : []; })
+        .catch((error) => {
+          console.error(error);
+          catalog[name] = [];
+          showToast("One research collection could not load. Refresh to retry.", "warning");
+        });
+    }
+    return collectionPromises[name];
+  }
+
+  function ensureCollections(names) {
+    return Promise.all([...new Set(names)].map((name) => ensureCollection(name)));
+  }
 
   init();
 
   async function init() {
     bindGlobalEvents();
+    registerServiceWorker();
     try {
-      const response = await fetch(DATA_URL, { cache: "no-cache" });
-      if (!response.ok) throw new Error(`Catalog request failed (${response.status})`);
+      const response = await fetch(new URL("index.json", DATA_BASE).href, { cache: "no-cache" });
+      if (!response.ok) throw new Error(`Catalog index request failed (${response.status})`);
       catalog = await response.json();
-      renderCurrentView();
+      Object.keys(LAZY_COLLECTIONS).forEach((name) => { catalog[name] = []; });
+      await showView(viewFromHash());
     } catch (error) {
       console.error(error);
       app.className = "view";
@@ -71,11 +107,20 @@
         <section class="empty-state" role="alert">
           <div class="empty-state-icon" aria-hidden="true">!</div>
           <h3>The planning catalog could not load.</h3>
-          <p>Try refreshing. If you are opening this file directly, run a local web server instead so the browser can load <code>data/catalog.json</code>.</p>
+          <p>Try refreshing. If you are opening this file directly, run a local web server instead so the browser can load <code>data/index.json</code>.</p>
           <button class="button" type="button" data-action="reload">Refresh planner</button>
         </section>`;
       syncNote.textContent = "Catalog unavailable";
     }
+  }
+
+  function registerServiceWorker() {
+    if (!("serviceWorker" in navigator)) return;
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch((error) => {
+        console.warn("Offline mode unavailable:", error);
+      });
+    });
   }
 
   function bindGlobalEvents() {
@@ -122,11 +167,36 @@
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && !modalRoot.hidden) closeModal();
+      // "/" jumps to Discover search from anywhere outside a form field.
+      if (event.key === "/" && modalRoot.hidden) {
+        const active = document.activeElement;
+        const typing = active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.tagName === "SELECT" || active.isContentEditable);
+        if (!typing) {
+          event.preventDefault();
+          navigate("discover");
+          window.requestAnimationFrame(() => document.querySelector("#discover-search")?.focus());
+        }
+      }
+    });
+
+    window.addEventListener("hashchange", () => {
+      const view = viewFromHash();
+      if (view !== currentView) showView(view);
     });
 
     modalRoot.addEventListener("click", (event) => {
       if (event.target === modalRoot) closeModal();
     });
+  }
+
+  function viewFromHash() {
+    const [view, extra] = window.location.hash.replace(/^#\/?/, "").split("/");
+    if (view === "itineraries" && extra) ui.itineraryId = extra;
+    return VIEW_LABELS[view] ? view : "dashboard";
+  }
+
+  function viewHash(view) {
+    return `#/${view}`;
   }
 
   function defaultState() {
@@ -205,8 +275,46 @@
 
   function navigate(view) {
     if (!VIEW_LABELS[view] || !catalog) return;
+    if (window.location.hash === viewHash(view)) {
+      showView(view);
+    } else {
+      window.location.hash = viewHash(view);
+    }
+  }
+
+  function collectionsForView(view) {
+    if (view === "discover") {
+      if (ui.discover.type !== "all") return collectionsForType(ui.discover.type);
+      return Object.keys(LAZY_COLLECTIONS);
+    }
+    if (view === "itineraries") return ["itineraryBlueprints"];
+    if (view === "saved") return collectionsForSaved();
+    if (view === "dashboard") return [...new Set(["events", ...collectionsForSaved()])];
+    return [];
+  }
+
+  function collectionsForType(type) {
+    const collection = TYPE_META[type]?.collection;
+    return collection && LAZY_COLLECTIONS[collection] ? [collection] : [];
+  }
+
+  function collectionsForSaved() {
+    return state.saved
+      .map((key) => collectionsForType(key.split(":")[0]))
+      .flat()
+      .filter(Boolean);
+  }
+
+  async function showView(view) {
+    if (!VIEW_LABELS[view] || !catalog) return;
     currentView = view;
     if (view === "discover") ui.discover.limit = 18;
+    try {
+      await ensureCollections(collectionsForView(view));
+    } catch (error) {
+      console.error(error);
+    }
+    if (currentView !== view) return; // The user moved on while loading.
     renderCurrentView();
     if (window.matchMedia?.("(max-width: 900px)")?.matches) {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -273,6 +381,8 @@
           <p class="trip-pulse-text"><strong>${e(profileDateLabel())}</strong><br>${e(planningStatus)}${cities.length ? `<br>${e(cities.map((city) => city.name).join(" · "))}` : ""}</p>
         </aside>
       </section>
+
+      ${renderTripCountdown()}
 
       <section class="stat-grid" aria-label="Planner overview">
         ${metricCard("Trip window", hasTripDates() ? `${tripLength()} days` : "Not set", hasTripDates() ? profileDateLabel() : "Choose dates when you are ready")}
@@ -354,6 +464,42 @@
     return `<article class="metric-card"><span class="metric-label">${e(label)}</span><strong class="metric-value">${e(value)}</strong><span class="metric-note">${e(note)}</span></article>`;
   }
 
+  function todayLocalIso() {
+    const now = new Date();
+    const pad = (value) => String(value).padStart(2, "0");
+    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+  }
+
+  function diffDays(fromIso, toIso) {
+    return Math.round((parseDate(toIso) - parseDate(fromIso)) / 86400000);
+  }
+
+  function renderTripCountdown() {
+    if (!hasTripDates()) return "";
+    const today = todayLocalIso();
+    const { startDate, endDate } = state.profile;
+    const prep = checklistSummary(catalog.emergency.preDeparture, "pre");
+    const percent = prep.total ? Math.round((prep.done / prep.total) * 100) : 0;
+    let big;
+    let label;
+    if (today < startDate) {
+      const days = diffDays(today, startDate);
+      big = String(days);
+      label = days === 1 ? "day to go" : "days to go";
+    } else if (today <= endDate) {
+      big = `Day ${diffDays(startDate, today) + 1}`;
+      label = `of ${diffDays(startDate, endDate) + 1} on trip`;
+    } else {
+      big = "✓";
+      label = "trip complete";
+    }
+    return `<section class="countdown-strip" aria-label="Trip countdown">
+      <div class="countdown-days"><strong>${e(big)}</strong><span>${e(label)}</span></div>
+      <div class="countdown-copy"><strong>Arrive ${e(formatDate(startDate))} · depart ${e(formatDate(endDate))}</strong><p>${e(state.profile.travelers)} ${state.profile.travelers === 1 ? "traveler" : "travelers"} · ${e(tripLength())} day${tripLength() === 1 ? "" : "s"} · ${e(selectedCities().map((city) => city.name).join(" · ") || "cities still open")}</p></div>
+      <div class="countdown-prep"><span class="countdown-prep-label">Prep checklist · ${prep.done}/${prep.total} checked</span><div class="progress-line"><span style="width:${percent}%"></span></div><button class="button button-quiet button-small" type="button" data-view="bookings">Open bookings & prep</button></div>
+    </section>`;
+  }
+
   function startCard(icon, title, copy, action) {
     const actionMap = {
       "open-profile": "open-profile",
@@ -411,11 +557,12 @@
 
       <section class="panel panel-soft">
         <div class="discover-controls" aria-label="Discovery filters">
-          <div class="search-field"><label class="visually-hidden" for="discover-search">Search the planner</label><input class="input" id="discover-search" type="search" autocomplete="off" placeholder="Search food, neighborhoods, temples, hotels…" value="${e(ui.discover.query)}"></div>
+          <div class="search-field"><label class="visually-hidden" for="discover-search">Search the planner</label><input class="input" id="discover-search" type="search" autocomplete="off" placeholder="Search food, neighborhoods, temples, hotels…  (press / anywhere)" value="${e(ui.discover.query)}"></div>
           <div class="field"><label class="visually-hidden" for="discover-type">Type</label><select class="select" id="discover-type">${discoverTypeOptions()}</select></div>
           <div class="field"><label class="visually-hidden" for="discover-city">City</label><select class="select" id="discover-city">${discoverCityOptions()}</select></div>
+          <label class="check-inline" title="${hasTripDates() ? "Show only events whose dates overlap your trip window" : "Set your trip dates in Trip setup to enable this filter"}"><input type="checkbox" id="discover-during" ${ui.discover.duringTrip && hasTripDates() ? "checked" : ""} ${hasTripDates() ? "" : "disabled"}><span>During my trip dates</span></label>
         </div>
-        <div class="results-meta"><span id="discover-count"></span><span class="filter-note">Tip: event labels such as “TBA” and “Watch” need an official re-check.</span></div>
+        <div class="results-meta"><span id="discover-count"></span><span class="filter-note">${hasTripDates() ? "Tip: event labels such as “TBA” and “Watch” need an official re-check." : "Tip: set trip dates to filter events happening during your stay."}</span></div>
         <div id="discover-results"></div>
       </section>
     </section>`;
@@ -431,13 +578,14 @@
     const importantDates = Array.isArray(trip.importantDates) ? trip.importantDates : [];
 
     return `<section class="view route-options-view">
+      <div class="print-only"><h1>Korea Compass · Route overview</h1><p>${e(selected.title)} — ${e(selected.routeLabel)} · arrive ICN 21:00 Nov 1, 2026 · depart ICN 13:00 Nov 22, 2026</p></div>
       <header class="view-head">
         <div class="view-head-copy">
           <span class="eyebrow">Two detailed, source-aware planning blueprints</span>
           <h1 class="page-title">Choose the middle chapter that fits you.</h1>
           <p class="page-subtitle">Both routes use the corrected Korea-based window: arrive at ICN at <strong>21:00 on Sun, Nov 1, 2026</strong>; depart ICN at <strong>13:00 on Sun, Nov 22, 2026</strong>. Every day now has explicit target time windows, operational notes, and a weather/energy fallback.</p>
         </div>
-        <div class="head-actions"><button class="button button-quiet" type="button" data-action="copy-itinerary" data-id="${e(selected.id)}">Copy selected itinerary</button><button class="button" type="button" data-action="adopt-itinerary" data-id="${e(selected.id)}">Use as my editable plan</button></div>
+        <div class="head-actions"><button class="button button-quiet" type="button" data-action="print-itinerary">Print route overview</button><button class="button button-quiet" type="button" data-action="copy-itinerary" data-id="${e(selected.id)}">Copy selected itinerary</button><button class="button" type="button" data-action="adopt-itinerary" data-id="${e(selected.id)}">Use as my editable plan</button></div>
       </header>
 
       <section class="route-guidance">
@@ -533,27 +681,25 @@
   }
 
   function discoverTypeOptions() {
+    // Use the stable meta counts: lazy collections may not be loaded yet.
+    const counts = catalog.meta.counts;
     const typeCounts = {
-      all: catalog.meta.counts.places + catalog.meta.counts.events + catalog.meta.counts.activities + catalog.meta.counts.food + catalog.meta.counts.hotels + catalog.meta.counts.routes + catalog.meta.counts.savingsGuides,
-      place: catalog.places.length,
-      event: catalog.events.length,
-      activity: catalog.activities.length,
-      food: catalog.food.length,
-      hotel: catalog.hotels.length,
-      route: catalog.routes.length,
-      saving: catalog.savingsGuides.length,
+      all: counts.places + counts.events + counts.activities + counts.food + counts.hotels + counts.routes + counts.savingsGuides,
+      place: counts.places,
+      event: counts.events,
+      activity: counts.activities,
+      food: counts.food,
+      hotel: counts.hotels,
+      route: counts.routes,
+      saving: counts.savingsGuides,
     };
     const options = [["all", "Everything"], ...Object.entries(TYPE_META).map(([key, value]) => [key, value.plural])];
     return options.map(([value, label]) => `<option value="${value}" ${ui.discover.type === value ? "selected" : ""}>${e(label)} (${formatNumber(typeCounts[value])})</option>`).join("");
   }
 
   function discoverCityOptions() {
-    const cities = [...new Set([
-      ...catalog.cities.map((city) => city.name),
-      ...catalog.events.map((event) => event.city),
-      ...catalog.food.map((food) => food.city),
-      ...catalog.hotels.map((hotel) => hotel.city),
-    ].filter(Boolean))].sort((a, b) => a.localeCompare(b));
+    // Built from the index data only, so it works before collections load.
+    const cities = [...new Set(catalog.cities.map((city) => city.name).filter(Boolean))].sort((a, b) => a.localeCompare(b));
     return [`<option value="">All locations</option>`, ...cities.map((city) => `<option value="${e(city)}" ${ui.discover.city === city ? "selected" : ""}>${e(city)}</option>`)].join("");
   }
 
@@ -561,18 +707,25 @@
     const search = document.querySelector("#discover-search");
     const type = document.querySelector("#discover-type");
     const city = document.querySelector("#discover-city");
+    const during = document.querySelector("#discover-during");
     search?.addEventListener("input", () => {
       ui.discover.query = search.value;
       ui.discover.limit = 18;
       renderDiscoverResults();
     });
-    type?.addEventListener("change", () => {
+    type?.addEventListener("change", async () => {
       ui.discover.type = type.value;
       ui.discover.limit = 18;
+      await ensureCollections(collectionsForView("discover"));
       renderDiscoverResults();
     });
     city?.addEventListener("change", () => {
       ui.discover.city = city.value;
+      ui.discover.limit = 18;
+      renderDiscoverResults();
+    });
+    during?.addEventListener("change", () => {
+      ui.discover.duringTrip = during.checked;
       ui.discover.limit = 18;
       renderDiscoverResults();
     });
@@ -610,14 +763,64 @@
     let entries = allDiscoverEntries();
     if (ui.discover.type !== "all") entries = entries.filter((entry) => entry.type === ui.discover.type);
     if (ui.discover.city) entries = entries.filter((entry) => cityMatches(entry.item, ui.discover.city));
+    if (ui.discover.duringTrip && hasTripDates()) {
+      entries = entries.filter((entry) => entry.type === "event" && eventDuringTrip(entry.item));
+    }
+
     const query = ui.discover.query.trim().toLocaleLowerCase();
-    if (query) entries = entries.filter((entry) => searchHaystack(entry.item, entry.type).includes(query));
+    if (query) {
+      const terms = query.split(/\s+/).filter(Boolean);
+      const scored = entries
+        .map((entry) => ({ entry, score: relevanceScore(entry, terms) }))
+        .filter((pair) => pair.score > 0)
+        .sort((a, b) => b.score - a.score
+          || typeRank(a.entry.type) - typeRank(b.entry.type)
+          || itemTitle(a.entry.item, a.entry.type).localeCompare(itemTitle(b.entry.item, b.entry.type)));
+      return scored.map((pair) => pair.entry);
+    }
 
     return entries.sort((a, b) => {
       if (a.type === "event" && b.type === "event") return String(a.item.startDate).localeCompare(String(b.item.startDate));
       if (a.type !== b.type) return typeRank(a.type) - typeRank(b.type);
       return itemTitle(a.item, a.type).localeCompare(itemTitle(b.item, b.type));
     });
+  }
+
+  function relevanceScore(entry, terms) {
+    const haystack = searchHaystack(entry.item, entry.type);
+    const title = itemTitle(entry.item, entry.type).toLocaleLowerCase();
+    const city = itemCity(entry.item, entry.type).toLocaleLowerCase();
+    let score = 0;
+    for (const term of terms) {
+      if (!haystack.includes(term)) return 0; // every word must match somewhere
+      if (title.includes(term)) score += 30;
+      if (title.startsWith(term)) score += 12;
+      if (city.includes(term)) score += 15;
+      score += 5;
+    }
+    if (terms.length > 1 && title.includes(terms.join(" "))) score += 25;
+    return score;
+  }
+
+  function escapeRegExp(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function highlightText(value) {
+    const text = String(value ?? "");
+    const terms = ui.discover.query.trim().toLocaleLowerCase().split(/\s+/).filter((term) => term.length > 1);
+    if (!terms.length) return e(text);
+    const pattern = new RegExp(`(${terms.map(escapeRegExp).join("|")})`, "gi");
+    const marked = text.replace(pattern, "\u0001$1\u0002");
+    return e(marked).replaceAll("\u0001", "<mark>").replaceAll("\u0002", "</mark>");
+  }
+
+  function eventDuringTrip(item) {
+    if (!hasTripDates() || !validDate(item.startDate)) return false;
+    const tripStart = state.profile.startDate;
+    const tripEnd = state.profile.endDate;
+    const eventEnd = validDate(item.endDate) ? item.endDate : item.startDate;
+    return item.startDate <= tripEnd && eventEnd >= tripStart;
   }
 
   function typeRank(type) {
@@ -657,9 +860,9 @@
         <span class="card-type type-${type}">${e(TYPE_META[type].label)}</span>
         <div style="display:flex;align-items:center;gap:5px">${status}<button class="save-button ${saved ? "is-saved" : ""}" type="button" data-action="toggle-save" data-type="${type}" data-id="${e(item.id)}" aria-label="${saved ? "Remove from saved ideas" : "Save this idea"}" aria-pressed="${saved}">${saved ? "♥" : "♡"}</button></div>
       </div>
-      <h3 title="${e(title)}">${e(title)}</h3>
+      <h3 title="${e(title)}">${highlightText(title)}</h3>
       ${city ? `<div class="card-location"><span>●</span> ${e(city)}</div>` : ""}
-      <p class="card-description">${e(description)}</p>
+      <p class="card-description">${highlightText(description)}</p>
       <div class="card-meta">${chips.map((chip) => `<span class="meta-chip ${chip.tone || ""}" title="${e(chip.label)}">${e(chip.label)}</span>`).join("")}</div>
       <div class="card-actions">
         <button class="button button-link" type="button" data-action="show-detail" data-type="${type}" data-id="${e(item.id)}">Details</button>
@@ -704,6 +907,7 @@
       ].filter(Boolean);
       case "event": return [
         { label: formatDateRange(item.startDate, item.endDate), tone: "accent" },
+        eventDuringTrip(item) ? { label: "During your trip", tone: "during" } : null,
         item.category ? { label: shorten(item.category, 27) } : null,
         item.price ? { label: shorten(item.price, 28), tone: "price" } : null,
       ].filter(Boolean);
@@ -745,6 +949,7 @@
     const days = range.map((date) => renderDay(date, inRangeItems.filter((item) => item.date === date))).join("");
 
     return `<section class="view">
+      <div class="print-only"><h1>Korea Compass · My plan</h1><p>${e(state.profile.name || "My Korea trip")} · ${e(profileDateLabel())} · ${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"} · printed from your local planner</p></div>
       <header class="view-head">
         <div class="view-head-copy">
           <span class="eyebrow">A flexible outline, not a rigid itinerary</span>
@@ -752,6 +957,7 @@
           <p class="page-subtitle">Add only what feels useful. A plan item can be a booking, a meal, a transit leg, or a loose reminder — it never has to be final.</p>
         </div>
         <div class="head-actions">
+          <button class="button button-quiet" type="button" data-action="print-plan">Print this plan</button>
           <button class="button button-quiet" type="button" data-action="copy-brief">Copy planning brief</button>
           <button class="button" type="button" data-action="open-plan-item">+ Add plan item</button>
         </div>
@@ -772,7 +978,7 @@
     return `<aside class="plan-side">
       <article class="planning-principle"><h3>Keep the plan breathable</h3><p>For a first draft, one anchor per day is enough: a must-see, a transport leg, or a reservation.</p><p>Leave open time for the weather, your energy, and small discoveries.</p></article>
       <article class="panel panel-soft"><div class="section-head"><div><div class="section-kicker">Trip snapshot</div><h3>${e(profileDateLabel())}</h3></div></div><div class="detail-list"><div class="detail-row"><strong>${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}</strong><p>Change this at any time in trip setup.</p></div><div class="detail-row"><strong>${cities.length ? e(cities.map((city) => city.name).join(" · ")) : "No cities pinned"}</strong><p>City choices help organize discovery; they do not create bookings.</p></div></div><button class="button button-quiet button-small" type="button" data-action="open-profile" style="margin-top:14px">Edit trip setup</button></article>
-      <article class="panel panel-tint"><div class="section-kicker">Take it with you</div><h3 style="margin:0 0 7px;font-size:14px">Your data stays portable</h3><p class="text-note">Export your plan as JSON or copy a clean planning brief whenever you want to share it.</p><div class="button-row" style="margin-top:12px"><button class="button button-soft button-small" type="button" data-action="export-plan">Export plan</button><button class="button button-link" type="button" data-action="import-plan">Import</button></div></article>
+      <article class="panel panel-tint"><div class="section-kicker">Take it with you</div><h3 style="margin:0 0 7px;font-size:14px">Your data stays portable</h3><p class="text-note">Export your plan as JSON, drop dated items into a calendar (.ics), or open them in a spreadsheet (CSV).</p><div class="button-row" style="margin-top:12px"><button class="button button-soft button-small" type="button" data-action="export-plan">Export JSON</button><button class="button button-soft button-small" type="button" data-action="export-ics">Calendar (.ics)</button><button class="button button-soft button-small" type="button" data-action="export-csv">CSV</button><button class="button button-link" type="button" data-action="import-plan">Import</button></div></article>
     </aside>`;
   }
 
@@ -931,6 +1137,7 @@
       case "go-discover": navigate("discover"); break;
       case "select-itinerary":
         ui.itineraryId = button.dataset.id || ui.itineraryId;
+        window.history.replaceState(null, "", `${viewHash("itineraries")}/${ui.itineraryId}`);
         renderCurrentView();
         break;
       case "adopt-itinerary": adoptItinerary(button.dataset.id); break;
@@ -971,6 +1178,10 @@
       case "import-plan": openImportModal(); break;
       case "clear-saved": clearSaved(); break;
       case "print": window.print(); break;
+      case "print-plan": printView("printing-plan"); break;
+      case "print-itinerary": printView("printing-itinerary"); break;
+      case "export-ics": exportIcs(); break;
+      case "export-csv": exportCsv(); break;
       case "jump-airport": document.querySelector("#airport-options")?.scrollIntoView({ behavior: "smooth", block: "start" }); break;
       case "jump-cards": document.querySelector("#cards-panel")?.scrollIntoView({ behavior: "smooth", block: "start" }); break;
       case "jump-apps": document.querySelector("#apps-panel")?.scrollIntoView({ behavior: "smooth", block: "start" }); break;
@@ -1322,6 +1533,17 @@
     }
   }
 
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = filename;
+    document.body.append(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+  }
+
   function exportPlan() {
     const payload = {
       format: "korea-compass-plan/v1",
@@ -1329,16 +1551,97 @@
       note: "This file contains only the local trip setup, saved ideas, checklist states, and plan items — not the full research catalog.",
       state,
     };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = `${slug(state.profile.name || "korea-trip")}-korea-compass-plan.json`;
-    document.body.append(anchor);
-    anchor.click();
-    anchor.remove();
-    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+    downloadBlob(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }), `${slug(state.profile.name || "korea-trip")}-korea-compass-plan.json`);
     showToast("Your local plan was exported as JSON.");
+  }
+
+  function exportIcs() {
+    const dated = sortedPlanItems().filter((item) => item.date);
+    if (!dated.length) {
+      showToast("Add at least one dated plan item before exporting a calendar file.", "warning");
+      return;
+    }
+    const escape = (value) => String(value ?? "")
+      .replace(/\\/g, "\\\\")
+      .replace(/;/g, "\\;")
+      .replace(/,/g, "\\,")
+      .replace(/\r?\n/g, "\\n");
+    const fold = (line) => {
+      const out = [];
+      let current = line;
+      while ([...current].length > 74) {
+        const chars = [...current];
+        out.push(chars.slice(0, 74).join(""));
+        current = ` ${chars.slice(74).join("")}`;
+      }
+      out.push(current);
+      return out.join("\r\n");
+    };
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    const events = dated.map((item) => {
+      const compactDate = item.date.replace(/-/g, "");
+      const start = item.time
+        ? `DTSTART:${compactDate}T${item.time.replace(":", "")}00`
+        : `DTSTART;VALUE=DATE:${compactDate}`;
+      const endDate = item.time ? "" : toIsoDate(new Date(parseDate(item.date).getTime() + 86400000));
+      const end = item.time ? "" : `DTEND;VALUE=DATE:${endDate.replace(/-/g, "")}`;
+      const description = escape([item.type, item.notes].filter(Boolean).join("\n"));
+      return [
+        "BEGIN:VEVENT",
+        `UID:${escape(item.id)}@korea-compass`,
+        `DTSTAMP:${stamp}`,
+        start,
+        end,
+        `SUMMARY:${escape(item.title)}`,
+        item.city ? `LOCATION:${escape(item.city)}` : "",
+        description ? `DESCRIPTION:${description}` : "",
+        "END:VEVENT",
+      ].filter(Boolean);
+    }).flat();
+    const lines = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Korea Compass//Master trip planner//EN",
+      "CALSCALE:GREGORIAN",
+      `X-WR-CALNAME:${escape(state.profile.name || "Korea trip")}`,
+      ...events,
+      "END:VCALENDAR",
+    ].map(fold).join("\r\n");
+    downloadBlob(new Blob([lines], { type: "text/calendar;charset=utf-8" }), `${slug(state.profile.name || "korea-trip")}.ics`);
+    showToast(`${dated.length} dated plan ${dated.length === 1 ? "item" : "items"} exported as a calendar file.`);
+  }
+
+  function exportCsv() {
+    const items = sortedPlanItems();
+    if (!items.length) {
+      showToast("Your plan is empty — add an item before exporting CSV.", "warning");
+      return;
+    }
+    const csvEscape = (value) => {
+      const text = String(value ?? "");
+      return /[",\n]/.test(text) ? `"${text.replace(/"/g, "\"\"")}"` : text;
+    };
+    const rows = [
+      ["date", "time", "title", "type", "city", "notes"],
+      ...items.map((item) => [item.date, item.time, item.title, item.type, item.city, item.notes]),
+    ];
+    const csv = rows.map((row) => row.map(csvEscape).join(",")).join("\r\n");
+    downloadBlob(new Blob([`\ufeff${csv}`], { type: "text/csv;charset=utf-8" }), `${slug(state.profile.name || "korea-trip")}-plan.csv`);
+    showToast(`${items.length} plan ${items.length === 1 ? "item" : "items"} exported as CSV.`);
+  }
+
+  function printView(mode) {
+    const details = [...app.querySelectorAll("details")];
+    const wasOpen = details.map((node) => node.open);
+    details.forEach((node) => { node.open = true; });
+    document.body.classList.add(mode);
+    const cleanup = () => {
+      window.removeEventListener("afterprint", cleanup);
+      document.body.classList.remove(mode);
+      details.forEach((node, index) => { node.open = wasOpen[index]; });
+    };
+    window.addEventListener("afterprint", cleanup);
+    window.print();
   }
 
   async function copyPlanningBrief() {

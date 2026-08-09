@@ -9,9 +9,11 @@ A calm, beginner-friendly South Korea trip-planning workspace. **Korea Compass**
 ## What is in the master planner
 
 - **Private trip setup** — optional dates, group size, and cities; it does not force a default itinerary.
-- **Two detailed route blueprints** — compare a Seoul → Daejeon → Busan → Seoul route against a Seoul → Cheonan → Busan → Seoul route for the actual Nov. 1–22, 2026 travel window; load either into the editable planner.
-- **Flexible timeline** — add, edit, delete, export, and import plan items when an itinerary is ready.
-- **Searchable discovery library** — destinations, dated events, long-form activity ideas, restaurants, hotels, transit routes, and savings notes.
+- **Trip countdown & prep progress** — once dates are set, the overview shows days-to-departure (or your current trip day) plus booking-checklist progress.
+- **Two detailed route blueprints** — compare a Seoul → Daejeon → Busan → Seoul route against a Seoul → Cheonan → Busan → Seoul route for the actual Nov. 1–22, 2026 travel window; load either into the editable planner. Each route deep-links (`#/itineraries/<id>`) and prints as a clean paper itinerary.
+- **Flexible timeline** — add, edit, delete, export, and import plan items when an itinerary is ready. Export as JSON, calendar (`.ics`), or CSV; print the plan with one tap.
+- **Searchable discovery library** — destinations, dated events, long-form activity ideas, restaurants, hotels, transit routes, and savings notes. Ranked search with highlighted matches, a `/` keyboard shortcut, and a "During my trip dates" filter that surfaces events overlapping your travel window.
+- **Offline-ready PWA** — a service worker caches the shell and research data, so a visited planner keeps working without roaming data; it can be installed to a phone home screen.
 - **Saved ideas** — a browser-local shortlist of possibilities.
 - **Transit kit** — airport transfer, intercity, payments, station, and app research in one place.
 - **Bookings & prep** — a local completion checklist with an intentionally non-automated booking workflow.
@@ -57,7 +59,7 @@ python3 -m http.server 8000
 # Open http://localhost:8000
 ```
 
-Use a local server instead of opening `index.html` directly: the browser loads the generated `data/catalog.json` with `fetch()`.
+Use a local server instead of opening `index.html` directly: the browser loads the generated `data/index.json` (and collection files) with `fetch()`.
 
 ## GitHub Pages deployment
 
@@ -74,7 +76,7 @@ After merging, allow GitHub Pages a moment to publish, then use:
 
 ## Refreshing source research
 
-The browser reads one generated file: [`data/catalog.json`](data/catalog.json). The generator uses the committed source snapshots.
+The browser reads a small generated index plus per-collection files. The generator uses the committed source snapshots and fails the build if any URL looks like a scraping artifact (odd ports, localhost hosts).
 
 1. Refresh the relevant folder under `research/sources/` from the approved source repository.
 2. Update the source revision table in this README and the metadata in [`scripts/build_catalog.py`](scripts/build_catalog.py).
@@ -92,6 +94,12 @@ The browser reads one generated file: [`data/catalog.json`](data/catalog.json). 
 
 5. Review the diff, especially time-sensitive records and links.
 6. Validate locally with a static server before merging to `main`.
+
+The PWA icons under `assets/icons/` are rendered reproducibly from vector math (no image tooling required):
+
+```bash
+python3 scripts/make_icons.py
+```
 
 ## Planned next step
 

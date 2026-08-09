@@ -21,6 +21,6 @@ Exact source branches and commits are recorded in the repository root [`README.m
 
 ## Using the vault
 
-The application does not attempt to render every Markdown document in the browser. It shows searchable structured records from [`data/catalog.json`](../data/catalog.json) and offers direct links to the relevant local snapshot. This keeps the beginner interface focused while retaining the full research for review.
+The application does not attempt to render every Markdown document in the browser. It shows searchable structured records from [`data/index.json`](../data/index.json) and [`data/collections/`](../data/collections/) and offers direct links to the relevant local snapshot. This keeps the beginner interface focused while retaining the full research for review.
 
 Do not treat the snapshot as live information. When an item matters for a real booking or safety decision, use its official provider link and check the original source repository for the most current research.
