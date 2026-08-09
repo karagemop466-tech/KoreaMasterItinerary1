@@ -585,7 +585,7 @@
           <h1 class="page-title">Choose the middle chapter that fits you.</h1>
           <p class="page-subtitle">Both routes use the corrected Korea-based window: arrive at ICN at <strong>21:00 on Sun, Nov 1, 2026</strong>; depart ICN at <strong>13:00 on Sun, Nov 22, 2026</strong>. Every day now has explicit target time windows, operational notes, and a weather/energy fallback.</p>
         </div>
-        <div class="head-actions"><button class="button button-quiet" type="button" data-action="print-itinerary">Print route overview</button><button class="button button-quiet" type="button" data-action="copy-itinerary" data-id="${e(selected.id)}">Copy selected itinerary</button><button class="button" type="button" data-action="adopt-itinerary" data-id="${e(selected.id)}">Use as my editable plan</button></div>
+        <div class="head-actions"><button class="button button-quiet" type="button" data-action="print-itinerary">Save selected route as PDF</button><button class="button button-quiet" type="button" data-action="export-blueprint-doc" data-id="${e(selected.id)}">Word (.doc)</button><button class="button button-quiet" type="button" data-action="export-blueprint-txt" data-id="${e(selected.id)}">Text (.txt)</button><button class="button button-quiet" type="button" data-action="copy-itinerary" data-id="${e(selected.id)}">Copy selected itinerary</button><button class="button" type="button" data-action="adopt-itinerary" data-id="${e(selected.id)}">Use as my editable plan</button></div>
       </header>
 
       <section class="route-guidance">
@@ -957,7 +957,9 @@
           <p class="page-subtitle">Add only what feels useful. A plan item can be a booking, a meal, a transit leg, or a loose reminder — it never has to be final.</p>
         </div>
         <div class="head-actions">
-          <button class="button button-quiet" type="button" data-action="print-plan">Print this plan</button>
+          <button class="button button-quiet" type="button" data-action="print-plan">Save as PDF</button>
+          <button class="button button-quiet" type="button" data-action="export-plan-doc">Word (.doc)</button>
+          <button class="button button-quiet" type="button" data-action="export-plan-txt">Text (.txt)</button>
           <button class="button button-quiet" type="button" data-action="copy-brief">Copy planning brief</button>
           <button class="button" type="button" data-action="open-plan-item">+ Add plan item</button>
         </div>
@@ -978,7 +980,7 @@
     return `<aside class="plan-side">
       <article class="planning-principle"><h3>Keep the plan breathable</h3><p>For a first draft, one anchor per day is enough: a must-see, a transport leg, or a reservation.</p><p>Leave open time for the weather, your energy, and small discoveries.</p></article>
       <article class="panel panel-soft"><div class="section-head"><div><div class="section-kicker">Trip snapshot</div><h3>${e(profileDateLabel())}</h3></div></div><div class="detail-list"><div class="detail-row"><strong>${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}</strong><p>Change this at any time in trip setup.</p></div><div class="detail-row"><strong>${cities.length ? e(cities.map((city) => city.name).join(" · ")) : "No cities pinned"}</strong><p>City choices help organize discovery; they do not create bookings.</p></div></div><button class="button button-quiet button-small" type="button" data-action="open-profile" style="margin-top:14px">Edit trip setup</button></article>
-      <article class="panel panel-tint"><div class="section-kicker">Take it with you</div><h3 style="margin:0 0 7px;font-size:14px">Your data stays portable</h3><p class="text-note">Export your plan as JSON, drop dated items into a calendar (.ics), or open them in a spreadsheet (CSV).</p><div class="button-row" style="margin-top:12px"><button class="button button-soft button-small" type="button" data-action="export-plan">Export JSON</button><button class="button button-soft button-small" type="button" data-action="export-ics">Calendar (.ics)</button><button class="button button-soft button-small" type="button" data-action="export-csv">CSV</button><button class="button button-link" type="button" data-action="import-plan">Import</button></div></article>
+      <article class="panel panel-tint"><div class="section-kicker">Take it with you</div><h3 style="margin:0 0 7px;font-size:14px">Your data stays portable</h3><p class="text-note">Take the editable plan with you as PDF, Word, plain text, JSON, calendar, or CSV. PDF uses your browser’s print dialog so you can choose “Save to PDF.”</p><div class="button-row" style="margin-top:12px"><button class="button button-soft button-small" type="button" data-action="print-plan">PDF</button><button class="button button-soft button-small" type="button" data-action="export-plan-doc">Word</button><button class="button button-soft button-small" type="button" data-action="export-plan-txt">TXT</button><button class="button button-soft button-small" type="button" data-action="export-plan">JSON</button><button class="button button-soft button-small" type="button" data-action="export-ics">Calendar</button><button class="button button-soft button-small" type="button" data-action="export-csv">CSV</button><button class="button button-link" type="button" data-action="import-plan">Import</button></div></article>
     </aside>`;
   }
 
@@ -1142,6 +1144,8 @@
         break;
       case "adopt-itinerary": adoptItinerary(button.dataset.id); break;
       case "copy-itinerary": await copyItinerary(button.dataset.id); break;
+      case "export-blueprint-doc": exportBlueprintDoc(button.dataset.id); break;
+      case "export-blueprint-txt": exportBlueprintTxt(button.dataset.id); break;
       case "go-plan": navigate("plan"); break;
       case "go-safety": navigate("safety"); break;
       case "discover-city":
@@ -1175,6 +1179,8 @@
       case "close-modal": closeModal(); break;
       case "copy-brief": await copyPlanningBrief(); break;
       case "export-plan": exportPlan(); break;
+      case "export-plan-doc": exportPlanDoc(); break;
+      case "export-plan-txt": exportPlanTxt(); break;
       case "import-plan": openImportModal(); break;
       case "clear-saved": clearSaved(); break;
       case "print": window.print(); break;
@@ -1553,6 +1559,50 @@
     };
     downloadBlob(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }), `${slug(state.profile.name || "korea-trip")}-korea-compass-plan.json`);
     showToast("Your local plan was exported as JSON.");
+  }
+
+  function planExportText() {
+    const items = sortedPlanItems();
+    const lines = [
+      state.profile.name || "Korea trip",
+      profileDateLabel(),
+      `${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}`,
+      "",
+      ...(!items.length ? ["No plan items yet."] : items.map((item) => [
+        `${item.date || "Undated"}${item.time ? ` ${item.time}` : ""} — ${item.title}`,
+        [item.type, item.city, item.notes].filter(Boolean).join(" · "),
+      ].filter(Boolean).join("\n"))),
+    ];
+    return lines.join("\n");
+  }
+
+  function exportPlanTxt() {
+    downloadBlob(new Blob([planExportText()], { type: "text/plain;charset=utf-8" }), `${slug(state.profile.name || "korea-trip")}-plan.txt`);
+    showToast("Your editable plan was exported as plain text.");
+  }
+
+  function exportPlanDoc() {
+    const items = sortedPlanItems();
+    const rows = items.map((item) => `<tr><td>${e(item.date || "Undated")}</td><td>${e(item.time || "")}</td><td><strong>${e(item.title)}</strong><br><small>${e([item.type, item.city, item.notes].filter(Boolean).join(" · "))}</small></td></tr>`).join("");
+    const html = `<!doctype html><html><head><meta charset="utf-8"><title>${e(state.profile.name || "Korea trip")}</title><style>body{font-family:Arial,sans-serif;color:#14221f}h1{color:#14332d}table{border-collapse:collapse;width:100%}td{border:1px solid #ccd5ce;padding:8px;vertical-align:top}small{color:#52615c}</style></head><body><h1>${e(state.profile.name || "Korea trip")}</h1><p>${e(profileDateLabel())} · ${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}</p><table><thead><tr><th>Date</th><th>Time</th><th>Plan item</th></tr></thead><tbody>${rows || `<tr><td colspan="3">No plan items yet.</td></tr>`}</tbody></table></body></html>`;
+    downloadBlob(new Blob([html], { type: "application/msword" }), `${slug(state.profile.name || "korea-trip")}-plan.doc`);
+    showToast("Your editable plan was exported as a Word-compatible document.");
+  }
+
+  function exportBlueprintTxt(id) {
+    const blueprint = selectedBlueprint(id);
+    if (!blueprint) return;
+    downloadBlob(new Blob([buildItineraryBrief(blueprint)], { type: "text/plain;charset=utf-8" }), `${slug(blueprint.shortTitle || blueprint.title)}.txt`);
+    showToast("The complete route blueprint was exported as plain text.");
+  }
+
+  function exportBlueprintDoc(id) {
+    const blueprint = selectedBlueprint(id);
+    if (!blueprint) return;
+    const text = buildItineraryBrief(blueprint);
+    const html = `<!doctype html><html><head><meta charset="utf-8"><title>${e(blueprint.title)}</title><style>body{font-family:Arial,sans-serif;color:#14221f;line-height:1.45}h1{color:#14332d}pre{white-space:pre-wrap;font:12px Arial,sans-serif}</style></head><body><h1>${e(blueprint.title)}</h1><pre>${e(text)}</pre></body></html>`;
+    downloadBlob(new Blob([html], { type: "application/msword" }), `${slug(blueprint.shortTitle || blueprint.title)}.doc`);
+    showToast("The complete route blueprint was exported as a Word-compatible document.");
   }
 
   function exportIcs() {
