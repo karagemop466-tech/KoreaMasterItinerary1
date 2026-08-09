@@ -40,6 +40,9 @@
       startDate: "",
       endDate: "",
       travelers: 2,
+      walking: "medium",
+      pace: "balanced",
+      interests: [],
       cities: [],
     },
     itinerary: [],
@@ -54,6 +57,7 @@
     discover: { type: "all", city: "", query: "", limit: 18, duringTrip: false },
     itineraryId: "seoul-daejeon-busan",
     decisionWeights: { experience: 3, convenience: 3, value: 3, flexibility: 3 },
+    weatherMode: "normal",
   };
 
   // Large collections load on demand after the small data/index.json arrives.
@@ -229,6 +233,9 @@
       startDate: validDate(profile.startDate) ? profile.startDate : "",
       endDate: validDate(profile.endDate) ? profile.endDate : "",
       travelers: clampInteger(profile.travelers, 1, 20, 2),
+      walking: ["low", "medium", "high"].includes(profile.walking) ? profile.walking : "medium",
+      pace: ["slow", "balanced", "full"].includes(profile.pace) ? profile.pace : "balanced",
+      interests: Array.isArray(profile.interests) ? profile.interests.slice(0, 8).map((item) => cleanText(item, 40)) : [],
       cities: Array.isArray(profile.cities)
         ? [...new Set(profile.cities.filter((city) => typeof city === "string" && city.length < 50))]
         : [],
@@ -249,6 +256,11 @@
             city: cleanText(item.city || "", 70),
             type: cleanText(item.type || "Note", 40),
             notes: cleanText(item.notes || "", 2000),
+            neighborhood: cleanText(item.neighborhood || "", 90),
+            energy: ["low", "medium", "high"].includes(item.energy) ? item.energy : "medium",
+            duration: cleanText(item.duration || "", 40),
+            indoor: Boolean(item.indoor),
+            mealType: cleanText(item.mealType || "", 40),
             referenceType: TYPE_META[item.referenceType] ? item.referenceType : "",
             referenceId: cleanText(item.referenceId || "", 180),
             createdAt: cleanText(item.createdAt || "", 60),
@@ -1036,12 +1048,65 @@
     return `<section class="empty-state"><div class="empty-state-icon" aria-hidden="true">▤</div><h3>${items.length ? "Your notes are saved, but the trip window is open" : "Set a trip window when you are ready"}</h3><p>${items.length ? "Choose dates to lay your saved plan items onto a simple day-by-day timeline." : "You can still save ideas and add undated notes now. Dates only create the timeline view."}</p><button class="button" type="button" data-action="open-profile">${items.length ? "Add dates" : "Set trip basics"}</button></section>`;
   }
 
+  function addPlanTemplate(template) {
+    const date = state.profile.startDate || "";
+    const templates = {
+      slow: [
+        { title: "Slow morning and neighborhood breakfast", type: "Activity", energy: "low", mealType: "Breakfast", indoor: true },
+        { title: "One flexible local anchor", type: "Visit", energy: "medium", notes: "Choose one nearby place; leave the rest open." },
+        { title: "Early dinner and reset", type: "Food", energy: "low", mealType: "Dinner", indoor: true },
+      ],
+      rain: [
+        { title: "Indoor museum, market, or café option", type: "Activity", energy: "medium", indoor: true, notes: "Confirm current hours and closures." },
+        { title: "Indoor meal near the day’s anchor", type: "Food", energy: "low", mealType: "Lunch", indoor: true },
+      ],
+      food: [
+        { title: "Breakfast or bakery stop", type: "Food", energy: "low", mealType: "Breakfast" },
+        { title: "Market or neighborhood food crawl", type: "Food", energy: "medium", mealType: "Lunch" },
+        { title: "Dinner reservation or saved favorite", type: "Food", energy: "medium", mealType: "Dinner", notes: "Verify hours, queue, and reservation policy." },
+      ],
+      coastal: [
+        { title: "Coastal walk or viewpoint", type: "Visit", energy: "high", notes: "Weather-dependent; use an indoor backup if needed." },
+        { title: "Nearby seafood or café stop", type: "Food", energy: "low", mealType: "Lunch" },
+      ],
+    };
+    const items = templates[template] || [];
+    items.forEach((item, index) => state.itinerary.push({ id: uniqueId("template"), date, time: "", title: item.title, city: "", type: item.type, notes: item.notes || "", neighborhood: "", energy: item.energy, duration: "", indoor: Boolean(item.indoor), mealType: item.mealType || "", referenceType: "", referenceId: "", createdAt: new Date().toISOString() }));
+    persistState();
+    renderCurrentView();
+    showToast(`${items.length} ${template} template items added. Edit or remove anything you do not need.`);
+  }
+
+  function duplicateScenario() {
+    if (!state.itinerary.length) { showToast("Add or load a plan before creating an experiment.", "warning"); return; }
+    const copy = state.itinerary.map((item) => ({ ...item, id: uniqueId("scenario"), title: `${item.title} [experiment]` }));
+    state.itinerary.push(...copy);
+    persistState();
+    renderCurrentView();
+    showToast("A duplicate experiment was added. Edit or remove the copy to test an alternative.");
+  }
+
+  function exportOfflinePack() {
+    const pack = [
+      `Korea Compass offline trip pack — ${state.profile.name || "Korea trip"}`,
+      profileDateLabel(), "", planExportText(), "",
+      "IMPORTANT LIVE CHECKS", "Verify flight terminal, hotel address, KTX times, event status, weather, entry requirements, and emergency information close to travel.",
+      "HOTEL / ADDRESS NOTES", ...sortedPlanItems().filter((item) => item.type === "Stay" || /hotel|address/i.test(item.notes)).map((item) => `- ${item.title}: ${item.notes}`),
+      "\nThis offline pack is a planning snapshot, not a booking confirmation.",
+    ].join("\n");
+    downloadBlob(new Blob([pack], { type: "text/plain;charset=utf-8" }), `${slug(state.profile.name || "korea-trip")}-offline-pack.txt`);
+    showToast("Offline trip pack exported as text.");
+  }
+
   function renderDailyEfficiency() {
     const dated = state.itinerary.filter((item) => item.date);
     const counts = Object.entries(dated.reduce((map, item) => { map[item.date] = (map[item.date] || 0) + 1; return map; }, {}));
     const busiest = counts.sort((a, b) => b[1] - a[1])[0];
+    const energyPoints = dated.reduce((sum, item) => sum + ({ low: 1, medium: 2, high: 3 }[item.energy] || 2), 0);
+    const highDays = counts.filter(([date]) => dated.filter((item) => item.date === date).reduce((sum, item) => sum + ({ low: 1, medium: 2, high: 3 }[item.energy] || 2), 0) >= 7).length;
+    const rainReady = dated.filter((item) => item.indoor).length;
     const openDays = hasTripDates() ? getDateRange().filter((date) => !dated.some((item) => item.date === date)).length : 0;
-    return `<article class="panel panel-soft"><div class="section-kicker">Daily efficiency</div><h3 style="margin:0 0 7px;font-size:14px">Protect your best days</h3><p class="text-note">${dated.length ? `${dated.length} dated items across ${counts.length} days.` : "Load a route or add items to see pacing."} ${busiest && busiest[1] > 3 ? `Your busiest day has ${busiest[1]} items — consider moving one.` : ""}</p>${hasTripDates() ? `<p class="text-note"><strong>${openDays}</strong> open day${openDays === 1 ? "" : "s"} remain for weather, rest, or discoveries.</p>` : ""}</article>`;
+    return `<article class="panel panel-soft"><div class="section-kicker">Daily efficiency</div><h3 style="margin:0 0 7px;font-size:14px">Protect your best days</h3><p class="text-note">${dated.length ? `${dated.length} dated items across ${counts.length} days.` : "Load a route or add items to see pacing."} ${busiest && busiest[1] > 3 ? `Your busiest day has ${busiest[1]} items — consider moving one.` : ""}</p>${dated.length ? `<p class="text-note"><strong>${energyPoints}</strong> total energy points · <strong>${highDays}</strong> demanding day${highDays === 1 ? "" : "s"} · <strong>${rainReady}</strong> rain-friendly item${rainReady === 1 ? "" : "s"}.</p>` : ""}${hasTripDates() ? `<p class="text-note"><strong>${openDays}</strong> open day${openDays === 1 ? "" : "s"} remain for weather, rest, or discoveries.</p>` : ""}</article>`;
   }
 
   function renderPlanSidebar() {
@@ -1049,6 +1114,7 @@
     return `<aside class="plan-side">
       <article class="planning-principle"><h3>Keep the plan breathable</h3><p>For a first draft, one anchor per day is enough: a must-see, a transport leg, or a reservation.</p><p>Leave open time for the weather, your energy, and small discoveries.</p></article>
       <article class="panel panel-soft"><div class="section-head"><div><div class="section-kicker">Trip snapshot</div><h3>${e(profileDateLabel())}</h3></div></div><div class="detail-list"><div class="detail-row"><strong>${state.profile.travelers} ${state.profile.travelers === 1 ? "traveler" : "travelers"}</strong><p>Change this at any time in trip setup.</p></div><div class="detail-row"><strong>${cities.length ? e(cities.map((city) => city.name).join(" · ")) : "No cities pinned"}</strong><p>City choices help organize discovery; they do not create bookings.</p></div></div><button class="button button-quiet button-small" type="button" data-action="open-profile" style="margin-top:14px">Edit trip setup</button></article>
+      <article class="panel panel-soft planning-tools"><div class="section-kicker">Planning tools</div><h3 style="margin:0 0 7px;font-size:14px">Build a better day</h3><p class="text-note">Add a starting template, then edit or remove anything that does not fit.</p><div class="button-row" style="margin-top:10px"><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="slow">Slow day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="rain">Rain plan</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="food">Food day</button><button class="button button-quiet button-small" type="button" data-action="add-template" data-template="coastal">Coastal day</button><button class="button button-link" type="button" data-action="toggle-weather">${ui.weatherMode === "rain" ? "Use regular plan" : "Show rain-friendly notes"}</button></div><div class="button-row" style="margin-top:8px"><button class="button button-link" type="button" data-action="duplicate-scenario">Duplicate as experiment</button><button class="button button-link" type="button" data-action="export-offline-pack">Export offline pack</button></div></article>
       ${renderDailyEfficiency()}
       <article class="panel panel-tint"><div class="section-kicker">Take it with you</div><h3 style="margin:0 0 7px;font-size:14px">Your data stays portable</h3><p class="text-note">Take the editable plan with you as PDF, Word, plain text, JSON, calendar, or CSV. PDF uses your browser’s print dialog so you can choose “Save to PDF.”</p><div class="button-row" style="margin-top:12px"><button class="button button-soft button-small" type="button" data-action="print-plan">PDF</button><button class="button button-soft button-small" type="button" data-action="export-plan-doc">Word</button><button class="button button-soft button-small" type="button" data-action="export-plan-txt">TXT</button><button class="button button-soft button-small" type="button" data-action="export-plan">JSON</button><button class="button button-soft button-small" type="button" data-action="export-ics">Calendar</button><button class="button button-soft button-small" type="button" data-action="export-csv">CSV</button><button class="button button-link" type="button" data-action="import-plan">Import</button></div></article>
     </aside>`;
@@ -1058,13 +1124,13 @@
     const day = dateParts(date);
     return `<article class="day-card">
       <div class="day-date"><strong class="day-date-day">${day.day}</strong><span class="day-date-month">${e(day.month)}</span><span class="day-date-weekday">${e(day.weekday)}</span></div>
-      <div class="day-content"><div class="day-content-head"><span>${items.length ? `${items.length} ${items.length === 1 ? "item" : "items"}` : "Open day"}</span><button class="button button-link" type="button" data-action="open-plan-item" data-date="${date}">+ Add</button></div>
-      ${items.length ? items.sort(sortPlanByTime).map(renderPlanEntry).join("") : `<p class="day-empty">Nothing pinned — leave it open or add one gentle anchor.</p>`}</div>
+      <div class="day-content"><div class="day-content-head"><span>${items.length ? `${items.length} ${items.length === 1 ? "item" : "items"}` : "Open day"}${items.some((item) => item.mealType) ? ` · ${items.filter((item) => item.mealType).length} meal slot${items.filter((item) => item.mealType).length === 1 ? "" : "s"}` : ""}</span><button class="button button-link" type="button" data-action="open-plan-item" data-date="${date}">+ Add</button></div>
+      ${ui.weatherMode === "rain" ? `<p class="weather-mode-note">Rain mode: favor indoor items, cafés, museums, markets, and flexible transit. ${items.some((item) => item.indoor) ? "An indoor option is already tagged for this day." : "Add an indoor backup before committing."}</p>` : ""}${items.length ? items.sort(sortPlanByTime).map(renderPlanEntry).join("") : `<p class="day-empty">Nothing pinned — leave it open or add one gentle anchor.</p>`}</div>
     </article>`;
   }
 
   function renderPlanEntry(item) {
-    return `<div class="plan-entry"><span class="plan-time">${e(item.time || "Anytime")}</span><div class="plan-entry-copy"><strong>${e(item.title)}</strong><span>${e([item.type, item.city, item.notes].filter(Boolean).join(" · "))}</span></div><div class="entry-actions"><button class="icon-button" type="button" title="Edit ${e(item.title)}" data-action="edit-plan-item" data-id="${e(item.id)}">✎</button><button class="icon-button danger" type="button" title="Remove ${e(item.title)}" data-action="delete-plan-item" data-id="${e(item.id)}">×</button></div></div>`;
+    return `<div class="plan-entry"><span class="plan-time">${e(item.time || "Anytime")}</span><div class="plan-entry-copy"><strong>${e(item.title)}</strong><span>${e([item.type, item.city, item.neighborhood, item.mealType, item.duration, item.indoor ? "Indoor backup" : "", item.notes].filter(Boolean).join(" · "))}</span></div><div class="entry-actions"><button class="icon-button" type="button" title="Edit ${e(item.title)}" data-action="edit-plan-item" data-id="${e(item.id)}">✎</button><button class="icon-button danger" type="button" title="Remove ${e(item.title)}" data-action="delete-plan-item" data-id="${e(item.id)}">×</button></div></div>`;
   }
 
   function renderLoosePlanItem(item) {
@@ -1251,6 +1317,10 @@
       case "export-plan": exportPlan(); break;
       case "export-plan-doc": exportPlanDoc(); break;
       case "export-plan-txt": exportPlanTxt(); break;
+      case "export-offline-pack": exportOfflinePack(); break;
+      case "add-template": addPlanTemplate(button.dataset.template); break;
+      case "toggle-weather": ui.weatherMode = ui.weatherMode === "rain" ? "normal" : "rain"; renderCurrentView(); break;
+      case "duplicate-scenario": duplicateScenario(); break;
       case "import-plan": openImportModal(); break;
       case "clear-saved": clearSaved(); break;
       case "print": window.print(); break;
@@ -1383,6 +1453,8 @@
           <div class="field"><label for="trip-end">End date <span class="muted">(optional)</span></label><input class="input" id="trip-end" name="endDate" type="date" value="${e(state.profile.endDate)}"></div>
           <div class="field"><label for="trip-travelers">Travelers</label><input class="input" id="trip-travelers" name="travelers" type="number" min="1" max="20" value="${state.profile.travelers}"></div>
           <div class="field"><label>Timeline behavior</label><div class="input" style="display:flex;align-items:center;color:var(--ink-soft);font-size:12px">Dates only create a flexible view</div></div>
+          <div class="field"><label for="trip-walking">Walking tolerance</label><select class="select" id="trip-walking" name="walking"><option value="low" ${state.profile.walking === "low" ? "selected" : ""}>Lower walking</option><option value="medium" ${state.profile.walking === "medium" ? "selected" : ""}>Moderate walking</option><option value="high" ${state.profile.walking === "high" ? "selected" : ""}>Walking is welcome</option></select></div>
+          <div class="field"><label for="trip-pace">Preferred pace</label><select class="select" id="trip-pace" name="pace"><option value="slow" ${state.profile.pace === "slow" ? "selected" : ""}>Slow and flexible</option><option value="balanced" ${state.profile.pace === "balanced" ? "selected" : ""}>Balanced</option><option value="full" ${state.profile.pace === "full" ? "selected" : ""}>Full sightseeing</option></select></div>
           <div class="field full"><label>Cities you are considering</label><div class="city-selector">${cityChoices}</div><p class="form-help">Pick as many or as few as you want. These are filters and route signals, not hotel or transport commitments.</p></div>
         </div>
         <div class="modal-footer"><button class="button button-quiet" type="button" data-action="close-modal">Cancel</button><button class="button" type="submit">Save trip setup</button></div>
@@ -1407,6 +1479,9 @@
       startDate: validDate(startDate) ? startDate : "",
       endDate: validDate(endDate) ? endDate : "",
       travelers: clampInteger(data.get("travelers"), 1, 20, 2),
+      walking: ["low", "medium", "high"].includes(String(data.get("walking"))) ? String(data.get("walking")) : "medium",
+      pace: ["slow", "balanced", "full"].includes(String(data.get("pace"))) ? String(data.get("pace")) : "balanced",
+      interests: state.profile.interests || [],
       cities: [...data.getAll("cities")].map((city) => cleanText(city, 50)),
     };
     persistState();
@@ -1442,6 +1517,11 @@
           <div class="field full"><label for="plan-title">What is it?</label><input class="input" id="plan-title" name="title" required maxlength="180" value="${e(title)}" placeholder="Example: Explore the palace area" autofocus></div>
           <div class="field"><label for="plan-city">City / area</label><select class="select" id="plan-city" name="city">${cityOptions}</select></div>
           <div class="field"><label for="plan-type">Kind of plan item</label><select class="select" id="plan-type" name="type">${types.map((entry) => `<option value="${entry}" ${planType === entry ? "selected" : ""}>${entry}</option>`).join("")}</select></div>
+          <div class="field"><label for="plan-neighborhood">Neighborhood <span class="muted">(optional)</span></label><input class="input" id="plan-neighborhood" name="neighborhood" maxlength="90" value="${e(record.neighborhood || (item?.neighborhood || ""))}" placeholder="Myeongdong, Haeundae…"></div>
+          <div class="field"><label for="plan-energy">Energy level</label><select class="select" id="plan-energy" name="energy">${["low", "medium", "high"].map((entry) => `<option value="${entry}" ${(record.energy || "medium") === entry ? "selected" : ""}>${entry[0].toUpperCase() + entry.slice(1)}</option>`).join("")}</select></div>
+          <div class="field"><label for="plan-duration">Estimated duration <span class="muted">(optional)</span></label><input class="input" id="plan-duration" name="duration" maxlength="40" value="${e(record.duration || "")}" placeholder="2 hours"></div>
+          <div class="field"><label class="check-inline" style="margin-top:25px"><input type="checkbox" name="indoor" ${record.indoor ? "checked" : ""}><span>Indoor / rain-friendly</span></label></div>
+          <div class="field"><label for="plan-meal-type">Meal slot <span class="muted">(optional)</span></label><select class="select" id="plan-meal-type" name="mealType"><option value="">Not a meal</option>${["Breakfast", "Lunch", "Dinner", "Café", "Late night"].map((entry) => `<option value="${entry}" ${(record.mealType || "") === entry ? "selected" : ""}>${entry}</option>`).join("")}</select></div>
           <div class="field full"><label for="plan-notes">Note <span class="muted">(optional)</span></label><textarea class="textarea" id="plan-notes" name="notes" maxlength="2000" placeholder="Reservation number, opening hours to check, who is going, backup idea…">${e(note)}</textarea><p class="form-help">Use a note for confirmation numbers or anything you will be glad to find later. It is stored only in this browser until you export it.</p></div>
         </div>
         <div class="modal-footer"><button class="button button-quiet" type="button" data-action="close-modal">Cancel</button><button class="button" type="submit">${isEdit ? "Save changes" : "Add to plan"}</button></div>
@@ -1474,6 +1554,11 @@
       city: cleanText(data.get("city"), 70),
       type: cleanText(data.get("type") || "Note", 40),
       notes: cleanText(data.get("notes"), 2000),
+      neighborhood: cleanText(data.get("neighborhood"), 90),
+      energy: ["low", "medium", "high"].includes(String(data.get("energy"))) ? String(data.get("energy")) : "medium",
+      duration: cleanText(data.get("duration"), 40),
+      indoor: data.get("indoor") === "on",
+      mealType: cleanText(data.get("mealType"), 40),
       referenceType: TYPE_META[data.get("referenceType")] ? String(data.get("referenceType")) : "",
       referenceId: cleanText(data.get("referenceId"), 180),
       createdAt: new Date().toISOString(),

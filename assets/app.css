@@ -445,6 +445,7 @@ h1, h2, h3, p { margin-top: 0; }
 .route-prep-card b { color: var(--ink); }
 .route-budget .detail-row p.route-budget-total { margin-top: 5px; color: var(--forest); font-size: 12px; font-weight: 760; }
 .route-budget .detail-row small { display: block; margin-top: 5px; color: var(--pine); font-size: 10px; line-height: 1.45; }
+.weather-mode-note { padding: 8px 10px; margin: 8px 0; color: #6b5318; font-size: 11px; line-height: 1.45; background: var(--sun-soft); border: 1px solid #efd58f; border-radius: 8px; }
 .readiness-panel, .route-efficiency, .decision-tools { padding: 20px 22px; margin-top: 18px; border: 1px solid #d5e8df; border-radius: var(--radius); }
 .readiness-panel { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(0, 1.2fr); gap: 20px; background: var(--mint-2); }
 .readiness-panel h2, .route-efficiency h2, .decision-tools h2 { margin: 0 0 6px; font-size: 18px; letter-spacing: -.035em; }
