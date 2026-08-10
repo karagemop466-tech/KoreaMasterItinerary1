@@ -56,7 +56,10 @@
   let currentView = "dashboard";
   const ui = {
     discover: { type: "all", city: "", query: "", limit: 18, duringTrip: false },
-    itineraryId: "seoul-daejeon-busan",
+    itineraryId: "seoul-daejeon-busan-classic",
+    itineraryFilter: { corridor: "all" },
+    compareLeftId: "seoul-daejeon-busan-classic",
+    compareRightId: "seoul-cheonan-busan-rail",
     decisionWeights: { experience: 3, convenience: 3, value: 3, flexibility: 3 },
     weatherMode: "normal",
     weather: { status: "idle", cities: [] },
@@ -170,6 +173,18 @@
 
     document.addEventListener("change", (event) => {
       const target = event.target;
+      if (target instanceof HTMLSelectElement) {
+        if (target.dataset.action === "change-compare-left") {
+          ui.compareLeftId = target.value;
+          renderCurrentView();
+          return;
+        }
+        if (target.dataset.action === "change-compare-right") {
+          ui.compareRightId = target.value;
+          renderCurrentView();
+          return;
+        }
+      }
       if (!(target instanceof HTMLInputElement)) return;
       if (target.matches("input[data-decision-weight]")) {
         ui.decisionWeights[target.dataset.decisionWeight] = Number(target.value);
@@ -209,7 +224,11 @@
 
   function viewFromHash() {
     const [view, extra] = window.location.hash.replace(/^#\/?/, "").split("/");
-    if (view === "itineraries" && extra) ui.itineraryId = extra;
+    if (view === "itineraries" && extra) {
+      if (extra === "seoul-daejeon-busan") ui.itineraryId = "seoul-daejeon-busan-classic";
+      else if (extra === "seoul-cheonan-busan") ui.itineraryId = "seoul-cheonan-busan-rail";
+      else ui.itineraryId = extra;
+    }
     return VIEW_LABELS[view] ? view : "dashboard";
   }
 
@@ -443,10 +462,10 @@
         <div class="hero-copy">
           <span class="eyebrow">A calm start, not a crowded spreadsheet</span>
           <h1 class="hero-title">Build your Korea trip one confident choice at a time.</h1>
-          <p>Everything from your six research repositories now has a shared home: places, stays, food, transit, safety notes, and source links. Two detailed 21-night route options are ready to compare; your final itinerary can stay flexible.</p>
+          <p>Everything from your six research repositories now has a shared home: places, stays, food, transit, safety notes, and source links. 10 detailed 21-night route blueprints across Seoul · Daejeon · Busan and Seoul · Cheonan · Busan are ready to explore, review, and compare; your final itinerary can stay flexible.</p>
           <div class="button-row">
             <button class="button" type="button" data-action="open-profile">Set up my trip <span aria-hidden="true">→</span></button>
-            <button class="button button-quiet" type="button" data-view="itineraries">Compare 2 route options</button>
+            <button class="button button-quiet" type="button" data-view="itineraries">Compare all 10 route blueprints</button>
           </div>
         </div>
         <aside class="trip-pulse" aria-label="Trip snapshot">
@@ -652,14 +671,20 @@
     const selected = blueprints.find((item) => item.id === ui.itineraryId) || blueprints[0];
     const trip = catalog.itineraryBlueprintMeta?.trip || {};
     const importantDates = Array.isArray(trip.importantDates) ? trip.importantDates : [];
+    const corridorFilter = ui.itineraryFilter?.corridor || "all";
+    const filteredBlueprints = blueprints.filter((item) => {
+      if (corridorFilter === "daejeon") return item.id.includes("daejeon");
+      if (corridorFilter === "cheonan") return item.id.includes("cheonan");
+      return true;
+    });
 
     return `<section class="view route-options-view">
       <div class="print-only"><h1>Korea Compass · Route overview</h1><p>${e(selected.title)} — ${e(selected.routeLabel)} · arrive ICN 21:00 Nov 1, 2026 · depart ICN 13:00 Nov 22, 2026</p></div>
       <header class="view-head">
         <div class="view-head-copy">
-          <span class="eyebrow">Two detailed, source-aware planning blueprints</span>
-          <h1 class="page-title">Choose the middle chapter that fits you.</h1>
-          <p class="page-subtitle">Both routes use the corrected Korea-based window: arrive at ICN at <strong>21:00 on Sun, Nov 1, 2026</strong>; depart ICN at <strong>13:00 on Sun, Nov 22, 2026</strong>. Every day now has explicit target time windows, operational notes, and a weather/energy fallback.</p>
+          <span class="eyebrow">10 detailed, source-aware planning blueprints</span>
+          <h1 class="page-title">Choose the corridor & theme that fits your travel style.</h1>
+          <p class="page-subtitle">Explore <strong>5 unique itineraries for Seoul · Daejeon · Busan</strong> and <strong>5 unique itineraries for Seoul · Cheonan · Busan</strong> for the Nov 1–22, 2026 trip window (21 nights / 22 calendar days). Filter by corridor, compare any two routes side by side, and load any blueprint directly into your editable plan.</p>
         </div>
         <div class="head-actions"><button class="button button-quiet" type="button" data-action="print-itinerary">Save selected route as PDF</button><button class="button button-quiet" type="button" data-action="export-blueprint-doc" data-id="${e(selected.id)}">Word (.doc)</button><button class="button button-quiet" type="button" data-action="export-blueprint-txt" data-id="${e(selected.id)}">Text (.txt)</button><button class="button button-quiet" type="button" data-action="copy-itinerary" data-id="${e(selected.id)}">Copy selected itinerary</button><button class="button" type="button" data-action="adopt-itinerary" data-id="${e(selected.id)}">Use as my editable plan</button></div>
       </header>
@@ -669,13 +694,28 @@
         <p>${e(trip.flightReconciliation || trip.sourceNote || "Verify all time-sensitive details before booking.")}</p>
       </section>
 
+      <section class="corridor-filter-bar panel panel-tint" style="margin-bottom:18px">
+        <div class="section-head" style="margin-bottom:12px">
+          <div>
+            <span class="section-kicker">Filter route blueprints</span>
+            <h2>Select corridor or browse all 10 blueprints</h2>
+          </div>
+          <div class="button-row" style="margin-top:0">
+            <button class="button ${corridorFilter === "all" ? "button-soft" : "button-quiet"} button-small" type="button" data-action="filter-corridor" data-corridor="all">All 10 Blueprints (${blueprints.length})</button>
+            <button class="button ${corridorFilter === "daejeon" ? "button-soft" : "button-quiet"} button-small" type="button" data-action="filter-corridor" data-corridor="daejeon">Seoul · Daejeon · Busan (5)</button>
+            <button class="button ${corridorFilter === "cheonan" ? "button-soft" : "button-quiet"} button-small" type="button" data-action="filter-corridor" data-corridor="cheonan">Seoul · Cheonan · Busan (5)</button>
+          </div>
+        </div>
+        <p style="margin:0;font-size:12px;color:var(--ink-soft)">Currently showing <strong>${filteredBlueprints.length}</strong> of <strong>${blueprints.length}</strong> blueprints. Click any card below to view its complete 22-day schedule, base strategy, and daily Plan B.</p>
+      </section>
+
       ${renderRoutePrepFacts(trip)}
       ${renderDecisionTools(blueprints)}
       ${renderRouteEfficiency(blueprints)}
       ${renderDayComparison(blueprints)}
 
       <section class="route-comparison-grid" aria-label="Compare route blueprints">
-        ${blueprints.map((item) => renderRouteOptionCard(item, item.id === selected.id)).join("")}
+        ${filteredBlueprints.map((item) => renderRouteOptionCard(item, item.id === selected.id)).join("")}
       </section>
 
       <section class="route-detail-panel">
@@ -710,8 +750,19 @@
   }
 
   function routeDecisionScores(route) {
-    const daejeon = route.id.includes("daejeon");
-    return { experience: daejeon ? 5 : 3, convenience: daejeon ? 3 : 5, value: 4, flexibility: daejeon ? 5 : 3 };
+    const id = route.id || "";
+    if (id === "seoul-daejeon-busan-classic") return { experience: 5, convenience: 4, value: 4, flexibility: 5 };
+    if (id === "seoul-daejeon-busan-foodie") return { experience: 5, convenience: 4, value: 4, flexibility: 4 };
+    if (id === "seoul-daejeon-busan-heritage") return { experience: 5, convenience: 4, value: 4, flexibility: 5 };
+    if (id === "seoul-daejeon-busan-wellness") return { experience: 5, convenience: 4, value: 4, flexibility: 5 };
+    if (id === "seoul-daejeon-busan-modern") return { experience: 5, convenience: 4, value: 4, flexibility: 4 };
+    if (id === "seoul-cheonan-busan-rail") return { experience: 4, convenience: 5, value: 5, flexibility: 4 };
+    if (id === "seoul-cheonan-busan-value") return { experience: 4, convenience: 5, value: 5, flexibility: 4 };
+    if (id === "seoul-cheonan-busan-leisure") return { experience: 4, convenience: 5, value: 4, flexibility: 5 };
+    if (id === "seoul-cheonan-busan-arts") return { experience: 5, convenience: 5, value: 4, flexibility: 4 };
+    if (id === "seoul-cheonan-busan-gourmet") return { experience: 5, convenience: 4, value: 4, flexibility: 4 };
+    const daejeon = id.includes("daejeon");
+    return { experience: daejeon ? 5 : 4, convenience: daejeon ? 4 : 5, value: 4, flexibility: 4 };
   }
 
   function renderDecisionTools(blueprints) {
@@ -724,7 +775,7 @@
       return { route, total, score };
     });
     const winner = [...totals].sort((a, b) => b.total - a.total)[0];
-    return `<section class="decision-tools panel panel-tint"><div class="section-head"><div><div class="section-kicker">Personal decision lens</div><h2>Weight what matters to you</h2><p>These are planning judgments, not objective facts. Adjust the sliders and use the result as a conversation starter.</p></div><span class="meta-chip accent">Suggested: ${e(winner.route.shortTitle)}</span></div><div class="decision-tool-grid"><div class="decision-weights">${rows}</div><div class="decision-results">${totals.map(({ route, total, score }) => `<article><strong>${e(route.shortTitle)}</strong><span class="decision-total">${total}/100</span><p>${e(route.id.includes("daejeon") ? "More depth and flexibility; longer rail leg." : "Easier rail flow; lighter middle-city commitment.")}</p><div class="decision-bars">${Object.entries(labels).map(([key, label]) => `<div><span>${e(label)}</span><b style="width:${score[key] * 20}%"></b></div>`).join("")}</div></article>`).join("")}</div></div></section>`;
+    return `<section class="decision-tools panel panel-tint"><div class="section-head"><div><div class="section-kicker">Personal decision lens</div><h2>Weight what matters to you (all 10 blueprints ranked)</h2><p>These are planning judgments, not objective facts. Adjust the sliders and use the ranking as a conversation starter.</p></div><span class="meta-chip accent">Suggested: ${e(winner.route.shortTitle)}</span></div><div class="decision-tool-grid"><div class="decision-weights">${rows}</div><div class="decision-results">${totals.map(({ route, total, score }) => `<article><strong>${e(route.shortTitle)}</strong><span class="decision-total">${total}/100</span><p>${e(route.id.includes("daejeon") ? "Daejeon Corridor · Broad city depth & science" : "Cheonan Corridor · Lightning 35-min rail speed & heritage")}</p><div class="decision-bars">${Object.entries(labels).map(([key, label]) => `<div><span>${e(label)}</span><b style="width:${score[key] * 20}%"></b></div>`).join("")}</div></article>`).join("")}</div></div></section>`;
   }
 
   function renderRouteEfficiency(blueprints) {
@@ -732,20 +783,38 @@
       const middle = route.bases?.find((base) => !["Seoul", "Busan"].includes(base.city));
       const transfers = route.transfers || [];
       const rail = transfers.filter((item) => /KTX|rail|train/i.test(`${item.title} ${item.detail || ""}`)).length;
-      return `<article><span class="section-kicker">${e(middle?.city || route.shortTitle)}</span><h3>${e(route.id.includes("daejeon") ? "More destination, more transfer time" : "Simpler middle-city logistics")}</h3><p>${rail || 1} planned rail movement${rail === 1 ? "" : "s"} in the route-transfer plan. ${e(route.tradeoff || "Compare the detailed days before booking.")}</p></article>`;
+      return `<article><span class="section-kicker">${e(middle?.city || route.shortTitle)}</span><h3>${e(route.id.includes("daejeon") ? "Daejeon: Science & Experience Depth" : "Cheonan: 35-Min Rail Speed & Independence Heritage")}</h3><p>${rail || 3} planned rail legs in the route-transfer plan. ${e(route.tradeoff || "Compare the detailed days before booking.")}</p></article>`;
     }).join("");
-    return `<section class="route-efficiency"><div class="section-head"><div><div class="section-kicker">Efficiency check</div><h2>Where the route spends your energy</h2><p>Use this to decide whether the middle city earns its hotel move. The detailed days below remain the source of truth.</p></div></div><div class="route-efficiency-grid">${details}</div></section>`;
+    return `<section class="route-efficiency"><div class="section-head"><div><div class="section-kicker">Efficiency check</div><h2>Where each corridor spends your energy</h2><p>Daejeon offers richer city science and thermal onsen depth with a 55-min KTX; Cheonan offers lightning 35-min rail speed and lower accommodation costs. The detailed days below remain the source of truth.</p></div></div><div class="route-efficiency-grid">${details}</div></section>`;
   }
 
   function renderDayComparison(blueprints) {
     if (blueprints.length < 2) return "";
-    const left = blueprints[0];
-    const right = blueprints[1];
+    const leftId = ui.compareLeftId || blueprints[0].id;
+    const rightId = ui.compareRightId || (blueprints[5] ? blueprints[5].id : blueprints[1].id);
+    const left = blueprints.find((b) => b.id === leftId) || blueprints[0];
+    const right = blueprints.find((b) => b.id === rightId) || blueprints[1];
     const rows = (left.days || []).map((day, index) => {
       const other = right.days?.[index] || {};
       return `<tr><th>${e(day.day)}<small>${e(day.date)}</small></th><td><strong>${e(day.city || "")}</strong><br>${e(day.anchor || day.title || "Open day")}</td><td><strong>${e(other.city || "")}</strong><br>${e(other.anchor || other.title || "Open day")}</td></tr>`;
     }).join("");
-    return `<section class="route-day-compare panel"><div class="section-head"><div><div class="section-kicker">Day-by-day decision view</div><h2>Compare the middle-city days at a glance</h2><p>Same trip window, two different ways to spend the flexible middle chapter. Open either route below for full schedules and Plan B details.</p></div></div><div class="table-scroll"><table class="day-compare-table"><thead><tr><th>Day</th><th>${e(left.shortTitle)}</th><th>${e(right.shortTitle)}</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
+    const optionsLeft = blueprints.map((b) => `<option value="${e(b.id)}" ${b.id === left.id ? "selected" : ""}>${e(b.shortTitle)}</option>`).join("");
+    const optionsRight = blueprints.map((b) => `<option value="${e(b.id)}" ${b.id === right.id ? "selected" : ""}>${e(b.shortTitle)}</option>`).join("");
+
+    return `<section class="route-day-compare panel">
+      <div class="section-head" style="align-items:flex-start;flex-direction:column;gap:12px">
+        <div>
+          <div class="section-kicker">Comparative day-by-day matrix</div>
+          <h2>Side-by-side comparison across all 22 days</h2>
+          <p>Select any two blueprints from the dropdown menus below to inspect their daily neighborhood flow, anchors, and middle-city stops.</p>
+        </div>
+        <div class="compare-selectors" style="display:flex;gap:16px;flex-wrap:wrap;width:100%">
+          <label style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:var(--forest)">Route A (Left column): <select class="select" data-action="change-compare-left" style="width:100%;margin-top:4px">${optionsLeft}</select></label>
+          <label style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:var(--forest)">Route B (Right column): <select class="select" data-action="change-compare-right" style="width:100%;margin-top:4px">${optionsRight}</select></label>
+        </div>
+      </div>
+      <div class="table-scroll"><table class="day-compare-table"><thead><tr><th>Day</th><th>${e(left.shortTitle)}</th><th>${e(right.shortTitle)}</th></tr></thead><tbody>${rows}</tbody></table></div>
+    </section>`;
   }
 
   function renderRoutePrepFacts(trip) {
@@ -1409,6 +1478,11 @@
       case "select-itinerary":
         ui.itineraryId = button.dataset.id || ui.itineraryId;
         window.history.replaceState(null, "", `${viewHash("itineraries")}/${ui.itineraryId}`);
+        renderCurrentView();
+        break;
+      case "filter-corridor":
+        ui.itineraryFilter = ui.itineraryFilter || {};
+        ui.itineraryFilter.corridor = button.dataset.corridor || "all";
         renderCurrentView();
         break;
       case "adopt-itinerary": adoptItinerary(button.dataset.id); break;

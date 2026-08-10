@@ -13,7 +13,7 @@
       "routes": 15,
       "apps": 9,
       "savingsGuides": 61,
-      "routeBlueprints": 2
+      "routeBlueprints": 10
     }
   },
   "sources": [
@@ -1391,7 +1391,7 @@
   },
   "itineraryBlueprintMeta": {
     "title": "November 2026 Korea route blueprints",
-    "version": 1,
+    "version": 2,
     "trip": {
       "arrival": {
         "date": "2026-11-01",
@@ -1420,7 +1420,7 @@
         {
           "date": "2026-11-19",
           "label": "CSAT / Suneung day",
-          "note": "Keep this Busan day deliberately low-stakes. The retained emergency research flags morning traffic management, later office/bank opening, and an approximately 13:05–13:40 aviation hold; verify the current notice before travel."
+          "note": "Keep this Busan day deliberately low-stakes. Morning traffic management, later office/bank opening, and an approximately 13:05–13:40 aviation hold; verify the current notice before travel."
         },
         {
           "date": "2026-11-22",
@@ -1466,17 +1466,17 @@
         "Leave central Seoul early enough to be at ICN around three hours before the 13:00 international departure, following airline advice.",
         "Handle airline, security, and any valid tax-refund process before duty-free browsing or a meal."
       ],
-      "budgetMethodNote": "Hotel examples below multiply the retained research’s indicative one-room nightly USD ranges by the planned nights. They are planning math only: taxes, service fees, room type, weekend/date demand, currency conversion, promotions, and availability can materially change the real total.",
+      "budgetMethodNote": "Hotel examples below multiply the retained research's indicative one-room nightly USD ranges by the planned nights. They are planning math only: taxes, service fees, room type, weekend/date demand, currency conversion, promotions, and availability can materially change the real total.",
       "dailySpendGuardrails": [
-        "Keep food, local transit, and paid activities as separate envelopes rather than relying on the rough draft’s old all-in daily price. Your actual balance depends on how many paid anchors you keep.",
-        "Use the planner’s saved ideas and route days to identify the handful of paid tickets, reservations, spa/cooking-class choices, and special meals that deserve a confirmed budget.",
+        "Keep food, local transit, and paid activities as separate envelopes rather than relying on the rough draft's old all-in daily price. Your actual balance depends on how many paid anchors you keep.",
+        "Use the planner's saved ideas and route days to identify the handful of paid tickets, reservations, spa/cooking-class choices, and special meals that deserve a confirmed budget.",
         "Price the full transportation stack only after the airline, KTX trains, airport transfer, local payment card/pass, and hotel districts are selected."
       ],
       "flightBookingChecklist": [
         "Search to the actual local ICN arrival target first: 21:00 on Nov. 1. The originating SFO calendar date may be earlier because Seoul is far ahead of San Francisco.",
         "Compare live direct and one-stop options by total arrival time, baggage/cancellation terms, seat comfort, airline terminal, and the ability to reach the Seoul hotel after immigration—not by an old fare screenshot.",
         "After purchase, add flight numbers, both airport terminals, airline check-in cutoff, baggage allowance, seat assignment, and travel-insurance details to My plan.",
-        "Do not build a nonrefundable Seoul arrival-night plan until the flight and the hotel’s late check-in policy are confirmed."
+        "Do not build a nonrefundable Seoul arrival-night plan until the flight and the hotel's late check-in policy are confirmed."
       ]
     }
   }
