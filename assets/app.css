@@ -522,7 +522,7 @@ h1, h2, h3, p { margin-top: 0; }
 .day-compare-table tbody th small { display: block; margin-top: 2px; color: var(--ink-faint); font-size: 9px; font-weight: 500; }
 .day-compare-table td { color: var(--ink-soft); }
 .day-compare-table td strong { color: var(--ink); font-size: 11px; }
-.route-comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; margin-bottom: 18px; }
+.route-comparison-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; margin-bottom: 18px; }
 .route-option-card { min-width: 0; padding: 22px; background: var(--paper); border: 1px solid var(--line-strong); border-radius: 17px; box-shadow: var(--shadow-sm); transition: border .16s ease, box-shadow .16s ease, transform .16s ease; }
 .route-option-card:hover { border-color: #91bea9; box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .route-option-card.is-selected { border: 2px solid var(--pine); background: #fbfffc; box-shadow: 0 10px 27px rgba(20,51,45,.12); }

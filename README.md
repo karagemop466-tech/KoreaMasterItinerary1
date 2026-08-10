@@ -10,7 +10,8 @@ A calm, beginner-friendly South Korea trip-planning workspace. **Korea Compass**
 
 - **Private trip setup** — optional dates, group size, and cities; it does not force a default itinerary.
 - **Trip countdown & prep progress** — once dates are set, the overview shows days-to-departure (or your current trip day) plus booking-checklist progress.
-- **Two detailed route blueprints** — compare a Seoul → Daejeon → Busan → Seoul route against a Seoul → Cheonan → Busan → Seoul route for the actual Nov. 1–22, 2026 travel window; load either into the editable planner. Each route deep-links (`#/itineraries/<id>`) and prints as a clean paper itinerary.
+- **10 detailed route blueprints** — compare 5 Seoul → Daejeon → Busan → Seoul routes and 5 Seoul → Cheonan → Busan → Seoul routes for the actual Nov. 1–22, 2026 travel window; load any blueprint into the editable planner. Each route deep-links (`#/itineraries/<id>`) and prints as a clean paper itinerary.
+- **Interactive decision lens & comparative matrix** — weight your priorities (middle-city experience, rail ease, value, flexibility) and compare any 2 blueprints side by side across all 22 days.
 - **Flexible timeline** — add, edit, delete, export, and import plan items when an itinerary is ready. Export as PDF via the browser print dialog, Word-compatible `.doc`, plain `.txt`, JSON, calendar (`.ics`), or CSV.
 - **Searchable discovery library** — destinations, dated events, long-form activity ideas, restaurants, hotels, transit routes, and savings notes. Ranked search with highlighted matches, a `/` keyboard shortcut, and a "During my trip dates" filter that surfaces events overlapping your travel window.
 - **Offline-ready PWA** — a service worker caches the shell and research data, so a visited planner keeps working without roaming data; it can be installed to a phone home screen.
@@ -21,19 +22,31 @@ A calm, beginner-friendly South Korea trip-planning workspace. **Korea Compass**
 - **Source desk** — clear provenance back to every linked repository and to the locally preserved snapshot.
 - **Portable data** — export/import the user’s own setup, saved ideas, checklist state, and plan items as JSON. No account or backend is used.
 
-The current generated catalog includes **6 research sources**, **2 detailed November 2026 route blueprints**, **15 destinations**, **15 transport routes**, **34 stays**, **535 food bookmarks**, **110 dated events**, **443 activity notes**, **61 savings notes**, and **9 practical apps**.
+The current generated catalog includes **6 research sources**, **10 detailed November 2026 route blueprints**, **15 destinations**, **15 transport routes**, **34 stays**, **535 food bookmarks**, **110 dated events**, **443 activity notes**, **61 savings notes**, and **9 practical apps**.
 
 ## November 2026 route blueprints
 
-The app's **Route options** screen contains a detailed, editable planning version of both routes. The readable documents are also committed for review or printing:
+The app's **Route options** screen contains detailed, interactive versions of all 10 blueprints. The readable documents are also committed for review or printing:
 
-- [Compare both route blueprints](itineraries/README.md)
-- [Seoul → Daejeon → Busan → Seoul](itineraries/seoul-daejeon-busan.md)
-- [Seoul → Cheonan → Busan → Seoul](itineraries/seoul-cheonan-busan.md)
+- [Compare all 10 route blueprints overview](itineraries/README.md)
 
-Both use the corrected travel window: **arrive at ICN at 21:00 on November 1, 2026; depart ICN at 13:00 on November 22, 2026**. They use a 7-night first Seoul leg, 5 nights in the middle city, 7 nights in Busan, and 2 final Seoul nights. That final Seoul buffer is intentional: it protects the international departure from a risky same-day Busan-to-ICN connection.
+### Corridor 1: Seoul · Daejeon · Busan (5 Blueprints)
+- [1. Classic Explorer (Balanced Heritage & City Depth)](itineraries/seoul-daejeon-busan-classic.md) — Gyeongbokgung, National Science Museum, Sung Sim Dang 1956 bakery, Haeundae Blueline beach train, Jagalchi.
+- [2. Foodie & Market Trail (Gastronomy & Street Eats)](itineraries/seoul-daejeon-busan-foodie.md) — Gwangjang, Majang 1++ Hanwoo beef, Daejeon kalguksu & dubu duruchigi, Jagalchi live king crab, Bupyeong night market.
+- [3. Heritage & Fine Arts (Joseon Dynasty & Aesthetics)](itineraries/seoul-daejeon-busan-heritage.md) — Changdeokgung Huwon Secret Garden, Leeum Museum, Lee Ungno modernist gallery, Beomeosa mountain temple, F1963 arts space.
+- [4. Wellness & Nature (Thermal Springs & Mountain Ridges)](itineraries/seoul-daejeon-busan-wellness.md) — Bukhansan National Park, Yuseong natural mineral hot springs, Gyejoksan red clay earthing, Centum Spa Land hydrotherapy.
+- [5. Modern & Pop Culture (K-Innovation & Esports)](itineraries/seoul-daejeon-busan-modern.md) — DDP, Seongsu concept lofts, LoL Park LCK esports arena, KAIST innovation campus, Gwangalli Saturday drone show.
 
-Each day now has explicit target schedule windows, operational/routing notes, reservation checks, food rhythm, and Plan B. The schedules are intentionally detailed without pretending that an old flight price, KTX time, attraction hour, or event listing is a current booking fact. Because Seoul is well ahead of San Francisco, the outbound SFO calendar date must be reconciled from the actual airline ticket rather than inferred from the local Nov. 1 ICN arrival.
+### Corridor 2: Seoul · Cheonan · Busan (5 Blueprints)
+- [6. Rail Classic Explorer (Scenic Rail Corridor & Independence Heritage)](itineraries/seoul-cheonan-busan-rail.md) — Lightning 35-min KTX leap, Independence Hall of Korea & Maple Tree Tunnel, Gakwonsa Bronze Buddha, Choryang 168 monorail.
+- [7. Value & Local Living (Smart Value & Neighborhood Markets)](itineraries/seoul-cheonan-busan-value.md) — Free Naksan city wall sunset, Tongin brass coin lunchbox, Cheonan Namsan market kalguksu, Dadaepo sunset wetlands.
+- [8. Gentle Leisure & Family Comfort (Family Pacing & Open Parks)](itineraries/seoul-cheonan-busan-leisure.md) — Relaxed 10:00 AM starts, Lotte World Tower & Aquarium, Sono Belle thermal waterpark, Hong Dae-yong planetarium, Haeundae Sky Capsules.
+- [9. Contemporary Art & Architecture (World Sculpture Parks & Design)](itineraries/seoul-cheonan-busan-arts.md) — Arario Museum in SPACE, Arario Sculpture Park Cheonan (Damien Hirst, Keith Haring), P.ARK shipyard amphitheater, MoCA Busan.
+- [10. Regional Gourmet & Artisans (Temple Cuisine & Historic Lineages)](itineraries/seoul-cheonan-busan-gourmet.md) — Balwoo Gongyang Michelin temple food, 1934 Hakhwa Hodu-gwaja, Byeongcheon soondae alley, Dongnae royal pajeon & master makgeolli.
+
+All routes use the corrected travel window: **arrive at ICN at 21:00 on November 1, 2026; depart ICN at 13:00 on November 22, 2026 (21 nights / 22 calendar days)**. They use a 7-night first Seoul leg, 5 nights in the middle city, 7 nights in Busan, and 2 final Seoul nights. That final Seoul buffer is intentional: it protects the international departure from a risky same-day Busan-to-ICN connection.
+
+Each day has explicit target schedule windows, operational/routing notes, reservation checks, food rhythm, cost posture, watchouts, and Plan B fallbacks.
 
 ## Research provenance
 
@@ -103,4 +116,4 @@ python3 scripts/make_icons.py
 
 ## Planned next step
 
-Open **Route options**, compare the Daejeon and Cheonan middle-city tradeoffs, and use **Use as my editable plan** on the preferred route. The planner will load all 22 calendar days as editable items; hotel confirmations, exact KTX trains, restaurant reservations, and any personal itinerary changes can then be layered in without rebuilding the master repository. From Route options you can export either complete blueprint as PDF (browser print), Word-compatible `.doc`, or `.txt`; from My plan you can export the edited version in those formats plus JSON, calendar, and CSV.
+Open **Route options**, filter and compare the 10 route blueprints, adjust the decision lens sliders, and use **Use as my editable plan** on your preferred blueprint. The planner will load all 22 calendar days as editable items; hotel confirmations, exact KTX trains, restaurant reservations, and any personal itinerary changes can then be layered in without rebuilding the master repository. From Route options you can export any complete blueprint as PDF (browser print), Word-compatible `.doc`, or `.txt`; from My plan you can export the edited version in those formats plus JSON, calendar, and CSV.
