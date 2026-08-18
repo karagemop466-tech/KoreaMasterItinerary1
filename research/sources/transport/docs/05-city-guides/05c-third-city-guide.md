@@ -22,7 +22,7 @@ In early-to-mid November, Gyeongju's **Bulguksa Temple** and **Daereungwon Tumul
 ### 2. How to Get There & Cost
 * **From Busan Station to Singyeongju Station:**
   * **Time:** 35 minutes via KTX or SRT!
-  * **Cost:** 11,000 KRW ($7.86 USD) per person | **22,000 KRW ($15.71 USD) for 2 travelers.**
+  * **Cost:** 13,000 KRW ($9.29 USD) per person | **26,000 KRW ($18.57 USD) for 2 travelers.**
 * **From Singyeongju Station to Central Gyeongju:**
   * Take **Bus #700** (~30 mins, 1,500 KRW with T-money) or a **Kakao T Taxi** (~15 minutes, ~15,000 KRW / $10.70 USD) into the historic center.
 

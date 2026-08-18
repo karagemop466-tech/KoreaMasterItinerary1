@@ -38,7 +38,7 @@ The app's **Route options** screen contains detailed, interactive versions of al
 - [5. Modern & Pop Culture (K-Innovation & Esports)](itineraries/seoul-daejeon-busan-modern.md) — DDP, Seongsu concept lofts, LoL Park LCK esports arena, KAIST innovation campus, Gwangalli Saturday drone show.
 
 ### Corridor 2: Seoul · Cheonan · Busan (5 Blueprints)
-- [6. Rail Classic Explorer (Scenic Rail Corridor & Independence Heritage)](itineraries/seoul-cheonan-busan-rail.md) — Lightning 35-min KTX leap, Independence Hall of Korea & Maple Tree Tunnel, Gakwonsa Bronze Buddha, Choryang 168 monorail.
+- [6. Rail Classic Explorer (Scenic Rail Corridor & Independence Heritage)](itineraries/seoul-cheonan-busan-rail.md) — Lightning 35-min KTX leap, Independence Hall of Korea & Maple Tree Tunnel, Gakwonsa Bronze Buddha, Choryang 168 Stairs & Haneul-gil inclined elevator.
 - [7. Value & Local Living (Smart Value & Neighborhood Markets)](itineraries/seoul-cheonan-busan-value.md) — Free Naksan city wall sunset, Tongin brass coin lunchbox, Cheonan Namsan market kalguksu, Dadaepo sunset wetlands.
 - [8. Gentle Leisure & Family Comfort (Family Pacing & Open Parks)](itineraries/seoul-cheonan-busan-leisure.md) — Relaxed 10:00 AM starts, Lotte World Tower & Aquarium, Sono Belle thermal waterpark, Hong Dae-yong planetarium, Haeundae Sky Capsules.
 - [9. Contemporary Art & Architecture (World Sculpture Parks & Design)](itineraries/seoul-cheonan-busan-arts.md) — Arario Museum in SPACE, Arario Sculpture Park Cheonan (Damien Hirst, Keith Haring), P.ARK shipyard amphitheater, MoCA Busan.

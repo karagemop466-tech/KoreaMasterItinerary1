@@ -568,7 +568,7 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Reservation / verification note:** Book KTX Daejeon→Busan on Korail app 30 days prior.
 
-**Cost posture:** KTX ticket ~₩28,500; The Bay 101 access is free.
+**Cost posture:** KTX ticket ~₩36,200; The Bay 101 access is free.
 
 **Watch for:** To capture the puddle reflection photo at The Bay 101, bring a small water bottle to create a clean surface reflection.
 
@@ -862,7 +862,7 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Reservation / verification note:** Verify airline departure terminal (T1 vs T2) before boarding AREX.
 
-**Cost posture:** AREX Express ticket ₩11,000 per person.
+**Cost posture:** AREX Express ticket ₩13,000 per person (fare raised from ₩11,000; verified 2026).
 
 **Watch for:** Terminal 2 is 8 minutes further on the AREX line than Terminal 1.
 

@@ -3889,11 +3889,11 @@
   },
   {
     "id": "idea-busan-67",
-    "title": "168 Stairs & Monorail (Choryang-dong)",
+    "title": "168 Stairs & Haneul-gil Inclined Elevator (Choryang-dong)",
     "city": "Busan",
     "category": "Ideas",
     "status": "Always on",
-    "snippet": "Ride the monorail up and walk through the hillside Sanbok-doro cafes.",
+    "snippet": "Ride the inclined elevator up and walk through the hillside Sanbok-doro cafes. (Note: the old 8-person monorail no longer exists — do not plan around it.)",
     "officialUrl": "https://www.bsdonggu.go.kr",
     "source": "fun",
     "sourcePath": "research/sources/fun/busan.md",

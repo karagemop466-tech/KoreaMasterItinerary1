@@ -147,3 +147,43 @@ All fixes were applied on branch `arena/01a01665-koreamasteritinerary1` and the 
 - Activities: **6 duplicate blocks removed** at the source (`research/sources/fun/seoul.md` ×2, `busan.md` ×1, `daejeon-cheonan.md` ×3); regenerated = 437 entries, zero duplicate titles.
 
 **Retractions (original report was wrong; upstream data was right):** Dear Evan Hansen Aug 1–Nov 1 window (§4.3) and "Paradise City Culture Park" venue naming (§4.5) were both confirmed correct against official sources before any change was made to them.
+
+---
+
+## 9. 🔁 Second-pass independent audit (2026-08-18, branch `arena/01a01698-koreamasteritinerary1`)
+
+A full independent re-verification pass was run **without trusting sections 1–8 above**: every collection was re-enumerated programmatically (counts, duplicates, template-name patterns, URL/coordinate/date sanity), and the factual claims — including ones this report previously marked "verified" — were re-checked against official/primary sources.
+
+### 9.1 Prior remediation confirmed genuine
+
+The §8 remediation is real in the merged tree: food = 50 rows (0 template patterns), activities = 437 (0 duplicate titles), Busan Metro fares corrected, MOFA number relabeled, VAT = 10%, README/meta counts consistent. No hallucinated "fixes" detected.
+
+### 9.2 Re-verified clean against official/primary sources (spot re-check of prior claims)
+
+- **CSAT/Suneung day** used by all 10 blueprints = **Thu Nov 19, 2026** ✅ (Ministry of Education press release).
+- **Events re-confirmed** (organizer/official ticketing/press): BANKSY Still Here (Jul 22–Nov 3, ALT.1, ₩23,000/₩18,000 — exact), My Chemical Romance (Nov 7, Paradise City Culture Park), Jujutsu Kaisen in Concert (Nov 7–8, Grand Peace Palace — NOL official), Jason Mraz (Nov 14, KINTEX — jasonmraz.com), Kings of Convenience (Nov 18, Sejong Grand Theater), 5SOS (Nov 19, KINTEX Hall 1 — Interpark/NOL), MMA 2026 (Nov 14–15 Gocheok), KGMA 2026 (Nov 7–8 Gocheok), MAMA 2026 (Nov 20–21 Kyocera Dome Osaka — CJ ENM newsroom), G-STAR 2026 (Nov 19–22 BEXCO — K-GAMES), Busan Fireworks Festival (Sat Nov 7 — busanfireworks.com official), Busan Biennale "Dissident Chorus" (Aug 29–Nov 1; MoCA + Space Wonji + former Nam High School — all 3 venues match), Daejeon Wine EXPO (Nov 6–8 DCC — djwinefair.com), JTBC Seoul Marathon (Nov 1, Sangam start — en.marathon.jtbc.com), ELISABETH (Aug 16–Nov 15 Blue Square), Hell's Kitchen (Jul 24–Nov 8 GS Arts Center — Yes24), Gwanghwamun Love Song (Sep 6–Nov 15 D-Cube Link — NOL/KBS), Dear Evan Hansen (Aug 1–Nov 1 Chungmu — culture.go.kr), Leeum Inside Other Spaces (May 5–Nov 29 — leeumhoam.org), MMCA×LG OLED Christine Sun Kim (Jul 31–Nov 29 Seoul Box — MMCA/Yonhap), Changgyeonggung Mulbit Yeonhwa fall (Sep 8–Nov 8), LoL Worlds 2026 final (Nov 14, Barclays Center — repo correctly frames as watch party).
+- **K League 2 fixtures against the published 2026 schedule:** Nov 7 Seoul E-Land vs Jeonnam (Mokdong 16:30) ✅ · Nov 8 Cheonan City vs Busan IPark (Cheonan Sports Complex 14:00) ✅ · Nov 21 Busan IPark vs **Chungbuk Cheongju** (Gudeok 14:00) ✅ (the §4.2 name fix is right) · Nov 22 Seoul E-Land vs Chungnam Asan (Mokdong 16:30, R33) ✅.
+- **OK Savings Bank men's volleyball** relocation Ansan→Busan (Gangseo Gymnasium, from 2025-26) ✅ (KOVO board approval, Busan city).
+- **Entry rules:** K-ETA exemption (incl. U.S.) through **Dec 31, 2026** ✅ (VisitKorea + ROK consulates); **e-Arrival Card sole method from Jan 1, 2026** (paper card discontinued) ✅.
+- **Fares re-confirmed:** KTX Seoul–Busan ₩59,800 · SRT ₩52,600 · Seoul→Daejeon ₩23,700 · Seoul→Cheonan-Asan ₩14,100 · Seoul subway base ₩1,550 (post-Jun-2025) · Seoul/Busan taxi base ₩4,800 · Climate Card 5-day tourist pass ₩15,000 · Visit Busan Pass 24h ₩55,000 · Gwangalli M Drone Show winter schedule Sat 19:00 & 21:00 (matches blueprint text exactly).
+- **Blueprint signature venues verified real:** Arario Sculpture Plaza Cheonan (Damien Hirst *Hymn*/*Charity*, Keith Haring works on-site — press-documented), P.ARK Yeongdo shipyard culture complex, Hong Dae-yong Science Museum planetarium (Cheonan Susin-myeon), Sono Belle Cheonan, Byeongcheon sundae alley, Gyejoksan red-clay trail.
+- **§7 open items resolved:** **Arario Museum in SPACE is operating** (official NOL/Yanolja ticketing lists Tue–Sun 10:00–19:00 through 2026 — remove the "temporarily closed?" doubt); **Werk (베르크) Roasters Jeonpo is operating** (official site live, current listings). **August Scent (어거스트센트)** — the cafe substituted during §8 — re-verified real at 천안 공설시장2길 9-2, ~333 m from Cheonan Station Exit 1.
+
+### 9.3 🔴 New errors found in this pass (all now FIXED and catalogs regenerated)
+
+1. **Choryang 168 Monorail does not exist anymore** — the single biggest issue this pass. The 8-person monorail was ruled unsafe, **retired in 2023 and demolished**; a 12-person inclined elevator ("초량168계단 하늘길") replaced it, **operating since Mar 11, 2025** (Busan Dong-gu / Seoul Shinmun / Namu). Blueprints #6 (Rail) and #7 (Value) headlined riding the monorail ("free public transit; open daily 06:00–21:00" — fabricated hours for a demolished system), and it appeared in `research/sources/fun/busan.md` §67, `activities.json`, and the README highlight line. **Fixed everywhere** to the 168 Stairs + Haneul-gil inclined elevator (with Kim Min-bu observatory), and the 8-passenger "capacity watchout" updated to the elevator's 12.
+2. **AREX Express fare stale: ₩11,000 → ₩13,000** (current official adult fare; ~₩11,400–11,500 only via online discount platforms). Fixed in `transport/data/routes.json` (both duplicate entries), docs 05a/05c/06/19, emergency docs 07 & 10 (which claimed "₩9,000–11,000"), and all 10 blueprint scripts. **AREX All-Stop also stale: ₩4,450 → ~₩4,750** (T1, transit card, post-Jun-2025 base-fare rise; T2 ≈ ₩5,350).
+3. **Daejeon→Busan KTX fare wrong: "~₩28,500" → ₩36,200** (standard class, main line; even the cheapest via-Gupo routing is ₩30,000 — ₩28,500 matches no published fare). Fixed in all 5 Seoul·Daejeon·Busan blueprints.
+4. **Cheonan-Asan→Busan KTX fare wrong: "~₩39,200" → ₩46,500** (standard class, main line; via-Gupo ≈ ₩38,800 but that is the slower routing and not what the blueprints describe). Fixed in all 5 Seoul·Cheonan·Busan blueprints.
+5. **Malformed source URL** for Taepyung Sogukbap in `food.json` (`…/svc/contents/vcontsId=189445` — not a valid VisitKorea URL shape). Replaced with a standard Naver Map search URL like its peers.
+6. **BRSO venue over-claim:** Nov 12–13, 2026 dates are confirmed, but Korean press lists **only Nov 13 at Seoul Arts Center; the Nov 12 venue was still unannounced ("장소 미정")**. Venue field now says so.
+7. **Seoul Outdoor Library nuance:** 2026 season is **Apr 23–Jun 28 + Sep 4–Nov 1, Fri–Sun only** (summer break) — note added so no one plans a weekday visit.
+8. **Bus 86 fare in Value blueprint: ₩1,500 → ₩1,550** (consistent with the repo's own corrected Busan bus fare table).
+
+### 9.4 Advisory (no repo change needed)
+
+- **Kingdom Buffet (Daejeon)** is real but currently lists **Fri–Sun operation only** — check before going midweek.
+- The "500+ drones" phrasing for Gwangalli undersells current shows (700–1,000+) — conservative, not wrong.
+- Rounded/estimated prices flagged "~" (meals, day budgets) and hotel star/price bands remain planning estimates, not audited facts.
+
+**Second-pass verdict:** After the fixes above, no fabricated venues, restaurants, hotels, events, or phone numbers remain detectable in the served catalog. The three fare errors and the demolished-monorail recommendation were the only substantive hallucinations surviving the first audit.

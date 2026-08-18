@@ -7,7 +7,7 @@
 
 ## Route decision
 
-A brilliantly cost-effective 21-night itinerary leveraging Korea's incredible free public treasures (Seoul City Wall, National Palace Museum, Independence Hall, Choryang Monorail, Dadaepo reed trails) alongside authentic market feasts and budget-smart Cheonan hotel pricing.
+A brilliantly cost-effective 21-night itinerary leveraging Korea's incredible free public treasures (Seoul City Wall, National Palace Museum, Independence Hall, Choryang 168 Stairs hillside elevator, Dadaepo reed trails) alongside authentic market feasts and budget-smart Cheonan hotel pricing.
 
 **Recommendation:** Choose this route if you want to stretch your travel budget further while experiencing genuine Korean everyday neighborhood life, street snacks, and panoramic public parks.
 
@@ -569,25 +569,25 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Reservation / verification note:** Book KTX Cheonan-Asan→Busan on Korail app 30 days in advance.
 
-**Cost posture:** KTX ticket ~₩39,200; Beach and Dongbaek trail are free.
+**Cost posture:** KTX ticket ~₩46,500; Beach and Dongbaek trail are free.
 
 **Watch for:** Dongbaek Island trail is paved and lighted; Nurimaru APEC House closes at 17:00.
 
 **Plan B:** SEA LIFE Busan Aquarium on Haeundae beachfront provides indoor shelter.
 
-### Sat, Nov 14, 2026 — Busan · Free Hillside Monorails & Old Alleys
+### Sat, Nov 14, 2026 — Busan · Free Hillside Stair Lifts & Old Alleys
 
 **Stay:** Busan · Haeundae Beachfront
 
-**Day anchor:** Choryang 168 Monorail (Free Public Lift) → Sanbokdoro Panoramic Bus → Saturday Drones
+**Day anchor:** Choryang 168 Stairs & Haneul-gil Elevator (Free Public Lift) → Sanbokdoro Panoramic Bus → Saturday Drones
 
-#### Historic Hillside Monorails & Saturday Night Drones
+#### Historic Hillside Stair Elevator & Saturday Night Drones
 
 #### Target schedule windows
 
 | Window | Plan | Operational note |
 | --- | --- | --- |
-| 09:30–12:30 | **Choryang 168 Monorail & Hillside Observation Deck** — Ride the free public monorail climbing steeply up 168 stairs into the historic hillside village, enjoying sweeping panoramic views across Busan Port. | Busan Station Line 1 Exit 7, 10-min walk. |
+| 09:30–12:30 | **Choryang 168 Stairs & Haneul-gil Inclined Elevator & Observation Deck** — Ride the free 12-person inclined elevator (opened March 2025, replacing the old monorail retired in 2023) alongside the 168 Stairs into the historic hillside village, enjoying sweeping panoramic views across Busan Port from the Kim Min-bu observatory. | Busan Station Line 1 Exit 7, 10-min walk. |
 | 12:45–14:00 | **Choryang Bulgogi Alley Lunch** — Savor sweet soy-marinated beef bulgogi with fresh leafy greens. | Choryang dining lane. |
 | 14:30–16:30 | **Sanbokdoro (Mountain-Side Road) Scenic Bus Route** — Ride local city bus #86 along the mountain-hugging highway, gazing out over Busan harbor and shipyards for regular bus fare. | Bus 86 from Choryang. |
 | 17:00–18:30 | **Gwangalli Beach Sunset Walk** — Watch sunset illuminate Gwangan Suspension Bridge. | Gwangan Station Line 2. |
@@ -595,14 +595,14 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 #### Why this sequence works
 
-- **Free Public Transit Marvel:** The 168 Monorail and Bus 86 provide spectacular city panoramas for ordinary public transit fares.
+- **Free Public Transit Marvel:** The 168 Stairs inclined elevator and Bus 86 provide spectacular city panoramas for free or ordinary public transit fares.
 - **Saturday Night Drone Wonder:** Timed specifically for Saturday evening to experience Gwangalli's free weekly drone spectacle.
 
 **Food rhythm:** Lunch: Choryang marinated beef bulgogi (~₩10,000). Dinner: Gwangalli beachfront Korean fried chicken and draft beer (~₩18,000).
 
-**Reservation / verification note:** Choryang 168 Monorail is free public transit; open daily 06:00–21:00.
+**Reservation / verification note:** Choryang 168 Stairs are open at all times; the free inclined elevator runs daytime hours — the former monorail was removed in 2023 and replaced by this elevator in March 2025.
 
-**Cost posture:** Monorail free; Bus 86 ₩1,500; Drone show free public viewing on the sand.
+**Cost posture:** Elevator free; Bus 86 ₩1,550; Drone show free public viewing on the sand.
 
 **Watch for:** Arrive at Gwangalli Beach 20 mins early for good sand seating.
 
@@ -864,7 +864,7 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Reservation / verification note:** Verify terminal (T1 vs T2) based on airline ticket before boarding AREX.
 
-**Cost posture:** AREX Express ticket ₩11,000 per person.
+**Cost posture:** AREX Express ticket ₩13,000 per person (fare raised from ₩11,000; verified 2026).
 
 **Watch for:** Terminal 2 is 8 minutes further on the AREX line than Terminal 1; check your terminal code.
 
