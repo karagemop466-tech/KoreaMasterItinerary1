@@ -268,7 +268,7 @@ def get_sdb_foodie():
             ],
             "Lunch: Choryang Milmyeon (cold wheat noodles & giant steamed mandu). Dinner: Haeundae Market grilled sea eel, seafood pajeon, and ssiat hotteok.",
             "Book KTX Daejeon→Busan on Korail app 30 days prior.",
-            "KTX ticket ~₩28,500; Milmyeon ~₩8,500; Market dinner ~₩25,000.",
+            "KTX ticket ~₩36,200; Milmyeon ~₩8,500; Market dinner ~₩25,000.",
             "Sea eel is grilled with spicy red pepper sauce; ask for non-spicy salt grill (sogeum-gui) if preferred.",
             "Haeundae market is a covered pedestrian street."
         ),
@@ -450,7 +450,7 @@ def get_sdb_foodie():
             ],
             "Breakfast: ICN Airport Korean Food Street (warm abalone porridge or beef seolleongtang soup).",
             "Verify your airline departure terminal (T1 vs T2) before boarding AREX.",
-            "AREX Express ticket ₩11,000 per person.",
+            "AREX Express ticket ₩13,000 per person (fare raised from ₩11,000; verified 2026).",
             "Terminal 2 is 8 minutes further on the AREX line than Terminal 1.",
             "If AREX express sells out, AREX all-stop commuter train runs every 8 minutes."
         )

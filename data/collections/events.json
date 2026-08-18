@@ -280,11 +280,11 @@
     "category": "Music / Concert",
     "status": "Confirmed",
     "statusDetail": "Confirmed (ticket platforms)",
-    "venue": "Seoul Arts Center Concert Hall",
+    "venue": "Seoul Arts Center Concert Hall (Nov 13; Nov 12 venue TBA per 2026 press)",
     "price": "TBD",
     "hours": "Evening",
     "officialSources": "https://www.ticketlink.co.kr",
-    "notes": "World-class classical; two nights",
+    "notes": "World-class classical; two nights (Stravinsky Rite of Spring / Mahler 2); Nov 13 confirmed at Seoul Arts Center, Nov 12 venue not yet announced",
     "source": "fun",
     "sourcePath": "research/sources/fun/events.csv"
   },
@@ -471,7 +471,7 @@
     "price": "Free",
     "hours": "Daytime",
     "officialSources": "https://english.visitseoul.net/events/2026SeoulOutdoorLibrary/ENPvro3vg",
-    "notes": "Ends Nov 1 - catch on day one",
+    "notes": "Fall session runs Sep 4 - Nov 1 (Fri-Sun only; summer break Jun 29-Sep 3). Ends Nov 1 - catch on day one",
     "source": "fun",
     "sourcePath": "research/sources/fun/events.csv"
   },

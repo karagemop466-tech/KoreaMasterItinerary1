@@ -279,7 +279,7 @@ def get_scb_rail():
             ],
             "Lunch: Choryang Milmyeon (cold wheat noodles & giant dumplings). Dinner: Haeundae Market grilled seafood hot pot & ssiat hotteok.",
             "Book KTX Cheonan-Asan→Busan on Korail app 30 days in advance.",
-            "KTX ticket ~₩39,200 per person.",
+            "KTX ticket ~₩46,500 per person.",
             "Dongbaek Island trail is paved and lighted; Nurimaru APEC House closes at 17:00.",
             "SEA LIFE Busan Aquarium on Haeundae beachfront provides indoor shelter."
         ),
@@ -326,24 +326,24 @@ def get_scb_rail():
             "Jagalchi 7-story indoor market building provides complete shelter."
         ),
         # Day 16: Nov 16
-        make_day(15, "Busan", "Hillside Monorails & Mountain Fortress", "Busan · Haeundae Beachfront",
-            "Choryang 168 Monorail & Sanbokdoro Scenic Road → Beomeosa Mountain Temple",
-            "Free Hillside Public Monorails & 1,300-Year Silla Sanctuaries",
+        make_day(15, "Busan", "Hillside Stair Lifts & Mountain Fortress", "Busan · Haeundae Beachfront",
+            "Choryang 168 Stairs & Haneul-gil Elevator & Sanbokdoro Scenic Road → Beomeosa Mountain Temple",
+            "Free Hillside Stair Elevator & 1,300-Year Silla Sanctuaries",
             [
-                {"time": "09:30–12:00", "title": "Choryang 168 Monorail & Sanbokdoro (Mountain Road)", "detail": "Ride the unique free public monorail climbing steeply up 168 stairs into the historic hillside village, enjoying sweeping panoramic views across Busan Port from the observation deck.", "logistics": "Busan Station Line 1 Exit 7, 10-min walk."},
+                {"time": "09:30–12:00", "title": "Choryang 168 Stairs & Haneul-gil Inclined Elevator (Sanbokdoro)", "detail": "Ride the free 12-person inclined elevator (opened March 2025, replacing the old monorail that was retired in 2023) alongside the 168 Stairs up into the historic hillside village, pausing at the Kim Min-bu observatory for sweeping panoramic views across Busan Port.", "logistics": "Busan Station Line 1 Exit 7, 10-min walk."},
                 {"time": "12:15–13:30", "title": "Choryang Bulgogi Alley Lunch", "detail": "Savor sweet soy-marinated beef bulgogi with fresh ssam greens.", "logistics": "Choryang dining lane."},
                 {"time": "14:00–17:00", "title": "Beomeosa Mountain Temple & Forest Trail", "detail": "Ascend Mount Geumjeong to tour one of Korea's premier Buddhist headquarters founded in 678 AD, surrounded by tranquil bamboo groves.", "logistics": "Beomeosa Station Line 1 Exit 5 + Bus 90."},
                 {"time": "17:30–19:30", "title": "Oncheonjang Natural Hot Spring Bath", "detail": "Soak in historic mineral hot springs to soothe legs.", "logistics": "Oncheonjang Station Line 1."},
                 {"time": "20:00–21:30", "title": "Dongnae Scallion Pajeon & Makgeolli Dinner", "detail": "Enjoy 80-year-old royal scallion seafood pancake with Geumjeongsanseong rice wine.", "logistics": "Dongnae dining street."}
             ],
             [
-                {"label": "Authentic Hillside Rail", "text": "The 168 Monorail is a real public transit marvel providing free mobility to hillside residents."},
+                {"label": "Authentic Hillside Lift", "text": "The 168 Stairs inclined elevator ('Choryang 168 Haneul-gil') is free public mobility infrastructure for hillside residents — it replaced the retired 8-person monorail in March 2025."},
                 {"label": "Mountain Sanctuary", "text": "Beomeosa offers deep Buddhist serenity on the slopes of Mount Geumjeong."}
             ],
             "Lunch: Choryang marinated beef bulgogi. Dinner: Dongnae Halmae Pajeon (royal scallion seafood pancake) with mountain makgeolli.",
-            "Choryang 168 Monorail is free public transit; open daily 06:00–21:00.",
-            "Monorail free; Beomeosa free; Pajeon dinner ~₩25,000 per person.",
-            "Monorail has limited capacity (8 passengers per car); short wait during morning peak.",
+            "Choryang 168 Stairs are open at all times; the free inclined elevator runs daytime hours — note the former monorail was removed in 2023 and replaced by this elevator in March 2025.",
+            "Elevator free; Beomeosa free; Pajeon dinner ~₩25,000 per person.",
+            "Elevator carries 12 passengers per trip; short wait possible during morning peak.",
             "Beomeosa museum and Oncheonjang spa are completely indoor."
         ),
         # Day 17: Nov 17
@@ -465,7 +465,7 @@ def get_scb_rail():
             ],
             "Breakfast: Hotel café or airport lounge / Korean Food Street at ICN Terminal (bibimbap/soup).",
             "Verify terminal (T1 vs T2) based on airline ticket before boarding AREX.",
-            "AREX Express ticket ₩11,000 per person.",
+            "AREX Express ticket ₩13,000 per person (fare raised from ₩11,000; verified 2026).",
             "Terminal 2 is 8 minutes further on the AREX line than Terminal 1; check your terminal code.",
             "If AREX express sells out, AREX All-Stop commuter train departs every 6–10 minutes."
         )

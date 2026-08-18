@@ -467,12 +467,12 @@ Sorted by date. Everything links to an official source. Status legend: ✅ confi
 - **Official source:** [busan.go.kr/mch](https://www.busan.go.kr/mch) · Line 1 Toseong Station (Exit 2)
 - **Beginner notes:** Historic red-brick residence tucked away on a peaceful hillside near Gudeok Stadium.
 
-## 67) 🪜 168 Stairs & Monorail (Choryang-dong) — 🔁 always on (FREE)
-- **What:** Steep 168-step historic hillside staircase in Choryang-dong behind Busan Station, featuring a free public inclined monorail cab offering harbor views
-- **Hours:** Monorail daily **07:00–21:00**
+## 67) 🪜 168 Stairs & Haneul-gil Inclined Elevator (Choryang-dong) — 🔁 always on (FREE)
+- **What:** Steep 168-step historic hillside staircase in Choryang-dong behind Busan Station; a free 12-person inclined elevator ("Choryang 168 Haneul-gil", opened 11 Mar 2025, replacing the monorail retired in 2023) climbs alongside with harbor views from the Kim Min-bu observatory
+- **Hours:** Stairs open 24/7; elevator daytime hours (check on site)
 - **Price:** **FREE**
 - **Official source:** [bsdonggu.go.kr](https://www.bsdonggu.go.kr) · Line 1 Busan Station (Exit 7 + 10 min walk)
-- **Beginner notes:** Ride the monorail up and walk through the hillside Sanbok-doro cafes.
+- **Beginner notes:** Ride the inclined elevator up and walk through the hillside Sanbok-doro cafes. (Note: the old 8-person monorail no longer exists — do not plan around it.)
 
 ## 68) ☕ Ibagu Craft Workshop & Sanbok-doro Viewpoint — 🔁 always on (FREE)
 - **What:** Scenic mountain-ring road (*Sanbok-doro*) above Busan Station lined with retro observation decks, local craft studios, and ocean view tea houses

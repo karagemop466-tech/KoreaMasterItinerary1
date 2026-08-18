@@ -569,7 +569,7 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Reservation / verification note:** Book KTX Cheonan-Asan→Busan on Korail app 30 days in advance.
 
-**Cost posture:** KTX ticket ~₩39,200 per person.
+**Cost posture:** KTX ticket ~₩46,500 per person.
 
 **Watch for:** Dongbaek Island trail is paved and lighted; Nurimaru APEC House closes at 17:00.
 
@@ -641,19 +641,19 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Plan B:** Jagalchi 7-story indoor market building provides complete shelter.
 
-### Mon, Nov 16, 2026 — Busan · Hillside Monorails & Mountain Fortress
+### Mon, Nov 16, 2026 — Busan · Hillside Stair Lifts & Mountain Fortress
 
 **Stay:** Busan · Haeundae Beachfront
 
-**Day anchor:** Choryang 168 Monorail & Sanbokdoro Scenic Road → Beomeosa Mountain Temple
+**Day anchor:** Choryang 168 Stairs & Haneul-gil Elevator & Sanbokdoro Scenic Road → Beomeosa Mountain Temple
 
-#### Free Hillside Public Monorails & 1,300-Year Silla Sanctuaries
+#### Free Hillside Stair Elevator & 1,300-Year Silla Sanctuaries
 
 #### Target schedule windows
 
 | Window | Plan | Operational note |
 | --- | --- | --- |
-| 09:30–12:00 | **Choryang 168 Monorail & Sanbokdoro (Mountain Road)** — Ride the unique free public monorail climbing steeply up 168 stairs into the historic hillside village, enjoying sweeping panoramic views across Busan Port from the observation deck. | Busan Station Line 1 Exit 7, 10-min walk. |
+| 09:30–12:00 | **Choryang 168 Stairs & Haneul-gil Inclined Elevator (Sanbokdoro)** — Ride the free 12-person inclined elevator (opened March 2025, replacing the old monorail that was retired in 2023) alongside the 168 Stairs up into the historic hillside village, pausing at the Kim Min-bu observatory for sweeping panoramic views across Busan Port. | Busan Station Line 1 Exit 7, 10-min walk. |
 | 12:15–13:30 | **Choryang Bulgogi Alley Lunch** — Savor sweet soy-marinated beef bulgogi with fresh ssam greens. | Choryang dining lane. |
 | 14:00–17:00 | **Beomeosa Mountain Temple & Forest Trail** — Ascend Mount Geumjeong to tour one of Korea's premier Buddhist headquarters founded in 678 AD, surrounded by tranquil bamboo groves. | Beomeosa Station Line 1 Exit 5 + Bus 90. |
 | 17:30–19:30 | **Oncheonjang Natural Hot Spring Bath** — Soak in historic mineral hot springs to soothe legs. | Oncheonjang Station Line 1. |
@@ -661,16 +661,16 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 #### Why this sequence works
 
-- **Authentic Hillside Rail:** The 168 Monorail is a real public transit marvel providing free mobility to hillside residents.
+- **Authentic Hillside Lift:** The 168 Stairs inclined elevator ('Choryang 168 Haneul-gil') is free public mobility infrastructure for hillside residents — it replaced the retired 8-person monorail in March 2025.
 - **Mountain Sanctuary:** Beomeosa offers deep Buddhist serenity on the slopes of Mount Geumjeong.
 
 **Food rhythm:** Lunch: Choryang marinated beef bulgogi. Dinner: Dongnae Halmae Pajeon (royal scallion seafood pancake) with mountain makgeolli.
 
-**Reservation / verification note:** Choryang 168 Monorail is free public transit; open daily 06:00–21:00.
+**Reservation / verification note:** Choryang 168 Stairs are open at all times; the free inclined elevator runs daytime hours — note the former monorail was removed in 2023 and replaced by this elevator in March 2025.
 
-**Cost posture:** Monorail free; Beomeosa free; Pajeon dinner ~₩25,000 per person.
+**Cost posture:** Elevator free; Beomeosa free; Pajeon dinner ~₩25,000 per person.
 
-**Watch for:** Monorail has limited capacity (8 passengers per car); short wait during morning peak.
+**Watch for:** Elevator carries 12 passengers per trip; short wait possible during morning peak.
 
 **Plan B:** Beomeosa museum and Oncheonjang spa are completely indoor.
 
@@ -863,7 +863,7 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Reservation / verification note:** Verify terminal (T1 vs T2) based on airline ticket before boarding AREX.
 
-**Cost posture:** AREX Express ticket ₩11,000 per person.
+**Cost posture:** AREX Express ticket ₩13,000 per person (fare raised from ₩11,000; verified 2026).
 
 **Watch for:** Terminal 2 is 8 minutes further on the AREX line than Terminal 1; check your terminal code.
 

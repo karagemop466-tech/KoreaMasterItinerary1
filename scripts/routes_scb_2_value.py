@@ -279,28 +279,28 @@ def get_scb_value():
             ],
             "Lunch: Choryang Milmyeon (cold wheat noodles & dumplings ~₩8,500). Dinner: Haeundae Market grilled seafood & ssiat hotteok (~₩18,000).",
             "Book KTX Cheonan-Asan→Busan on Korail app 30 days in advance.",
-            "KTX ticket ~₩39,200; Beach and Dongbaek trail are free.",
+            "KTX ticket ~₩46,500; Beach and Dongbaek trail are free.",
             "Dongbaek Island trail is paved and lighted; Nurimaru APEC House closes at 17:00.",
             "SEA LIFE Busan Aquarium on Haeundae beachfront provides indoor shelter."
         ),
         # Day 14: Nov 14
-        make_day(13, "Busan", "Free Hillside Monorails & Old Alleys", "Busan · Haeundae Beachfront",
-            "Choryang 168 Monorail (Free Public Lift) → Sanbokdoro Panoramic Bus → Saturday Drones",
-            "Historic Hillside Monorails & Saturday Night Drones",
+        make_day(13, "Busan", "Free Hillside Stair Lifts & Old Alleys", "Busan · Haeundae Beachfront",
+            "Choryang 168 Stairs & Haneul-gil Elevator (Free Public Lift) → Sanbokdoro Panoramic Bus → Saturday Drones",
+            "Historic Hillside Stair Elevator & Saturday Night Drones",
             [
-                {"time": "09:30–12:30", "title": "Choryang 168 Monorail & Hillside Observation Deck", "detail": "Ride the free public monorail climbing steeply up 168 stairs into the historic hillside village, enjoying sweeping panoramic views across Busan Port.", "logistics": "Busan Station Line 1 Exit 7, 10-min walk."},
+                {"time": "09:30–12:30", "title": "Choryang 168 Stairs & Haneul-gil Inclined Elevator & Observation Deck", "detail": "Ride the free 12-person inclined elevator (opened March 2025, replacing the old monorail retired in 2023) alongside the 168 Stairs into the historic hillside village, enjoying sweeping panoramic views across Busan Port from the Kim Min-bu observatory.", "logistics": "Busan Station Line 1 Exit 7, 10-min walk."},
                 {"time": "12:45–14:00", "title": "Choryang Bulgogi Alley Lunch", "detail": "Savor sweet soy-marinated beef bulgogi with fresh leafy greens.", "logistics": "Choryang dining lane."},
                 {"time": "14:30–16:30", "title": "Sanbokdoro (Mountain-Side Road) Scenic Bus Route", "detail": "Ride local city bus #86 along the mountain-hugging highway, gazing out over Busan harbor and shipyards for regular bus fare.", "logistics": "Bus 86 from Choryang."},
                 {"time": "17:00–18:30", "title": "Gwangalli Beach Sunset Walk", "detail": "Watch sunset illuminate Gwangan Suspension Bridge.", "logistics": "Gwangan Station Line 2."},
                 {"time": "19:00–21:30", "title": "Gwangalli Saturday Night 500-Drone Show & Chimaek", "detail": "Watch 500+ synchronized LED drones dance above Gwangan Bridge from the sand, enjoying Korean fried chicken.", "logistics": "Gwangalli Beach (drones at 19:00 & 21:00)."}
             ],
             [
-                {"label": "Free Public Transit Marvel", "text": "The 168 Monorail and Bus 86 provide spectacular city panoramas for ordinary public transit fares."},
+                {"label": "Free Public Transit Marvel", "text": "The 168 Stairs inclined elevator and Bus 86 provide spectacular city panoramas for free or ordinary public transit fares."},
                 {"label": "Saturday Night Drone Wonder", "text": "Timed specifically for Saturday evening to experience Gwangalli's free weekly drone spectacle."}
             ],
             "Lunch: Choryang marinated beef bulgogi (~₩10,000). Dinner: Gwangalli beachfront Korean fried chicken and draft beer (~₩18,000).",
-            "Choryang 168 Monorail is free public transit; open daily 06:00–21:00.",
-            "Monorail free; Bus 86 ₩1,500; Drone show free public viewing on the sand.",
+            "Choryang 168 Stairs are open at all times; the free inclined elevator runs daytime hours — the former monorail was removed in 2023 and replaced by this elevator in March 2025.",
+            "Elevator free; Bus 86 ₩1,550; Drone show free public viewing on the sand.",
             "Arrive at Gwangalli Beach 20 mins early for good sand seating.",
             "Gwangalli beachfront cafes provide heated indoor viewing."
         ),
@@ -466,7 +466,7 @@ def get_scb_value():
             ],
             "Breakfast: Hotel café or airport lounge / Korean Food Street at ICN Terminal (bibimbap/soup).",
             "Verify terminal (T1 vs T2) based on airline ticket before boarding AREX.",
-            "AREX Express ticket ₩11,000 per person.",
+            "AREX Express ticket ₩13,000 per person (fare raised from ₩11,000; verified 2026).",
             "Terminal 2 is 8 minutes further on the AREX line than Terminal 1; check your terminal code.",
             "If AREX express sells out, AREX All-Stop commuter train departs every 6–10 minutes."
         )
@@ -486,7 +486,7 @@ def get_scb_value():
         "routeLabel": "Seoul (7N) → Cheonan (5N) → Busan (7N) → Seoul (2N)",
         "badge": "Smart Value & Authentic Local Markets",
         "bestFor": "Budget-conscious travelers, backpackers, solo explorers, and savvy planners who love authentic traditional markets, free panoramic city wall trails, neighborhood food alleys, and maximum transit value.",
-        "decisionSummary": "A brilliantly cost-effective 21-night itinerary leveraging Korea's incredible free public treasures (Seoul City Wall, National Palace Museum, Independence Hall, Choryang Monorail, Dadaepo reed trails) alongside authentic market feasts and budget-smart Cheonan hotel pricing.",
+        "decisionSummary": "A brilliantly cost-effective 21-night itinerary leveraging Korea's incredible free public treasures (Seoul City Wall, National Palace Museum, Independence Hall, Choryang 168 Stairs hillside elevator, Dadaepo reed trails) alongside authentic market feasts and budget-smart Cheonan hotel pricing.",
         "recommendation": "Choose this route if you want to stretch your travel budget further while experiencing genuine Korean everyday neighborhood life, street snacks, and panoramic public parks.",
         "tradeoff": "More meals taken at traditional market stalls and casual neighborhood eateries rather than luxury hotel dining rooms.",
         "scorecard": scorecard,

@@ -276,7 +276,7 @@ def get_sdb_wellness():
             ],
             "Lunch: Choryang Milmyeon (cold wheat noodles with steamed mandu). Dinner: Haeundae clear seafood hot pot with abalone, clams, and blue crab.",
             "Book KTX Daejeon→Busan on Korail app 30 days prior.",
-            "KTX ticket ~₩28,500; Beach and Dongbaek trail are free.",
+            "KTX ticket ~₩36,200; Beach and Dongbaek trail are free.",
             "Dongbaek Island trail is lighted at night; APEC Nurimaru House closes at 17:00.",
             "SEA LIFE Busan Aquarium on Haeundae beachfront provides indoor marine exhibits."
         ),
@@ -463,7 +463,7 @@ def get_sdb_wellness():
             ],
             "Breakfast: Hotel café or airport lounge / Korean Food Street at ICN Terminal (warm abalone porridge or beef soup).",
             "Verify airline departure terminal (T1 vs T2) before boarding AREX.",
-            "AREX Express ticket ₩11,000 per person.",
+            "AREX Express ticket ₩13,000 per person (fare raised from ₩11,000; verified 2026).",
             "Terminal 2 is 8 minutes further on the AREX line than Terminal 1.",
             "If AREX express sells out, AREX all-stop commuter train departs every 8 minutes."
         )

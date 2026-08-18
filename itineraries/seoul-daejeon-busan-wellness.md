@@ -566,7 +566,7 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Reservation / verification note:** Book KTX Daejeon→Busan on Korail app 30 days prior.
 
-**Cost posture:** KTX ticket ~₩28,500; Beach and Dongbaek trail are free.
+**Cost posture:** KTX ticket ~₩36,200; Beach and Dongbaek trail are free.
 
 **Watch for:** Dongbaek Island trail is lighted at night; APEC Nurimaru House closes at 17:00.
 
@@ -861,7 +861,7 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Reservation / verification note:** Verify airline departure terminal (T1 vs T2) before boarding AREX.
 
-**Cost posture:** AREX Express ticket ₩11,000 per person.
+**Cost posture:** AREX Express ticket ₩13,000 per person (fare raised from ₩11,000; verified 2026).
 
 **Watch for:** Terminal 2 is 8 minutes further on the AREX line than Terminal 1.
 

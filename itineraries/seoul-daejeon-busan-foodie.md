@@ -558,7 +558,7 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Reservation / verification note:** Book KTX Daejeon→Busan on Korail app 30 days prior.
 
-**Cost posture:** KTX ticket ~₩28,500; Milmyeon ~₩8,500; Market dinner ~₩25,000.
+**Cost posture:** KTX ticket ~₩36,200; Milmyeon ~₩8,500; Market dinner ~₩25,000.
 
 **Watch for:** Sea eel is grilled with spicy red pepper sauce; ask for non-spicy salt grill (sogeum-gui) if preferred.
 
@@ -848,7 +848,7 @@ Times below are intentional planning windows, not a live timetable. They are des
 
 **Reservation / verification note:** Verify your airline departure terminal (T1 vs T2) before boarding AREX.
 
-**Cost posture:** AREX Express ticket ₩11,000 per person.
+**Cost posture:** AREX Express ticket ₩13,000 per person (fare raised from ₩11,000; verified 2026).
 
 **Watch for:** Terminal 2 is 8 minutes further on the AREX line than Terminal 1.
 
