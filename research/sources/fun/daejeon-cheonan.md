@@ -470,13 +470,6 @@ Both cities are 35–60 minutes from Seoul by KTX, and both sit right on the Seo
 - **Official source:** [i815.or.kr](https://www.i815.or.kr) · Mokcheon-eup, Cheonan
 - **Beginner notes:** One of Chungcheong province's absolute top autumn foliage photo walks.
 
-## 68) 🏢 Cheonan Town Hall 47th Floor Sky Lounge Observatory — 🔁 Tue–Sun (FREE)
-- **What:** 47th-floor public sky observatory and city-run cafe offering 360° views over Cheonan
-- **Hours:** Tue–Sun **09:00–22:00** (Closed Mondays)
-- **Price:** **FREE**
-- **Official source:** [cheonan.go.kr](https://www.cheonan.go.kr) · Dongnam-gu Munhwa-dong
-- **Beginner notes:** Free high-altitude city view.
-
 ## 69) ✉️ Cheonan Postal Museum of Korea — 🔁 Tue–Sun (FREE)
 - **What:** National postal history museum documenting 130+ years of Korean mail, royal stamps, and antique delivery vehicles
 - **Hours:** Tue–Sun **09:00–17:00** (Closed Mondays)
@@ -533,26 +526,12 @@ Both cities are 35–60 minutes from Seoul by KTX, and both sit right on the Seo
 - **Official source:** [kaist.ac.kr](https://www.kaist.ac.kr) · Yuseong-gu Daejeon
 - **Beginner notes:** Lovely autumn campus walk.
 
-## 77) 🌳 Daejeon Hanbat Arboretum West & East Gardens — 🔁 always on (FREE)
-- **What:** Korea's largest urban artificial arboretum
-- **Hours:** 06:00–21:00
-- **Price:** **FREE**
-- **Official source:** [daejeon.go.kr/huw](https://www.daejeon.go.kr/huw) · Dunsan-dong
-- **Beginner notes:** Located next to Hanbit Tower.
-
 ## 78) 🍁 Gyeryongsan National Park Donghaksa Valley — 🔁 always on (FREE)
 - **What:** Sacred mountain national park and ancient Buddhist nunnery
 - **Hours:** Open 24/7
 - **Price:** **FREE**
 - **Official source:** [knps.or.kr](https://www.knps.or.kr) · Yuseong Bus 107
 - **Beginner notes:** Shaded 2 km stream trail.
-
-## 79) 🏙️ Daejeon Skyroad LED Street Canopy Show — 🔁 Tue–Sun (FREE)
-- **What:** 214m long 13m high LED street canopy
-- **Hours:** Tue–Sun 18:00–21:00
-- **Price:** **FREE**
-- **Official source:** [skyroad.or.kr](https://www.skyroad.or.kr) · Jungangno Station
-- **Beginner notes:** 5 min walk from Sungsimdang.
 
 ## 80) ⛸️ Cheonan Sports Complex Ice Skating Rink — 🔁 daily
 - **What:** Municipal sports complex with indoor ice rink

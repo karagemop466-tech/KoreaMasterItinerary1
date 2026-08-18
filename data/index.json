@@ -6,9 +6,9 @@
     "counts": {
       "sources": 6,
       "hotels": 34,
-      "food": 535,
+      "food": 50,
       "events": 110,
-      "activities": 443,
+      "activities": 437,
       "places": 15,
       "routes": 15,
       "apps": 9,
@@ -979,10 +979,15 @@
     }
   ],
   "taxRefund": {
-    "last_updated": "2026-08-03",
+    "last_updated": "2026-08-18",
     "min_spend_krw": 15000,
     "max_immediate_refund_krw": 1000000,
-    "vat_rate_percent": 7.5,
+    "vat_rate_percent": 10,
+    "typical_net_refund_percent": 7.5,
+    "notes": [
+      "Korea's standard VAT rate is 10%. The ~7.5% figure is the typical net amount a traveler actually receives back after refund-operator service fees — it is not the VAT rate.",
+      "Per-trip total purchase cap for tax-free shopping was raised to 5,000,000 KRW (2024 rule change)."
+    ],
     "rules": [
       "Immediate Tax Refund (즉시 환급) is available at Olive Young, Lotte Mart, Uniqlo, and major department stores for purchases between 15,000 KRW and 1,000,000 KRW.",
       "Always carry your physical passport or e-passport scan to the cashier.",
@@ -1200,9 +1205,9 @@
         "note": "Toll-free domestic hotline."
       },
       {
-        "number": "+82-2-3210-0404",
-        "label": "Korea Emergency Call Center",
-        "note": "For international callers; request an English-speaking operator."
+        "number": "+82-2-1330",
+        "label": "Korea Travel Helpline (from overseas/roaming)",
+        "note": "24/7 English. Note: +82-2-3210-0404, previously listed here, is the ROK Foreign Ministry's consular line for Korean citizens abroad — not a tourist emergency number."
       },
       {
         "number": "+82-2-397-4114",

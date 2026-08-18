@@ -10,7 +10,7 @@ Understanding South Korea's exact fare structure will help you decide when to us
 | :--- | :--- | :---: | :---: | :--- |
 | **Seoul Subway (Lines 1–9)** | Up to 10 km | **1,400–1,550 KRW** (~$1.07 USD) | +100 KRW deposit | +100 KRW per 5 km (10–50 km)<br>+100 KRW per 8 km (over 50 km) |
 | **Seoul City Bus (Blue / Green)** | Flat Rate (in Seoul) | **1,500 KRW** (~$1.07 USD) | 1,600 KRW | Flat rate unless transferring to regional buses |
-| **Busan Metro (Lines 1–4)** | Section 1 (Up to 10 km) | **1,450 KRW** (~$1.04 USD) | 1,550 KRW | Section 2 (Over 10 km): **1,650 KRW** |
+| **Busan Metro (Lines 1–4)** | Section 1 (Up to 10 km) | **1,600 KRW** (~$1.15 USD) | 1,700 KRW | Section 2 (Over 10 km): **1,800 KRW** (cash 1,900 KRW) |
 | **Busan City Bus** | Flat Rate | **1,550 KRW** (~$1.11 USD) | 1,650 KRW | Flat rate within Busan city limits |
 
 * **Why the Seoul Climate Card is unbeatable for tourists:** At **15,000 KRW for a 5-Day Pass**, you pay an average of 3,000 KRW per day. Just 2 subway rides a day cover the cost!

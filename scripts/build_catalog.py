@@ -463,7 +463,7 @@ def build_catalog() -> dict[str, Any]:
             {"number": "119", "label": "Ambulance · fire · rescue", "note": "Dial from any phone in Korea."},
             {"number": "1330", "label": "Korea Travel Helpline", "note": "English availability is listed as 24/7 in the source; confirm close to travel."},
             {"number": "1366", "label": "Domestic-violence hotline", "note": "Toll-free domestic hotline."},
-            {"number": "+82-2-3210-0404", "label": "Korea Emergency Call Center", "note": "For international callers; request an English-speaking operator."},
+            {"number": "+82-2-1330", "label": "Korea Travel Helpline (from overseas/roaming)", "note": "24/7 English. Note: +82-2-3210-0404, previously listed here, is the ROK Foreign Ministry's consular line for Korean citizens abroad — not a tourist emergency number."},
             {"number": "+82-2-397-4114", "label": "U.S. Embassy Seoul (24/7 emergency)", "note": "For U.S. citizens; use your own embassy/consulate if applicable."},
         ],
         "preDeparture": pre_departure,

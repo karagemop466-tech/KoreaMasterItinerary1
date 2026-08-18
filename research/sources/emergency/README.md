@@ -103,7 +103,8 @@ A verified emergency-preparedness repo for your trip — entry rules, emergency 
 | **119** | Ambulance / Fire / Rescue | S1 / S2 |
 | **1366** | Domestic-violence hotline | S1 |
 | **1330** | Korea Travel Helpline — **English 24/7**; from overseas `+82-2-1330` | S1 / S2 |
-| **+82-2-3210-0404** | Korea Emergency Call Center — request English operator | S1 |
+| **+82-2-1330** | Korea Travel Helpline from overseas/roaming phones — English 24/7 | S1 |
+| ~~+82-2-3210-0404~~ | ⚠️ Often mislabeled online as a foreigner emergency line — it is actually the ROK Foreign Ministry's Consular Safety Call Center (영사안전콜센터) for **Korean citizens abroad**, not for tourists in Korea. Use 112 / 119 / 1330. | — |
 | **+82-2-397-4114** | **U.S. Embassy Seoul — 24/7** | S1 / S2 |
 | **188 Sejong-daero, Jongno-gu** | U.S. Embassy Seoul address | S2 / S3 |
 | **+82-51-863-0731** | U.S. Consulate Busan — **NO consular services** (passport / serious → Seoul) | S2 / S3 |

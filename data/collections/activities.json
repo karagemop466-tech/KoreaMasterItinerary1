@@ -1800,18 +1800,6 @@
     "sourceLabel": "KoreaFun guide #150"
   },
   {
-    "id": "idea-seoul-151",
-    "title": "Banpo Hangang Park Some Sevit Floating Islands",
-    "city": "Seoul",
-    "category": "Free & always-on culture",
-    "status": "Always on",
-    "snippet": "Waterfront glass islands.",
-    "officialUrl": "https://hangang.seoul.go.kr",
-    "source": "fun",
-    "sourcePath": "research/sources/fun/seoul.md",
-    "sourceLabel": "KoreaFun guide #151"
-  },
-  {
     "id": "idea-seoul-152",
     "title": "Yeouido Hangang Park Ramyeon Picnic",
     "city": "Seoul",
@@ -1822,18 +1810,6 @@
     "source": "fun",
     "sourcePath": "research/sources/fun/seoul.md",
     "sourceLabel": "KoreaFun guide #152"
-  },
-  {
-    "id": "idea-seoul-153",
-    "title": "Mangwon Hangang Park Sunset Lawn",
-    "city": "Seoul",
-    "category": "Free & always-on culture",
-    "status": "Always on",
-    "snippet": "Sunset on the river.",
-    "officialUrl": "https://hangang.seoul.go.kr",
-    "source": "fun",
-    "sourcePath": "research/sources/fun/seoul.md",
-    "sourceLabel": "KoreaFun guide #153"
   },
   {
     "id": "idea-seoul-154",
@@ -4296,18 +4272,6 @@
     "sourceLabel": "KoreaFun guide #98"
   },
   {
-    "id": "idea-busan-99",
-    "title": "Gwangbok-ro Fashion Street & Yongdusan Escalators",
-    "city": "Busan",
-    "category": "Ideas",
-    "status": "Always on",
-    "snippet": "Nampo shopping street.",
-    "officialUrl": "https://english.visitbusan.net",
-    "source": "fun",
-    "sourcePath": "research/sources/fun/busan.md",
-    "sourceLabel": "KoreaFun guide #99"
-  },
-  {
     "id": "idea-busan-100",
     "title": "Songdo Marine Cable Car Crystal Glass Cabin",
     "city": "Busan",
@@ -5160,18 +5124,6 @@
     "sourceLabel": "KoreaFun guide #67"
   },
   {
-    "id": "idea-daejeon-cheonan-68",
-    "title": "Cheonan Town Hall 47th Floor Sky Lounge Observatory",
-    "city": "Daejeon / Cheonan",
-    "category": "Ideas",
-    "status": "Always on",
-    "snippet": "Free high-altitude city view.",
-    "officialUrl": "https://www.cheonan.go.kr",
-    "source": "fun",
-    "sourcePath": "research/sources/fun/daejeon-cheonan.md",
-    "sourceLabel": "KoreaFun guide #68"
-  },
-  {
     "id": "idea-daejeon-cheonan-69",
     "title": "Cheonan Postal Museum of Korea",
     "city": "Daejeon / Cheonan",
@@ -5268,18 +5220,6 @@
     "sourceLabel": "KoreaFun guide #76"
   },
   {
-    "id": "idea-daejeon-cheonan-77",
-    "title": "Daejeon Hanbat Arboretum West & East Gardens",
-    "city": "Daejeon / Cheonan",
-    "category": "Ideas",
-    "status": "Always on",
-    "snippet": "Located next to Hanbit Tower.",
-    "officialUrl": "https://www.daejeon.go.kr/huw",
-    "source": "fun",
-    "sourcePath": "research/sources/fun/daejeon-cheonan.md",
-    "sourceLabel": "KoreaFun guide #77"
-  },
-  {
     "id": "idea-daejeon-cheonan-78",
     "title": "Gyeryongsan National Park Donghaksa Valley",
     "city": "Daejeon / Cheonan",
@@ -5290,18 +5230,6 @@
     "source": "fun",
     "sourcePath": "research/sources/fun/daejeon-cheonan.md",
     "sourceLabel": "KoreaFun guide #78"
-  },
-  {
-    "id": "idea-daejeon-cheonan-79",
-    "title": "Daejeon Skyroad LED Street Canopy Show",
-    "city": "Daejeon / Cheonan",
-    "category": "Ideas",
-    "status": "Always on",
-    "snippet": "5 min walk from Sungsimdang.",
-    "officialUrl": "https://www.skyroad.or.kr",
-    "source": "fun",
-    "sourcePath": "research/sources/fun/daejeon-cheonan.md",
-    "sourceLabel": "KoreaFun guide #79"
   },
   {
     "id": "idea-daejeon-cheonan-80",

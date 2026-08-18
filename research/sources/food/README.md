@@ -20,11 +20,11 @@ A highly practical, meticulously verified two-person food plan for **Seoul + Bus
 
 ## 🛠️ How to use this guide
 
-* **Cost Efficiency & Quality First:** This plan groups **57 highly verified physical restaurants and cafes** with clear prices, highlighting free refills (Oreno Ramen, Chanyang-jip, Myeongdong Kyoja), budget staples, and Michelin-recognized culinary anchors.
+* **Cost Efficiency & Quality First:** This plan groups **50 verified physical restaurants and cafes** with clear prices, highlighting free refills (Oreno Ramen, Chanyang-jip, Myeongdong Kyoja), budget staples, and Michelin-recognized culinary anchors.
 * **16 Curated Neighborhood Walks:** To save time, use **[cities/walking-food-routes.md](cities/walking-food-routes.md)**, which features 16 complete, day-by-day food walking itineraries combining local shopping and sightseeing with lunch, cafe, and dinner stops.
 * **The Customization Pool:** Want to swap a meal? Go to Part 2 of the walking routes document and modularly substitute lunch or dinner with nearby alternatives.
 * **Navigation & Booking Tech:** Use **[booking-and-tech-guide.md](booking-and-tech-guide.md)** to set up Naver Map and CatchTable Global (which supports foreign numbers) before you depart.
-* **Pre-Trip Booking:** All 60 physical outlets are cataloged with direct Naver Map search URLs in **[restaurants-bookmarks.csv](restaurants-bookmarks.csv)** for instant bookmarking.
+* **Pre-Trip Booking:** All 50 physical outlets are cataloged with direct Naver Map search URLs in **[restaurants-bookmarks.csv](restaurants-bookmarks.csv)** for instant bookmarking. (An 18 Aug 2026 audit removed 485 template-generated placeholder rows — e.g. "Seoul Local Ramen 12" — that failed verification.)
 
 ---
 
