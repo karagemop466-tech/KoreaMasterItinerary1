@@ -1,8 +1,13 @@
 {
-  "last_updated": "2026-08-03",
+  "last_updated": "2026-08-18",
   "min_spend_krw": 15000,
   "max_immediate_refund_krw": 1000000,
-  "vat_rate_percent": 7.5,
+  "vat_rate_percent": 10,
+  "typical_net_refund_percent": 7.5,
+  "notes": [
+    "Korea's standard VAT rate is 10%. The ~7.5% figure is the typical net amount a traveler actually receives back after refund-operator service fees — it is not the VAT rate.",
+    "Per-trip total purchase cap for tax-free shopping was raised to 5,000,000 KRW (2024 rule change)."
+  ],
   "rules": [
     "Immediate Tax Refund (즉시 환급) is available at Olive Young, Lotte Mart, Uniqlo, and major department stores for purchases between 15,000 KRW and 1,000,000 KRW.",
     "Always carry your physical passport or e-passport scan to the cashier.",

@@ -691,13 +691,6 @@ Sorted by date. Everything links to an official source. Status legend: ✅ confi
 - **Official source:** [unmck.or.kr](https://www.unmck.or.kr) · Line 2 Daeyeon Station
 - **Beginner notes:** Solemn historic site.
 
-## 99) 🛍️ Gwangbok-ro Fashion Street & Yongdusan Escalators — 🔁 daily
-- **What:** Shopping boulevard in Nampo-dong leading to Yongdusan Park (#47)
-- **Hours:** Shops daily **10:30–21:30**
-- **Price:** Free walk-in
-- **Official source:** [english.visitbusan.net](https://english.visitbusan.net) · Line 1 Nampo Station
-- **Beginner notes:** Nampo shopping street.
-
 ## 100) 🚠 Songdo Marine Cable Car Crystal Glass Cabin — 🔁 daily
 - **What:** Sea-crossing gondola cable car across Songdo Bay (#48)
 - **Hours:** Daily **09:00–21:00**

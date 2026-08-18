@@ -1086,26 +1086,12 @@ Korean musical theatre is huge and production values are world-class — note th
 - **Official source:** [parks.seoul.go.kr](https://parks.seoul.go.kr) · Hyehwa Station
 - **Beginner notes:** Romantic night view walk.
 
-### 151) 💎 Banpo Hangang Park Some Sevit Floating Islands — 🔁 always on (FREE)
-- **What:** Glowing glass floating architectural islands on Han River (#73)
-- **Hours:** Daily **10:00–22:00**
-- **Price:** **FREE**
-- **Official source:** [hangang.seoul.go.kr](https://hangang.seoul.go.kr) · Express Bus Terminal Station
-- **Beginner notes:** Waterfront glass islands.
-
 ### 152) 🍜 Yeouido Hangang Park Ramyeon Picnic — 🔁 daily
 - **What:** Automatic induction boiled ramyeon picnic on riverbank (#74)
 - **Hours:** Open **24/7**
 - **Price:** Ramyeon ~₩4,000
 - **Official source:** [hangang.seoul.go.kr](https://hangang.seoul.go.kr) · Yeouinaru Station
 - **Beginner notes:** Classic local river picnic.
-
-### 153) 🌅 Mangwon Hangang Park Sunset Lawn — 🔁 always on (FREE)
-- **What:** Laid-back riverfront park for sunset views (#75)
-- **Hours:** Open **24/7**
-- **Price:** **FREE**
-- **Official source:** [hangang.seoul.go.kr](https://hangang.seoul.go.kr) · Mangwon Station
-- **Beginner notes:** Sunset on the river.
 
 ### 154) 🌳 Dream Forest Park Wolyeongji Lotus Pond — 🔁 always on (FREE)
 - **What:** Forest park in Gangbuk-gu with 49m observatory tower (#76)

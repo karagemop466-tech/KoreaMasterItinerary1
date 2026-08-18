@@ -1,0 +1,536 @@
+id,name,koreanName,city,category,verdict,note
+food-seoul-1,Oreno Ramen Main Store,오레노라멘 본점,Seoul,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-2,Oreno Ramen Insadong,오레노라멘 인사동점,Seoul,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-3,Menten,멘텐,Seoul,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-4,Ramen Jiro Seoul,라멘 지로 서울,Seoul,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-5,Hong Kong Banjum 0410,홍콩반점0410,Seoul,Jajangmyeon,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-6,Sinseonggak,신성각,Seoul,Jajangmyeon,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-7,Osegyehyang,오세계향,Seoul,Jajangmyeon,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-8,Myeongnyun Jinsa Galbi,명륜진사갈비,Seoul,AYCE BBQ,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-9,Budnamujip,버드나무집 마포,Seoul,AYCE BBQ,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-10,Daedo Sikdang Wangsimni,대도식당 왕십리본점,Seoul,AYCE BBQ,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-11,Geumdwaeji Sikdang,금돼지식당,Seoul,AYCE BBQ,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-12,Yukjeon Sikdang Branch 1,육전식당 1호점,Seoul,AYCE BBQ,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-13,Nari's House,나리의 집,Seoul,AYCE BBQ,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-14,Mapo Jeong Daepo,마포 정대포,Seoul,AYCE BBQ,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-15,Myeongdong Kyoja,명동교자 본점,Seoul,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-16,Hadongkwan Main Store,하동관 본점,Seoul,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-17,Chanyang-jip,찬양집,Seoul,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-18,Imun Seolleongtang,이문설농탕,Seoul,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-19,Buchon Yukhoe,부촌육회 본점,Seoul,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-20,Jin Ok-hwa Halmae Dakhanmari,진옥화할매원조닭한마리,Seoul,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-21,Maboklim Halmoni Tteokbokki,마복림할머니떡볶이,Seoul,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-22,Somunnan Seongsu Gamjatang,소문난성수감자탕,Seoul,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-23,Goryeo Samgyetang,고려삼계탕 본점,Seoul,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-24,Shin Old Tea House,신옛찻집,Seoul,Cafe,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-25,Fritz Coffee Company Dohwa,프릳츠 도화점,Seoul,Cafe,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-201,Nagahama Mangetsu,나가하마만게츠,Busan,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-202,Gukje Milmyeon Main Branch,국제밀면 본점,Busan,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-203,Gaya Milmyeon,가야밀면,Busan,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-204,Halmae Gaya Milmyeon,할매가야밀면,Busan,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-205,Seomyeon Gaegeum Milmyeon,서면개금밀면,Busan,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-206,Gijang Sonkalguksu,기장손칼국수,Busan,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-207,Hwaguk Banjeom,화국반점,Busan,Jajangmyeon,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-208,Maga Mandu,마가만두,Busan,Jajangmyeon,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-209,Shinbalwon,신발원,Busan,Jajangmyeon,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-210,Haeundae Somunnan Amso Galbi-jip,해운대소문난 암소갈비집,Busan,AYCE BBQ,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-211,Busan Jokbal,부산족발,Busan,AYCE BBQ,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-212,Songjeong Samdae Gukbap,송정3대국밥,Busan,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-213,Bujeon Market Town Stalls,부전시장,Busan,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-214,Jagalchi Seafood Market,자갈치시장,Busan,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-215,Dongnae Halmae Pajeon,동래할매파전,Busan,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-216,Samjin Amook Main Store,삼진어묵 본점,Busan,Cafe,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-busan-217,Brown Hands Baekje,브라운핸즈백제,Busan,Cafe,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-daejeon-401,Sutgol Won Naengmyeon,숯골원냉면 본점,Daejeon,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-daejeon-402,Ossi Kalguksu,오씨칼국수,Daejeon,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-daejeon-403,Boksu Bunsik,복수분식 본점,Daejeon,Ramen,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-daejeon-404,Sariwon Myeonok Bulgogi,사리원면옥 본점,Daejeon,Jajangmyeon,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-daejeon-405,Taepyung Sogukbap,태평소국밥 봉명점,Daejeon,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-daejeon-406,Kingdom Buffet,Kingdom Buffet,Daejeon,Classic Korean,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-daejeon-407,Sungsimdang Main Store,성심당 본점,Daejeon,Cafe,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-cheonan-476,Dongsunwon,동순원 성환본점,Cheonan,Jajangmyeon,REAL-NAMED,"matches a real, known restaurant; verify branch hours on Naver"
+food-seoul-26,Seoul Local Ramen 1,서울 로컬 라멘 1,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-27,Seoul Local Ramen 2,서울 로컬 라멘 2,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-28,Seoul Local Ramen 3,서울 로컬 라멘 3,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-29,Seoul Local Ramen 4,서울 로컬 라멘 4,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-30,Seoul Local Ramen 5,서울 로컬 라멘 5,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-31,Seoul Local Ramen 6,서울 로컬 라멘 6,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-32,Seoul Local Ramen 7,서울 로컬 라멘 7,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-33,Seoul Local Ramen 8,서울 로컬 라멘 8,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-34,Seoul Local Ramen 9,서울 로컬 라멘 9,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-35,Seoul Local Ramen 10,서울 로컬 라멘 10,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-36,Seoul Local Ramen 11,서울 로컬 라멘 11,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-37,Seoul Local Ramen 12,서울 로컬 라멘 12,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-38,Seoul Local Ramen 13,서울 로컬 라멘 13,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-39,Seoul Local Ramen 14,서울 로컬 라멘 14,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-40,Seoul Local Ramen 15,서울 로컬 라멘 15,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-41,Seoul Local Ramen 16,서울 로컬 라멘 16,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-42,Seoul Local Ramen 17,서울 로컬 라멘 17,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-43,Seoul Local Ramen 18,서울 로컬 라멘 18,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-44,Seoul Local Ramen 19,서울 로컬 라멘 19,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-45,Seoul Local Ramen 20,서울 로컬 라멘 20,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-46,Seoul Local Ramen 21,서울 로컬 라멘 21,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-47,Seoul Local Ramen 22,서울 로컬 라멘 22,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-48,Seoul Local Ramen 23,서울 로컬 라멘 23,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-49,Seoul Local Ramen 24,서울 로컬 라멘 24,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-50,Seoul Local Ramen 25,서울 로컬 라멘 25,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-51,Seoul Local Ramen 26,서울 로컬 라멘 26,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-52,Seoul Local Ramen 27,서울 로컬 라멘 27,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-53,Seoul Local Ramen 28,서울 로컬 라멘 28,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-54,Seoul Local Ramen 29,서울 로컬 라멘 29,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-55,Seoul Local Ramen 30,서울 로컬 라멘 30,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-56,Seoul Local Ramen 31,서울 로컬 라멘 31,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-57,Seoul Local Ramen 32,서울 로컬 라멘 32,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-58,Seoul Local Ramen 33,서울 로컬 라멘 33,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-59,Seoul Local Ramen 34,서울 로컬 라멘 34,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-60,Seoul Local Ramen 35,서울 로컬 라멘 35,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-61,Seoul Local Ramen 36,서울 로컬 라멘 36,Seoul,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-62,Seoul Local Jajangmyeon 1,서울 로컬 짜장면 1,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-63,Seoul Local Jajangmyeon 2,서울 로컬 짜장면 2,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-64,Seoul Local Jajangmyeon 3,서울 로컬 짜장면 3,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-65,Seoul Local Jajangmyeon 4,서울 로컬 짜장면 4,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-66,Seoul Local Jajangmyeon 5,서울 로컬 짜장면 5,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-67,Seoul Local Jajangmyeon 6,서울 로컬 짜장면 6,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-68,Seoul Local Jajangmyeon 7,서울 로컬 짜장면 7,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-69,Seoul Local Jajangmyeon 8,서울 로컬 짜장면 8,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-70,Seoul Local Jajangmyeon 9,서울 로컬 짜장면 9,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-71,Seoul Local Jajangmyeon 10,서울 로컬 짜장면 10,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-72,Seoul Local Jajangmyeon 11,서울 로컬 짜장면 11,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-73,Seoul Local Jajangmyeon 12,서울 로컬 짜장면 12,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-74,Seoul Local Jajangmyeon 13,서울 로컬 짜장면 13,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-75,Seoul Local Jajangmyeon 14,서울 로컬 짜장면 14,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-76,Seoul Local Jajangmyeon 15,서울 로컬 짜장면 15,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-77,Seoul Local Jajangmyeon 16,서울 로컬 짜장면 16,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-78,Seoul Local Jajangmyeon 17,서울 로컬 짜장면 17,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-79,Seoul Local Jajangmyeon 18,서울 로컬 짜장면 18,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-80,Seoul Local Jajangmyeon 19,서울 로컬 짜장면 19,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-81,Seoul Local Jajangmyeon 20,서울 로컬 짜장면 20,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-82,Seoul Local Jajangmyeon 21,서울 로컬 짜장면 21,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-83,Seoul Local Jajangmyeon 22,서울 로컬 짜장면 22,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-84,Seoul Local Jajangmyeon 23,서울 로컬 짜장면 23,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-85,Seoul Local Jajangmyeon 24,서울 로컬 짜장면 24,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-86,Seoul Local Jajangmyeon 25,서울 로컬 짜장면 25,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-87,Seoul Local Jajangmyeon 26,서울 로컬 짜장면 26,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-88,Seoul Local Jajangmyeon 27,서울 로컬 짜장면 27,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-89,Seoul Local Jajangmyeon 28,서울 로컬 짜장면 28,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-90,Seoul Local Jajangmyeon 29,서울 로컬 짜장면 29,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-91,Seoul Local Jajangmyeon 30,서울 로컬 짜장면 30,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-92,Seoul Local Jajangmyeon 31,서울 로컬 짜장면 31,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-93,Seoul Local Jajangmyeon 32,서울 로컬 짜장면 32,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-94,Seoul Local Jajangmyeon 33,서울 로컬 짜장면 33,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-95,Seoul Local Jajangmyeon 34,서울 로컬 짜장면 34,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-96,Seoul Local Jajangmyeon 35,서울 로컬 짜장면 35,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-97,Seoul Local Jajangmyeon 36,서울 로컬 짜장면 36,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-98,Seoul Local Jajangmyeon 37,서울 로컬 짜장면 37,Seoul,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-99,Seoul Local AYCE BBQ 1,서울 로컬 BBQ 1,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-100,Seoul Local AYCE BBQ 2,서울 로컬 BBQ 2,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-101,Seoul Local AYCE BBQ 3,서울 로컬 BBQ 3,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-102,Seoul Local AYCE BBQ 4,서울 로컬 BBQ 4,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-103,Seoul Local AYCE BBQ 5,서울 로컬 BBQ 5,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-104,Seoul Local AYCE BBQ 6,서울 로컬 BBQ 6,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-105,Seoul Local AYCE BBQ 7,서울 로컬 BBQ 7,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-106,Seoul Local AYCE BBQ 8,서울 로컬 BBQ 8,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-107,Seoul Local AYCE BBQ 9,서울 로컬 BBQ 9,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-108,Seoul Local AYCE BBQ 10,서울 로컬 BBQ 10,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-109,Seoul Local AYCE BBQ 11,서울 로컬 BBQ 11,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-110,Seoul Local AYCE BBQ 12,서울 로컬 BBQ 12,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-111,Seoul Local AYCE BBQ 13,서울 로컬 BBQ 13,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-112,Seoul Local AYCE BBQ 14,서울 로컬 BBQ 14,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-113,Seoul Local AYCE BBQ 15,서울 로컬 BBQ 15,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-114,Seoul Local AYCE BBQ 16,서울 로컬 BBQ 16,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-115,Seoul Local AYCE BBQ 17,서울 로컬 BBQ 17,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-116,Seoul Local AYCE BBQ 18,서울 로컬 BBQ 18,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-117,Seoul Local AYCE BBQ 19,서울 로컬 BBQ 19,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-118,Seoul Local AYCE BBQ 20,서울 로컬 BBQ 20,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-119,Seoul Local AYCE BBQ 21,서울 로컬 BBQ 21,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-120,Seoul Local AYCE BBQ 22,서울 로컬 BBQ 22,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-121,Seoul Local AYCE BBQ 23,서울 로컬 BBQ 23,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-122,Seoul Local AYCE BBQ 24,서울 로컬 BBQ 24,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-123,Seoul Local AYCE BBQ 25,서울 로컬 BBQ 25,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-124,Seoul Local AYCE BBQ 26,서울 로컬 BBQ 26,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-125,Seoul Local AYCE BBQ 27,서울 로컬 BBQ 27,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-126,Seoul Local AYCE BBQ 28,서울 로컬 BBQ 28,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-127,Seoul Local AYCE BBQ 29,서울 로컬 BBQ 29,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-128,Seoul Local AYCE BBQ 30,서울 로컬 BBQ 30,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-129,Seoul Local AYCE BBQ 31,서울 로컬 BBQ 31,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-130,Seoul Local AYCE BBQ 32,서울 로컬 BBQ 32,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-131,Seoul Local AYCE BBQ 33,서울 로컬 BBQ 33,Seoul,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-132,Seoul Local Classic Korean 1,서울 로컬 한식 1,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-133,Seoul Local Classic Korean 2,서울 로컬 한식 2,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-134,Seoul Local Classic Korean 3,서울 로컬 한식 3,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-135,Seoul Local Classic Korean 4,서울 로컬 한식 4,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-136,Seoul Local Classic Korean 5,서울 로컬 한식 5,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-137,Seoul Local Classic Korean 6,서울 로컬 한식 6,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-138,Seoul Local Classic Korean 7,서울 로컬 한식 7,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-139,Seoul Local Classic Korean 8,서울 로컬 한식 8,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-140,Seoul Local Classic Korean 9,서울 로컬 한식 9,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-141,Seoul Local Classic Korean 10,서울 로컬 한식 10,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-142,Seoul Local Classic Korean 11,서울 로컬 한식 11,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-143,Seoul Local Classic Korean 12,서울 로컬 한식 12,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-144,Seoul Local Classic Korean 13,서울 로컬 한식 13,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-145,Seoul Local Classic Korean 14,서울 로컬 한식 14,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-146,Seoul Local Classic Korean 15,서울 로컬 한식 15,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-147,Seoul Local Classic Korean 16,서울 로컬 한식 16,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-148,Seoul Local Classic Korean 17,서울 로컬 한식 17,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-149,Seoul Local Classic Korean 18,서울 로컬 한식 18,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-150,Seoul Local Classic Korean 19,서울 로컬 한식 19,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-151,Seoul Local Classic Korean 20,서울 로컬 한식 20,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-152,Seoul Local Classic Korean 21,서울 로컬 한식 21,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-153,Seoul Local Classic Korean 22,서울 로컬 한식 22,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-154,Seoul Local Classic Korean 23,서울 로컬 한식 23,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-155,Seoul Local Classic Korean 24,서울 로컬 한식 24,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-156,Seoul Local Classic Korean 25,서울 로컬 한식 25,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-157,Seoul Local Classic Korean 26,서울 로컬 한식 26,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-158,Seoul Local Classic Korean 27,서울 로컬 한식 27,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-159,Seoul Local Classic Korean 28,서울 로컬 한식 28,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-160,Seoul Local Classic Korean 29,서울 로컬 한식 29,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-161,Seoul Local Classic Korean 30,서울 로컬 한식 30,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-162,Seoul Local Classic Korean 31,서울 로컬 한식 31,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-163,Seoul Local Classic Korean 32,서울 로컬 한식 32,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-164,Seoul Local Classic Korean 33,서울 로컬 한식 33,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-165,Seoul Local Classic Korean 34,서울 로컬 한식 34,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-166,Seoul Local Classic Korean 35,서울 로컬 한식 35,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-167,Seoul Local Classic Korean 36,서울 로컬 한식 36,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-168,Seoul Local Classic Korean 37,서울 로컬 한식 37,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-169,Seoul Local Classic Korean 38,서울 로컬 한식 38,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-170,Seoul Local Classic Korean 39,서울 로컬 한식 39,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-171,Seoul Local Classic Korean 40,서울 로컬 한식 40,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-172,Seoul Local Classic Korean 41,서울 로컬 한식 41,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-173,Seoul Local Classic Korean 42,서울 로컬 한식 42,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-174,Seoul Local Classic Korean 43,서울 로컬 한식 43,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-175,Seoul Local Classic Korean 44,서울 로컬 한식 44,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-176,Seoul Local Classic Korean 45,서울 로컬 한식 45,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-177,Seoul Local Classic Korean 46,서울 로컬 한식 46,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-178,Seoul Local Classic Korean 47,서울 로컬 한식 47,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-179,Seoul Local Classic Korean 48,서울 로컬 한식 48,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-180,Seoul Local Classic Korean 49,서울 로컬 한식 49,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-181,Seoul Local Classic Korean 50,서울 로컬 한식 50,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-182,Seoul Local Classic Korean 51,서울 로컬 한식 51,Seoul,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-183,Seoul Local Cafe 1,서울 로컬 카페 1,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-184,Seoul Local Cafe 2,서울 로컬 카페 2,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-185,Seoul Local Cafe 3,서울 로컬 카페 3,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-186,Seoul Local Cafe 4,서울 로컬 카페 4,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-187,Seoul Local Cafe 5,서울 로컬 카페 5,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-188,Seoul Local Cafe 6,서울 로컬 카페 6,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-189,Seoul Local Cafe 7,서울 로컬 카페 7,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-190,Seoul Local Cafe 8,서울 로컬 카페 8,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-191,Seoul Local Cafe 9,서울 로컬 카페 9,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-192,Seoul Local Cafe 10,서울 로컬 카페 10,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-193,Seoul Local Cafe 11,서울 로컬 카페 11,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-194,Seoul Local Cafe 12,서울 로컬 카페 12,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-195,Seoul Local Cafe 13,서울 로컬 카페 13,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-196,Seoul Local Cafe 14,서울 로컬 카페 14,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-197,Seoul Local Cafe 15,서울 로컬 카페 15,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-198,Seoul Local Cafe 16,서울 로컬 카페 16,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-199,Seoul Local Cafe 17,서울 로컬 카페 17,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-seoul-200,Seoul Local Cafe 18,서울 로컬 카페 18,Seoul,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-218,Busan Harbour Ramen 1,부산 항구 라멘 1,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-219,Busan Harbour Ramen 2,부산 항구 라멘 2,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-220,Busan Harbour Ramen 3,부산 항구 라멘 3,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-221,Busan Harbour Ramen 4,부산 항구 라멘 4,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-222,Busan Harbour Ramen 5,부산 항구 라멘 5,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-223,Busan Harbour Ramen 6,부산 항구 라멘 6,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-224,Busan Harbour Ramen 7,부산 항구 라멘 7,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-225,Busan Harbour Ramen 8,부산 항구 라멘 8,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-226,Busan Harbour Ramen 9,부산 항구 라멘 9,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-227,Busan Harbour Ramen 10,부산 항구 라멘 10,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-228,Busan Harbour Ramen 11,부산 항구 라멘 11,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-229,Busan Harbour Ramen 12,부산 항구 라멘 12,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-230,Busan Harbour Ramen 13,부산 항구 라멘 13,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-231,Busan Harbour Ramen 14,부산 항구 라멘 14,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-232,Busan Harbour Ramen 15,부산 항구 라멘 15,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-233,Busan Harbour Ramen 16,부산 항구 라멘 16,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-234,Busan Harbour Ramen 17,부산 항구 라멘 17,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-235,Busan Harbour Ramen 18,부산 항구 라멘 18,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-236,Busan Harbour Ramen 19,부산 항구 라멘 19,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-237,Busan Harbour Ramen 20,부산 항구 라멘 20,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-238,Busan Harbour Ramen 21,부산 항구 라멘 21,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-239,Busan Harbour Ramen 22,부산 항구 라멘 22,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-240,Busan Harbour Ramen 23,부산 항구 라멘 23,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-241,Busan Harbour Ramen 24,부산 항구 라멘 24,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-242,Busan Harbour Ramen 25,부산 항구 라멘 25,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-243,Busan Harbour Ramen 26,부산 항구 라멘 26,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-244,Busan Harbour Ramen 27,부산 항구 라멘 27,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-245,Busan Harbour Ramen 28,부산 항구 라멘 28,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-246,Busan Harbour Ramen 29,부산 항구 라멘 29,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-247,Busan Harbour Ramen 30,부산 항구 라멘 30,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-248,Busan Harbour Ramen 31,부산 항구 라멘 31,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-249,Busan Harbour Ramen 32,부산 항구 라멘 32,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-250,Busan Harbour Ramen 33,부산 항구 라멘 33,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-251,Busan Harbour Ramen 34,부산 항구 라멘 34,Busan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-252,Busan Harbour Jajangmyeon 1,부산 항구 짜장면 1,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-253,Busan Harbour Jajangmyeon 2,부산 항구 짜장면 2,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-254,Busan Harbour Jajangmyeon 3,부산 항구 짜장면 3,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-255,Busan Harbour Jajangmyeon 4,부산 항구 짜장면 4,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-256,Busan Harbour Jajangmyeon 5,부산 항구 짜장면 5,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-257,Busan Harbour Jajangmyeon 6,부산 항구 짜장면 6,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-258,Busan Harbour Jajangmyeon 7,부산 항구 짜장면 7,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-259,Busan Harbour Jajangmyeon 8,부산 항구 짜장면 8,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-260,Busan Harbour Jajangmyeon 9,부산 항구 짜장면 9,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-261,Busan Harbour Jajangmyeon 10,부산 항구 짜장면 10,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-262,Busan Harbour Jajangmyeon 11,부산 항구 짜장면 11,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-263,Busan Harbour Jajangmyeon 12,부산 항구 짜장면 12,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-264,Busan Harbour Jajangmyeon 13,부산 항구 짜장면 13,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-265,Busan Harbour Jajangmyeon 14,부산 항구 짜장면 14,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-266,Busan Harbour Jajangmyeon 15,부산 항구 짜장면 15,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-267,Busan Harbour Jajangmyeon 16,부산 항구 짜장면 16,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-268,Busan Harbour Jajangmyeon 17,부산 항구 짜장면 17,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-269,Busan Harbour Jajangmyeon 18,부산 항구 짜장면 18,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-270,Busan Harbour Jajangmyeon 19,부산 항구 짜장면 19,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-271,Busan Harbour Jajangmyeon 20,부산 항구 짜장면 20,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-272,Busan Harbour Jajangmyeon 21,부산 항구 짜장면 21,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-273,Busan Harbour Jajangmyeon 22,부산 항구 짜장면 22,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-274,Busan Harbour Jajangmyeon 23,부산 항구 짜장면 23,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-275,Busan Harbour Jajangmyeon 24,부산 항구 짜장면 24,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-276,Busan Harbour Jajangmyeon 25,부산 항구 짜장면 25,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-277,Busan Harbour Jajangmyeon 26,부산 항구 짜장면 26,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-278,Busan Harbour Jajangmyeon 27,부산 항구 짜장면 27,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-279,Busan Harbour Jajangmyeon 28,부산 항구 짜장면 28,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-280,Busan Harbour Jajangmyeon 29,부산 항구 짜장면 29,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-281,Busan Harbour Jajangmyeon 30,부산 항구 짜장면 30,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-282,Busan Harbour Jajangmyeon 31,부산 항구 짜장면 31,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-283,Busan Harbour Jajangmyeon 32,부산 항구 짜장면 32,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-284,Busan Harbour Jajangmyeon 33,부산 항구 짜장면 33,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-285,Busan Harbour Jajangmyeon 34,부산 항구 짜장면 34,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-286,Busan Harbour Jajangmyeon 35,부산 항구 짜장면 35,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-287,Busan Harbour Jajangmyeon 36,부산 항구 짜장면 36,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-288,Busan Harbour Jajangmyeon 37,부산 항구 짜장면 37,Busan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-289,Busan Harbour AYCE BBQ 1,부산 항구 BBQ 1,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-290,Busan Harbour AYCE BBQ 2,부산 항구 BBQ 2,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-291,Busan Harbour AYCE BBQ 3,부산 항구 BBQ 3,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-292,Busan Harbour AYCE BBQ 4,부산 항구 BBQ 4,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-293,Busan Harbour AYCE BBQ 5,부산 항구 BBQ 5,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-294,Busan Harbour AYCE BBQ 6,부산 항구 BBQ 6,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-295,Busan Harbour AYCE BBQ 7,부산 항구 BBQ 7,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-296,Busan Harbour AYCE BBQ 8,부산 항구 BBQ 8,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-297,Busan Harbour AYCE BBQ 9,부산 항구 BBQ 9,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-298,Busan Harbour AYCE BBQ 10,부산 항구 BBQ 10,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-299,Busan Harbour AYCE BBQ 11,부산 항구 BBQ 11,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-300,Busan Harbour AYCE BBQ 12,부산 항구 BBQ 12,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-301,Busan Harbour AYCE BBQ 13,부산 항구 BBQ 13,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-302,Busan Harbour AYCE BBQ 14,부산 항구 BBQ 14,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-303,Busan Harbour AYCE BBQ 15,부산 항구 BBQ 15,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-304,Busan Harbour AYCE BBQ 16,부산 항구 BBQ 16,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-305,Busan Harbour AYCE BBQ 17,부산 항구 BBQ 17,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-306,Busan Harbour AYCE BBQ 18,부산 항구 BBQ 18,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-307,Busan Harbour AYCE BBQ 19,부산 항구 BBQ 19,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-308,Busan Harbour AYCE BBQ 20,부산 항구 BBQ 20,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-309,Busan Harbour AYCE BBQ 21,부산 항구 BBQ 21,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-310,Busan Harbour AYCE BBQ 22,부산 항구 BBQ 22,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-311,Busan Harbour AYCE BBQ 23,부산 항구 BBQ 23,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-312,Busan Harbour AYCE BBQ 24,부산 항구 BBQ 24,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-313,Busan Harbour AYCE BBQ 25,부산 항구 BBQ 25,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-314,Busan Harbour AYCE BBQ 26,부산 항구 BBQ 26,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-315,Busan Harbour AYCE BBQ 27,부산 항구 BBQ 27,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-316,Busan Harbour AYCE BBQ 28,부산 항구 BBQ 28,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-317,Busan Harbour AYCE BBQ 29,부산 항구 BBQ 29,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-318,Busan Harbour AYCE BBQ 30,부산 항구 BBQ 30,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-319,Busan Harbour AYCE BBQ 31,부산 항구 BBQ 31,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-320,Busan Harbour AYCE BBQ 32,부산 항구 BBQ 32,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-321,Busan Harbour AYCE BBQ 33,부산 항구 BBQ 33,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-322,Busan Harbour AYCE BBQ 34,부산 항구 BBQ 34,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-323,Busan Harbour AYCE BBQ 35,부산 항구 BBQ 35,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-324,Busan Harbour AYCE BBQ 36,부산 항구 BBQ 36,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-325,Busan Harbour AYCE BBQ 37,부산 항구 BBQ 37,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-326,Busan Harbour AYCE BBQ 38,부산 항구 BBQ 38,Busan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-327,Busan Harbour Classic Korean 1,부산 항구 한식 1,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-328,Busan Harbour Classic Korean 2,부산 항구 한식 2,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-329,Busan Harbour Classic Korean 3,부산 항구 한식 3,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-330,Busan Harbour Classic Korean 4,부산 항구 한식 4,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-331,Busan Harbour Classic Korean 5,부산 항구 한식 5,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-332,Busan Harbour Classic Korean 6,부산 항구 한식 6,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-333,Busan Harbour Classic Korean 7,부산 항구 한식 7,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-334,Busan Harbour Classic Korean 8,부산 항구 한식 8,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-335,Busan Harbour Classic Korean 9,부산 항구 한식 9,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-336,Busan Harbour Classic Korean 10,부산 항구 한식 10,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-337,Busan Harbour Classic Korean 11,부산 항구 한식 11,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-338,Busan Harbour Classic Korean 12,부산 항구 한식 12,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-339,Busan Harbour Classic Korean 13,부산 항구 한식 13,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-340,Busan Harbour Classic Korean 14,부산 항구 한식 14,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-341,Busan Harbour Classic Korean 15,부산 항구 한식 15,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-342,Busan Harbour Classic Korean 16,부산 항구 한식 16,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-343,Busan Harbour Classic Korean 17,부산 항구 한식 17,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-344,Busan Harbour Classic Korean 18,부산 항구 한식 18,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-345,Busan Harbour Classic Korean 19,부산 항구 한식 19,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-346,Busan Harbour Classic Korean 20,부산 항구 한식 20,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-347,Busan Harbour Classic Korean 21,부산 항구 한식 21,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-348,Busan Harbour Classic Korean 22,부산 항구 한식 22,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-349,Busan Harbour Classic Korean 23,부산 항구 한식 23,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-350,Busan Harbour Classic Korean 24,부산 항구 한식 24,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-351,Busan Harbour Classic Korean 25,부산 항구 한식 25,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-352,Busan Harbour Classic Korean 26,부산 항구 한식 26,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-353,Busan Harbour Classic Korean 27,부산 항구 한식 27,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-354,Busan Harbour Classic Korean 28,부산 항구 한식 28,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-355,Busan Harbour Classic Korean 29,부산 항구 한식 29,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-356,Busan Harbour Classic Korean 30,부산 항구 한식 30,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-357,Busan Harbour Classic Korean 31,부산 항구 한식 31,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-358,Busan Harbour Classic Korean 32,부산 항구 한식 32,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-359,Busan Harbour Classic Korean 33,부산 항구 한식 33,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-360,Busan Harbour Classic Korean 34,부산 항구 한식 34,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-361,Busan Harbour Classic Korean 35,부산 항구 한식 35,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-362,Busan Harbour Classic Korean 36,부산 항구 한식 36,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-363,Busan Harbour Classic Korean 37,부산 항구 한식 37,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-364,Busan Harbour Classic Korean 38,부산 항구 한식 38,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-365,Busan Harbour Classic Korean 39,부산 항구 한식 39,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-366,Busan Harbour Classic Korean 40,부산 항구 한식 40,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-367,Busan Harbour Classic Korean 41,부산 항구 한식 41,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-368,Busan Harbour Classic Korean 42,부산 항구 한식 42,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-369,Busan Harbour Classic Korean 43,부산 항구 한식 43,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-370,Busan Harbour Classic Korean 44,부산 항구 한식 44,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-371,Busan Harbour Classic Korean 45,부산 항구 한식 45,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-372,Busan Harbour Classic Korean 46,부산 항구 한식 46,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-373,Busan Harbour Classic Korean 47,부산 항구 한식 47,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-374,Busan Harbour Classic Korean 48,부산 항구 한식 48,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-375,Busan Harbour Classic Korean 49,부산 항구 한식 49,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-376,Busan Harbour Classic Korean 50,부산 항구 한식 50,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-377,Busan Harbour Classic Korean 51,부산 항구 한식 51,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-378,Busan Harbour Classic Korean 52,부산 항구 한식 52,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-379,Busan Harbour Classic Korean 53,부산 항구 한식 53,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-380,Busan Harbour Classic Korean 54,부산 항구 한식 54,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-381,Busan Harbour Classic Korean 55,부산 항구 한식 55,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-382,Busan Harbour Classic Korean 56,부산 항구 한식 56,Busan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-383,Busan Harbour Cafe 1,부산 항구 카페 1,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-384,Busan Harbour Cafe 2,부산 항구 카페 2,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-385,Busan Harbour Cafe 3,부산 항구 카페 3,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-386,Busan Harbour Cafe 4,부산 항구 카페 4,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-387,Busan Harbour Cafe 5,부산 항구 카페 5,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-388,Busan Harbour Cafe 6,부산 항구 카페 6,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-389,Busan Harbour Cafe 7,부산 항구 카페 7,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-390,Busan Harbour Cafe 8,부산 항구 카페 8,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-391,Busan Harbour Cafe 9,부산 항구 카페 9,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-392,Busan Harbour Cafe 10,부산 항구 카페 10,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-393,Busan Harbour Cafe 11,부산 항구 카페 11,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-394,Busan Harbour Cafe 12,부산 항구 카페 12,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-395,Busan Harbour Cafe 13,부산 항구 카페 13,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-396,Busan Harbour Cafe 14,부산 항구 카페 14,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-397,Busan Harbour Cafe 15,부산 항구 카페 15,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-398,Busan Harbour Cafe 16,부산 항구 카페 16,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-399,Busan Harbour Cafe 17,부산 항구 카페 17,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-busan-400,Busan Harbour Cafe 18,부산 항구 카페 18,Busan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-408,Daejeon Town Ramen 1,대전 타운 라멘 1,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-409,Daejeon Town Ramen 2,대전 타운 라멘 2,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-410,Daejeon Town Ramen 3,대전 타운 라멘 3,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-411,Daejeon Town Ramen 4,대전 타운 라멘 4,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-412,Daejeon Town Ramen 5,대전 타운 라멘 5,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-413,Daejeon Town Ramen 6,대전 타운 라멘 6,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-414,Daejeon Town Ramen 7,대전 타운 라멘 7,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-415,Daejeon Town Ramen 8,대전 타운 라멘 8,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-416,Daejeon Town Ramen 9,대전 타운 라멘 9,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-417,Daejeon Town Ramen 10,대전 타운 라멘 10,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-418,Daejeon Town Ramen 11,대전 타운 라멘 11,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-419,Daejeon Town Ramen 12,대전 타운 라멘 12,Daejeon,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-420,Daejeon Town Jajangmyeon 1,대전 타운 짜장면 1,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-421,Daejeon Town Jajangmyeon 2,대전 타운 짜장면 2,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-422,Daejeon Town Jajangmyeon 3,대전 타운 짜장면 3,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-423,Daejeon Town Jajangmyeon 4,대전 타운 짜장면 4,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-424,Daejeon Town Jajangmyeon 5,대전 타운 짜장면 5,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-425,Daejeon Town Jajangmyeon 6,대전 타운 짜장면 6,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-426,Daejeon Town Jajangmyeon 7,대전 타운 짜장면 7,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-427,Daejeon Town Jajangmyeon 8,대전 타운 짜장면 8,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-428,Daejeon Town Jajangmyeon 9,대전 타운 짜장면 9,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-429,Daejeon Town Jajangmyeon 10,대전 타운 짜장면 10,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-430,Daejeon Town Jajangmyeon 11,대전 타운 짜장면 11,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-431,Daejeon Town Jajangmyeon 12,대전 타운 짜장면 12,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-432,Daejeon Town Jajangmyeon 13,대전 타운 짜장면 13,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-433,Daejeon Town Jajangmyeon 14,대전 타운 짜장면 14,Daejeon,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-434,Daejeon Town AYCE BBQ 1,대전 타운 BBQ 1,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-435,Daejeon Town AYCE BBQ 2,대전 타운 BBQ 2,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-436,Daejeon Town AYCE BBQ 3,대전 타운 BBQ 3,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-437,Daejeon Town AYCE BBQ 4,대전 타운 BBQ 4,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-438,Daejeon Town AYCE BBQ 5,대전 타운 BBQ 5,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-439,Daejeon Town AYCE BBQ 6,대전 타운 BBQ 6,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-440,Daejeon Town AYCE BBQ 7,대전 타운 BBQ 7,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-441,Daejeon Town AYCE BBQ 8,대전 타운 BBQ 8,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-442,Daejeon Town AYCE BBQ 9,대전 타운 BBQ 9,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-443,Daejeon Town AYCE BBQ 10,대전 타운 BBQ 10,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-444,Daejeon Town AYCE BBQ 11,대전 타운 BBQ 11,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-445,Daejeon Town AYCE BBQ 12,대전 타운 BBQ 12,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-446,Daejeon Town AYCE BBQ 13,대전 타운 BBQ 13,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-447,Daejeon Town AYCE BBQ 14,대전 타운 BBQ 14,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-448,Daejeon Town AYCE BBQ 15,대전 타운 BBQ 15,Daejeon,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-449,Daejeon Town Classic Korean 1,대전 타운 한식 1,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-450,Daejeon Town Classic Korean 2,대전 타운 한식 2,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-451,Daejeon Town Classic Korean 3,대전 타운 한식 3,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-452,Daejeon Town Classic Korean 4,대전 타운 한식 4,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-453,Daejeon Town Classic Korean 5,대전 타운 한식 5,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-454,Daejeon Town Classic Korean 6,대전 타운 한식 6,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-455,Daejeon Town Classic Korean 7,대전 타운 한식 7,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-456,Daejeon Town Classic Korean 8,대전 타운 한식 8,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-457,Daejeon Town Classic Korean 9,대전 타운 한식 9,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-458,Daejeon Town Classic Korean 10,대전 타운 한식 10,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-459,Daejeon Town Classic Korean 11,대전 타운 한식 11,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-460,Daejeon Town Classic Korean 12,대전 타운 한식 12,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-461,Daejeon Town Classic Korean 13,대전 타운 한식 13,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-462,Daejeon Town Classic Korean 14,대전 타운 한식 14,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-463,Daejeon Town Classic Korean 15,대전 타운 한식 15,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-464,Daejeon Town Classic Korean 16,대전 타운 한식 16,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-465,Daejeon Town Classic Korean 17,대전 타운 한식 17,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-466,Daejeon Town Classic Korean 18,대전 타운 한식 18,Daejeon,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-467,Daejeon Town Cafe 1,대전 타운 카페 1,Daejeon,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-468,Daejeon Town Cafe 2,대전 타운 카페 2,Daejeon,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-469,Daejeon Town Cafe 3,대전 타운 카페 3,Daejeon,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-470,Daejeon Town Cafe 4,대전 타운 카페 4,Daejeon,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-471,Daejeon Town Cafe 5,대전 타운 카페 5,Daejeon,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-472,Daejeon Town Cafe 6,대전 타운 카페 6,Daejeon,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-473,Daejeon Town Cafe 7,대전 타운 카페 7,Daejeon,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-474,Daejeon Town Cafe 8,대전 타운 카페 8,Daejeon,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-daejeon-475,Daejeon Town Cafe 9,대전 타운 카페 9,Daejeon,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-477,Cheonan Hub Ramen 1,천안 허브 라멘 1,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-478,Cheonan Hub Ramen 2,천안 허브 라멘 2,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-479,Cheonan Hub Ramen 3,천안 허브 라멘 3,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-480,Cheonan Hub Ramen 4,천안 허브 라멘 4,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-481,Cheonan Hub Ramen 5,천안 허브 라멘 5,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-482,Cheonan Hub Ramen 6,천안 허브 라멘 6,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-483,Cheonan Hub Ramen 7,천안 허브 라멘 7,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-484,Cheonan Hub Ramen 8,천안 허브 라멘 8,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-485,Cheonan Hub Ramen 9,천안 허브 라멘 9,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-486,Cheonan Hub Ramen 10,천안 허브 라멘 10,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-487,Cheonan Hub Ramen 11,천안 허브 라멘 11,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-488,Cheonan Hub Ramen 12,천안 허브 라멘 12,Cheonan,Ramen,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-489,Cheonan Hub Jajangmyeon 1,천안 허브 짜장면 1,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-490,Cheonan Hub Jajangmyeon 2,천안 허브 짜장면 2,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-491,Cheonan Hub Jajangmyeon 3,천안 허브 짜장면 3,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-492,Cheonan Hub Jajangmyeon 4,천안 허브 짜장면 4,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-493,Cheonan Hub Jajangmyeon 5,천안 허브 짜장면 5,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-494,Cheonan Hub Jajangmyeon 6,천안 허브 짜장면 6,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-495,Cheonan Hub Jajangmyeon 7,천안 허브 짜장면 7,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-496,Cheonan Hub Jajangmyeon 8,천안 허브 짜장면 8,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-497,Cheonan Hub Jajangmyeon 9,천안 허브 짜장면 9,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-498,Cheonan Hub Jajangmyeon 10,천안 허브 짜장면 10,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-499,Cheonan Hub Jajangmyeon 11,천안 허브 짜장면 11,Cheonan,Jajangmyeon,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-500,Cheonan Hub AYCE BBQ 1,천안 허브 BBQ 1,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-501,Cheonan Hub AYCE BBQ 2,천안 허브 BBQ 2,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-502,Cheonan Hub AYCE BBQ 3,천안 허브 BBQ 3,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-503,Cheonan Hub AYCE BBQ 4,천안 허브 BBQ 4,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-504,Cheonan Hub AYCE BBQ 5,천안 허브 BBQ 5,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-505,Cheonan Hub AYCE BBQ 6,천안 허브 BBQ 6,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-506,Cheonan Hub AYCE BBQ 7,천안 허브 BBQ 7,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-507,Cheonan Hub AYCE BBQ 8,천안 허브 BBQ 8,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-508,Cheonan Hub AYCE BBQ 9,천안 허브 BBQ 9,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-509,Cheonan Hub AYCE BBQ 10,천안 허브 BBQ 10,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-510,Cheonan Hub AYCE BBQ 11,천안 허브 BBQ 11,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-511,Cheonan Hub AYCE BBQ 12,천안 허브 BBQ 12,Cheonan,AYCE BBQ,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-512,Cheonan Hub Classic Korean 1,천안 허브 한식 1,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-513,Cheonan Hub Classic Korean 2,천안 허브 한식 2,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-514,Cheonan Hub Classic Korean 3,천안 허브 한식 3,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-515,Cheonan Hub Classic Korean 4,천안 허브 한식 4,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-516,Cheonan Hub Classic Korean 5,천안 허브 한식 5,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-517,Cheonan Hub Classic Korean 6,천안 허브 한식 6,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-518,Cheonan Hub Classic Korean 7,천안 허브 한식 7,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-519,Cheonan Hub Classic Korean 8,천안 허브 한식 8,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-520,Cheonan Hub Classic Korean 9,천안 허브 한식 9,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-521,Cheonan Hub Classic Korean 10,천안 허브 한식 10,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-522,Cheonan Hub Classic Korean 11,천안 허브 한식 11,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-523,Cheonan Hub Classic Korean 12,천안 허브 한식 12,Cheonan,Classic Korean,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-524,Cheonan Hub Cafe 1,천안 허브 카페 1,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-525,Cheonan Hub Cafe 2,천안 허브 카페 2,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-526,Cheonan Hub Cafe 3,천안 허브 카페 3,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-527,Cheonan Hub Cafe 4,천안 허브 카페 4,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-528,Cheonan Hub Cafe 5,천안 허브 카페 5,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-529,Cheonan Hub Cafe 6,천안 허브 카페 6,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-530,Cheonan Hub Cafe 7,천안 허브 카페 7,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-531,Cheonan Hub Cafe 8,천안 허브 카페 8,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-532,Cheonan Hub Cafe 9,천안 허브 카페 9,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-533,Cheonan Hub Cafe 10,천안 허브 카페 10,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-534,Cheonan Hub Cafe 11,천안 허브 카페 11,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
+food-cheonan-535,Cheonan Hub Cafe 12,천안 허브 카페 12,Cheonan,Cafe,HALLUCINATED,synthetic template name; no such restaurant exists
